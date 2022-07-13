@@ -5525,17 +5525,20 @@ function get_each_context$3(ctx, list, i) {
 // (44:12) {:else}
 function create_else_block_1(ctx) {
 	let t;
+	let show_if;
 	let if_block1_anchor;
-	let if_block0 = /*row*/ ctx[1].model.iconClass && create_if_block_7(ctx);
+	let if_block0 = /*row*/ ctx[1].model.iconClass && create_if_block_8(ctx);
 
 	function select_block_type_2(ctx, dirty) {
 		if (/*row*/ ctx[1].model.headerHtml) return create_if_block_4$1;
 		if (/*header*/ ctx[12].renderer) return create_if_block_5;
 		if (/*header*/ ctx[12].type === "resourceInfo") return create_if_block_6;
+		if (show_if == null || dirty & /*headers*/ 1) show_if = !!/*header*/ ctx[12].property.includes("html");
+		if (show_if) return create_if_block_7;
 		return create_else_block_2;
 	}
 
-	let current_block_type = select_block_type_2(ctx);
+	let current_block_type = select_block_type_2(ctx, -1);
 	let if_block1 = current_block_type(ctx);
 
 	return {
@@ -5556,7 +5559,7 @@ function create_else_block_1(ctx) {
 				if (if_block0) {
 					if_block0.p(ctx, dirty);
 				} else {
-					if_block0 = create_if_block_7(ctx);
+					if_block0 = create_if_block_8(ctx);
 					if_block0.c();
 					if_block0.m(t.parentNode, t);
 				}
@@ -5565,7 +5568,7 @@ function create_else_block_1(ctx) {
 				if_block0 = null;
 			}
 
-			if (current_block_type === (current_block_type = select_block_type_2(ctx)) && if_block1) {
+			if (current_block_type === (current_block_type = select_block_type_2(ctx, dirty)) && if_block1) {
 				if_block1.p(ctx, dirty);
 			} else {
 				if_block1.d(1);
@@ -5637,7 +5640,7 @@ function create_if_block$3(ctx) {
 }
 
 // (45:16) {#if row.model.iconClass}
-function create_if_block_7(ctx) {
+function create_if_block_8(ctx) {
 	let div;
 	let i;
 	let i_class_value;
@@ -5664,7 +5667,7 @@ function create_if_block_7(ctx) {
 	};
 }
 
-// (60:16) {:else}
+// (62:16) {:else}
 function create_else_block_2(ctx) {
 	let t_value = /*row*/ ctx[1].model[/*header*/ ctx[12].property] + "";
 	let t;
@@ -5681,6 +5684,27 @@ function create_else_block_2(ctx) {
 		},
 		d(detaching) {
 			if (detaching) detach(t);
+		}
+	};
+}
+
+// (60:59) 
+function create_if_block_7(ctx) {
+	let html_tag;
+	let raw_value = /*row*/ ctx[1].model[/*header*/ ctx[12].property] + "";
+
+	return {
+		c() {
+			html_tag = new HtmlTag(null);
+		},
+		m(target, anchor) {
+			html_tag.m(raw_value, target, anchor);
+		},
+		p(ctx, dirty) {
+			if (dirty & /*row, headers*/ 3 && raw_value !== (raw_value = /*row*/ ctx[1].model[/*header*/ ctx[12].property] + "")) html_tag.p(raw_value);
+		},
+		d(detaching) {
+			if (detaching) html_tag.d();
 		}
 	};
 }
