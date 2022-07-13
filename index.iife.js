@@ -5670,43 +5670,83 @@
     	};
     }
 
-    // (62:16) {:else}
+    // (64:16) {:else}
     function create_else_block_2(ctx) {
-    	let t_value = /*row*/ ctx[1].model[/*header*/ ctx[12].property] + "";
-    	let t;
+    	let t0_value = console.log(/*row*/ ctx[1].model[/*header*/ ctx[12].property]) + "";
+    	let t0;
+    	let t1;
+    	let t2_value = console.log(/*header*/ ctx[12].property) + "";
+    	let t2;
+    	let t3;
+    	let t4_value = /*row*/ ctx[1].model[/*header*/ ctx[12].property] + "";
+    	let t4;
 
     	return {
     		c() {
-    			t = text(t_value);
+    			t0 = text(t0_value);
+    			t1 = space();
+    			t2 = text(t2_value);
+    			t3 = space();
+    			t4 = text(t4_value);
     		},
     		m(target, anchor) {
-    			insert(target, t, anchor);
+    			insert(target, t0, anchor);
+    			insert(target, t1, anchor);
+    			insert(target, t2, anchor);
+    			insert(target, t3, anchor);
+    			insert(target, t4, anchor);
     		},
     		p(ctx, dirty) {
-    			if (dirty & /*row, headers*/ 3 && t_value !== (t_value = /*row*/ ctx[1].model[/*header*/ ctx[12].property] + "")) set_data(t, t_value);
+    			if (dirty & /*row, headers*/ 3 && t0_value !== (t0_value = console.log(/*row*/ ctx[1].model[/*header*/ ctx[12].property]) + "")) set_data(t0, t0_value);
+    			if (dirty & /*headers*/ 1 && t2_value !== (t2_value = console.log(/*header*/ ctx[12].property) + "")) set_data(t2, t2_value);
+    			if (dirty & /*row, headers*/ 3 && t4_value !== (t4_value = /*row*/ ctx[1].model[/*header*/ ctx[12].property] + "")) set_data(t4, t4_value);
     		},
     		d(detaching) {
-    			if (detaching) detach(t);
+    			if (detaching) detach(t0);
+    			if (detaching) detach(t1);
+    			if (detaching) detach(t2);
+    			if (detaching) detach(t3);
+    			if (detaching) detach(t4);
     		}
     	};
     }
 
     // (60:59) 
     function create_if_block_7(ctx) {
+    	let t0_value = console.log(/*row*/ ctx[1].model[/*header*/ ctx[12].property]) + "";
+    	let t0;
+    	let t1;
+    	let t2_value = console.log("html", /*header*/ ctx[12].property) + "";
+    	let t2;
+    	let t3;
     	let html_tag;
     	let raw_value = /*row*/ ctx[1].model[/*header*/ ctx[12].property] + "";
 
     	return {
     		c() {
+    			t0 = text(t0_value);
+    			t1 = space();
+    			t2 = text(t2_value);
+    			t3 = space();
     			html_tag = new HtmlTag(null);
     		},
     		m(target, anchor) {
+    			insert(target, t0, anchor);
+    			insert(target, t1, anchor);
+    			insert(target, t2, anchor);
+    			insert(target, t3, anchor);
     			html_tag.m(raw_value, target, anchor);
     		},
     		p(ctx, dirty) {
+    			if (dirty & /*row, headers*/ 3 && t0_value !== (t0_value = console.log(/*row*/ ctx[1].model[/*header*/ ctx[12].property]) + "")) set_data(t0, t0_value);
+    			if (dirty & /*headers*/ 1 && t2_value !== (t2_value = console.log("html", /*header*/ ctx[12].property) + "")) set_data(t2, t2_value);
     			if (dirty & /*row, headers*/ 3 && raw_value !== (raw_value = /*row*/ ctx[1].model[/*header*/ ctx[12].property] + "")) html_tag.p(raw_value);
     		},
     		d(detaching) {
+    			if (detaching) detach(t0);
+    			if (detaching) detach(t1);
+    			if (detaching) detach(t2);
+    			if (detaching) detach(t3);
     			if (detaching) html_tag.d();
     		}
     	};
@@ -6067,7 +6107,7 @@
     			current = true;
     		},
     		p(ctx, [dirty]) {
-    			if (dirty & /*headers, row*/ 3) {
+    			if (dirty & /*headers, row, console*/ 3) {
     				each_value = /*headers*/ ctx[0];
     				let i;
 
