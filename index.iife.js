@@ -4489,7 +4489,7 @@
     		api.registerEvent("tasks", "moveEnd");
     		api.registerEvent("tasks", "change");
     		api.registerEvent("tasks", "changed");
-    		api.registerEvent("gantt", "scroll");
+    		api.registerEvent("tasks", "scroll");
     		api.registerEvent("gantt", "viewChanged");
     		api.registerEvent("gantt", "dateSelected");
     		api.registerEvent("tasks", "dblclicked");
@@ -4864,7 +4864,7 @@
     		visibleWidth.set($visibleWidth);
     	}
 
-    	const scroll_handler = e => api["gantt"].raise.scroll(e);
+    	const scroll_handler = e => api["tasks"].raise.scroll(e);
 
     	function div9_binding($$value) {
     		binding_callbacks[$$value ? "unshift" : "push"](() => {
