@@ -3302,7 +3302,7 @@ function get_each_context_5(ctx, list, i) {
 	return child_ctx;
 }
 
-// (581:4) {#each ganttTableModules as module}
+// (584:4) {#each ganttTableModules as module}
 function create_each_block_5(ctx) {
 	let t;
 	let current;
@@ -3422,7 +3422,7 @@ function create_each_block_5(ctx) {
 	};
 }
 
-// (592:20) {#each $allTimeRanges as timeRange (timeRange.model.id)}
+// (595:20) {#each $allTimeRanges as timeRange (timeRange.model.id)}
 function create_each_block_4(key_1, ctx) {
 	let first;
 	let current;
@@ -3471,7 +3471,7 @@ function create_each_block_4(key_1, ctx) {
 	};
 }
 
-// (605:24) {#each visibleRows as row (row.model.id)}
+// (608:24) {#each visibleRows as row (row.model.id)}
 function create_each_block_3(key_1, ctx) {
 	let first;
 	let current;
@@ -3511,7 +3511,7 @@ function create_each_block_3(key_1, ctx) {
 	};
 }
 
-// (611:20) {#each $allTimeRanges as timeRange (timeRange.model.id)}
+// (614:20) {#each $allTimeRanges as timeRange (timeRange.model.id)}
 function create_each_block_2(key_1, ctx) {
 	let first;
 	let current;
@@ -3560,7 +3560,7 @@ function create_each_block_2(key_1, ctx) {
 	};
 }
 
-// (615:20) {#each visibleTasks as task (task.model.id)}
+// (618:20) {#each visibleTasks as task (task.model.id)}
 function create_each_block_1(key_1, ctx) {
 	let first;
 	let current;
@@ -3625,7 +3625,7 @@ function create_each_block_1(key_1, ctx) {
 	};
 }
 
-// (620:16) {#each ganttBodyModules as module}
+// (623:16) {#each ganttBodyModules as module}
 function create_each_block$2(ctx) {
 	let switch_instance_anchor;
 	let current;
@@ -3746,12 +3746,11 @@ function create_fragment$8(ctx) {
 	let each4_lookup = new Map();
 	let t6;
 	let div7_resize_listener;
-	let div8_onscroll_value;
 	let div9_class_value;
 	let current;
 	let mounted;
 	let dispose;
-	let each_value_5 = /*ganttTableModules*/ ctx[6];
+	let each_value_5 = /*ganttTableModules*/ ctx[5];
 	let each_blocks_5 = [];
 
 	for (let i = 0; i < each_value_5.length; i += 1) {
@@ -3783,7 +3782,7 @@ function create_fragment$8(ctx) {
 	const columns_1 = new Columns({
 			props: {
 				columns: /*columns*/ ctx[13],
-				columnStrokeColor: /*columnStrokeColor*/ ctx[4],
+				columnStrokeColor: /*columnStrokeColor*/ ctx[7],
 				columnStrokeWidth: /*columnStrokeWidth*/ ctx[8]
 			}
 		});
@@ -3815,7 +3814,7 @@ function create_fragment$8(ctx) {
 		each4_lookup.set(key, each_blocks_1[i] = create_each_block_1(key, child_ctx));
 	}
 
-	let each_value = /*ganttBodyModules*/ ctx[7];
+	let each_value = /*ganttBodyModules*/ ctx[6];
 	let each_blocks = [];
 
 	for (let i = 0; i < each_value.length; i += 1) {
@@ -3881,7 +3880,7 @@ function create_fragment$8(ctx) {
 			set_style(div0, "width", /*$_width*/ ctx[22] + "px");
 			attr(div1, "class", "sg-header-scroller svelte-u5vp6r");
 			attr(div2, "class", "sg-header svelte-u5vp6r");
-			add_render_callback(() => /*div2_elementresize_handler*/ ctx[124].call(div2));
+			add_render_callback(() => /*div2_elementresize_handler*/ ctx[125].call(div2));
 			toggle_class(div2, "right-scrollbar-visible", /*rightScrollbarVisible*/ ctx[15]);
 			set_style(div3, "transform", "translateY(" + /*paddingTop*/ ctx[17] + "px)");
 			attr(div4, "class", "sg-rows svelte-u5vp6r");
@@ -3890,11 +3889,11 @@ function create_fragment$8(ctx) {
 			attr(div6, "class", "content svelte-u5vp6r");
 			set_style(div6, "width", /*$_width*/ ctx[22] + "px");
 			attr(div7, "class", "sg-timeline-body svelte-u5vp6r");
-			add_render_callback(() => /*div7_elementresize_handler*/ ctx[127].call(div7));
+			add_render_callback(() => /*div7_elementresize_handler*/ ctx[128].call(div7));
 			toggle_class(div7, "zooming", /*zooming*/ ctx[14]);
 			attr(div8, "class", "sg-timeline sg-view svelte-u5vp6r");
-			attr(div8, "onscroll", div8_onscroll_value = /*func*/ ctx[128]);
-			attr(div9, "class", div9_class_value = "sg-gantt " + /*classes*/ ctx[5] + " svelte-u5vp6r");
+			attr(div8, "id", "gantt-scroll");
+			attr(div9, "class", div9_class_value = "sg-gantt " + /*classes*/ ctx[4] + " svelte-u5vp6r");
 			toggle_class(div9, "sg-disable-transition", !/*disableTransition*/ ctx[21]);
 		},
 		m(target, anchor) {
@@ -3916,8 +3915,8 @@ function create_fragment$8(ctx) {
 				each_blocks_4[i].m(div0, null);
 			}
 
-			/*div2_binding*/ ctx[123](div2);
-			div2_resize_listener = add_resize_listener(div2, /*div2_elementresize_handler*/ ctx[124].bind(div2));
+			/*div2_binding*/ ctx[124](div2);
+			div2_resize_listener = add_resize_listener(div2, /*div2_elementresize_handler*/ ctx[125].bind(div2));
 			append(div8, t2);
 			append(div8, div7);
 			append(div7, div6);
@@ -3930,7 +3929,7 @@ function create_fragment$8(ctx) {
 				each_blocks_3[i].m(div3, null);
 			}
 
-			/*div4_binding*/ ctx[125](div4);
+			/*div4_binding*/ ctx[126](div4);
 			append(div6, t4);
 			append(div6, div5);
 
@@ -3950,8 +3949,8 @@ function create_fragment$8(ctx) {
 				each_blocks[i].m(div6, null);
 			}
 
-			/*div7_binding*/ ctx[126](div7);
-			div7_resize_listener = add_resize_listener(div7, /*div7_elementresize_handler*/ ctx[127].bind(div7));
+			/*div7_binding*/ ctx[127](div7);
+			div7_resize_listener = add_resize_listener(div7, /*div7_elementresize_handler*/ ctx[128].bind(div7));
 			/*div9_binding*/ ctx[129](div9);
 			current = true;
 
@@ -3969,8 +3968,8 @@ function create_fragment$8(ctx) {
 			}
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*tableWidth, ganttElement, ganttTableModules, rowContainerHeight, paddingTop, paddingBottom, visibleRows*/ 983618 | dirty[1] & /*onResize, $$restProps*/ 36864) {
-				each_value_5 = /*ganttTableModules*/ ctx[6];
+			if (dirty[0] & /*tableWidth, ganttElement, ganttTableModules, rowContainerHeight, paddingTop, paddingBottom, visibleRows*/ 983586 | dirty[1] & /*onResize, $$restProps*/ 36864) {
+				each_value_5 = /*ganttTableModules*/ ctx[5];
 				let i;
 
 				for (i = 0; i < each_value_5.length; i += 1) {
@@ -4019,7 +4018,7 @@ function create_fragment$8(ctx) {
 
 			const columns_1_changes = {};
 			if (dirty[0] & /*columns*/ 8192) columns_1_changes.columns = /*columns*/ ctx[13];
-			if (dirty[0] & /*columnStrokeColor*/ 16) columns_1_changes.columnStrokeColor = /*columnStrokeColor*/ ctx[4];
+			if (dirty[0] & /*columnStrokeColor*/ 128) columns_1_changes.columnStrokeColor = /*columnStrokeColor*/ ctx[7];
 			if (dirty[0] & /*columnStrokeWidth*/ 256) columns_1_changes.columnStrokeWidth = /*columnStrokeWidth*/ ctx[8];
 			columns_1.$set(columns_1_changes);
 
@@ -4052,8 +4051,8 @@ function create_fragment$8(ctx) {
 				check_outros();
 			}
 
-			if (dirty[0] & /*ganttBodyModules, paddingTop, paddingBottom, visibleRows*/ 917632 | dirty[1] & /*$$restProps*/ 32768) {
-				each_value = /*ganttBodyModules*/ ctx[7];
+			if (dirty[0] & /*ganttBodyModules, paddingTop, paddingBottom, visibleRows*/ 917568 | dirty[1] & /*$$restProps*/ 32768) {
+				each_value = /*ganttBodyModules*/ ctx[6];
 				let i;
 
 				for (i = 0; i < each_value.length; i += 1) {
@@ -4087,15 +4086,11 @@ function create_fragment$8(ctx) {
 				toggle_class(div7, "zooming", /*zooming*/ ctx[14]);
 			}
 
-			if (!current || dirty[0] & /*columnStrokeColor*/ 16 && div8_onscroll_value !== (div8_onscroll_value = /*func*/ ctx[128])) {
-				attr(div8, "onscroll", div8_onscroll_value);
-			}
-
-			if (!current || dirty[0] & /*classes*/ 32 && div9_class_value !== (div9_class_value = "sg-gantt " + /*classes*/ ctx[5] + " svelte-u5vp6r")) {
+			if (!current || dirty[0] & /*classes*/ 16 && div9_class_value !== (div9_class_value = "sg-gantt " + /*classes*/ ctx[4] + " svelte-u5vp6r")) {
 				attr(div9, "class", div9_class_value);
 			}
 
-			if (dirty[0] & /*classes, disableTransition*/ 2097184) {
+			if (dirty[0] & /*classes, disableTransition*/ 2097168) {
 				toggle_class(div9, "sg-disable-transition", !/*disableTransition*/ ctx[21]);
 			}
 		},
@@ -4176,7 +4171,7 @@ function create_fragment$8(ctx) {
 				each_blocks_4[i].d();
 			}
 
-			/*div2_binding*/ ctx[123](null);
+			/*div2_binding*/ ctx[124](null);
 			div2_resize_listener();
 			destroy_component(columns_1);
 
@@ -4184,7 +4179,7 @@ function create_fragment$8(ctx) {
 				each_blocks_3[i].d();
 			}
 
-			/*div4_binding*/ ctx[125](null);
+			/*div4_binding*/ ctx[126](null);
 
 			for (let i = 0; i < each_blocks_2.length; i += 1) {
 				each_blocks_2[i].d();
@@ -4195,7 +4190,7 @@ function create_fragment$8(ctx) {
 			}
 
 			destroy_each(each_blocks, detaching);
-			/*div7_binding*/ ctx[126](null);
+			/*div7_binding*/ ctx[127](null);
 			div7_resize_listener();
 			/*div9_binding*/ ctx[129](null);
 			mounted = false;
@@ -4619,6 +4614,10 @@ function instance$8($$self, $$props, $$invalidate) {
 		});
 	}
 
+	function onGanttScroll(event) {
+		api["gantt"].raise.scroll(event);
+	}
+
 	function onDateSelected(event) {
 		set_store_value(_from, $_from = event.detail.from);
 		set_store_value(_to, $_to = event.detail.to);
@@ -4866,8 +4865,6 @@ function instance$8($$self, $$props, $$invalidate) {
 		visibleWidth.set($visibleWidth);
 	}
 
-	const func = e => $$invalidate(4, columnStrokeColor = "red");
-
 	function div9_binding($$value) {
 		binding_callbacks[$$value ? "unshift" : "push"](() => {
 			$$invalidate(9, ganttElement = $$value);
@@ -4886,7 +4883,7 @@ function instance$8($$self, $$props, $$invalidate) {
 		if ("to" in $$new_props) $$invalidate(56, to = $$new_props.to);
 		if ("minWidth" in $$new_props) $$invalidate(57, minWidth = $$new_props.minWidth);
 		if ("fitWidth" in $$new_props) $$invalidate(58, fitWidth = $$new_props.fitWidth);
-		if ("classes" in $$new_props) $$invalidate(5, classes = $$new_props.classes);
+		if ("classes" in $$new_props) $$invalidate(4, classes = $$new_props.classes);
 		if ("headers" in $$new_props) $$invalidate(0, headers = $$new_props.headers);
 		if ("zoomLevels" in $$new_props) $$invalidate(59, zoomLevels = $$new_props.zoomLevels);
 		if ("taskContent" in $$new_props) $$invalidate(60, taskContent = $$new_props.taskContent);
@@ -4898,11 +4895,11 @@ function instance$8($$self, $$props, $$invalidate) {
 		if ("magnetOffset" in $$new_props) $$invalidate(65, magnetOffset = $$new_props.magnetOffset);
 		if ("columnUnit" in $$new_props) $$invalidate(2, columnUnit = $$new_props.columnUnit);
 		if ("columnOffset" in $$new_props) $$invalidate(3, columnOffset = $$new_props.columnOffset);
-		if ("ganttTableModules" in $$new_props) $$invalidate(6, ganttTableModules = $$new_props.ganttTableModules);
-		if ("ganttBodyModules" in $$new_props) $$invalidate(7, ganttBodyModules = $$new_props.ganttBodyModules);
+		if ("ganttTableModules" in $$new_props) $$invalidate(5, ganttTableModules = $$new_props.ganttTableModules);
+		if ("ganttBodyModules" in $$new_props) $$invalidate(6, ganttBodyModules = $$new_props.ganttBodyModules);
 		if ("reflectOnParentRows" in $$new_props) $$invalidate(66, reflectOnParentRows = $$new_props.reflectOnParentRows);
 		if ("reflectOnChildRows" in $$new_props) $$invalidate(67, reflectOnChildRows = $$new_props.reflectOnChildRows);
-		if ("columnStrokeColor" in $$new_props) $$invalidate(4, columnStrokeColor = $$new_props.columnStrokeColor);
+		if ("columnStrokeColor" in $$new_props) $$invalidate(7, columnStrokeColor = $$new_props.columnStrokeColor);
 		if ("columnStrokeWidth" in $$new_props) $$invalidate(8, columnStrokeWidth = $$new_props.columnStrokeWidth);
 		if ("taskElementHook" in $$new_props) $$invalidate(68, taskElementHook = $$new_props.taskElementHook);
 	};
@@ -5054,10 +5051,10 @@ function instance$8($$self, $$props, $$invalidate) {
 		tableWidth,
 		columnUnit,
 		columnOffset,
-		columnStrokeColor,
 		classes,
 		ganttTableModules,
 		ganttBodyModules,
+		columnStrokeColor,
 		columnStrokeWidth,
 		ganttElement,
 		mainHeaderContainer,
@@ -5168,6 +5165,7 @@ function instance$8($$self, $$props, $$invalidate) {
 		setColumnDuration,
 		getColumns,
 		ganttContext,
+		onGanttScroll,
 		initRows,
 		initTasks,
 		initTimeRanges,
@@ -5178,7 +5176,6 @@ function instance$8($$self, $$props, $$invalidate) {
 		div4_binding,
 		div7_binding,
 		div7_elementresize_handler,
-		func,
 		div9_binding
 	];
 }
@@ -5203,7 +5200,7 @@ class Gantt extends SvelteComponent {
 				to: 56,
 				minWidth: 57,
 				fitWidth: 58,
-				classes: 5,
+				classes: 4,
 				headers: 0,
 				zoomLevels: 59,
 				taskContent: 60,
@@ -5215,11 +5212,11 @@ class Gantt extends SvelteComponent {
 				magnetOffset: 65,
 				columnUnit: 2,
 				columnOffset: 3,
-				ganttTableModules: 6,
-				ganttBodyModules: 7,
+				ganttTableModules: 5,
+				ganttBodyModules: 6,
 				reflectOnParentRows: 66,
 				reflectOnChildRows: 67,
-				columnStrokeColor: 4,
+				columnStrokeColor: 7,
 				columnStrokeWidth: 8,
 				taskElementHook: 68,
 				columnService: 69,
