@@ -3749,6 +3749,7 @@
     	let each4_lookup = new Map();
     	let t6;
     	let div7_resize_listener;
+    	let div8_onscroll_value;
     	let div9_class_value;
     	let current;
     	let mounted;
@@ -3895,6 +3896,7 @@
     			add_render_callback(() => /*div7_elementresize_handler*/ ctx[127].call(div7));
     			toggle_class(div7, "zooming", /*zooming*/ ctx[14]);
     			attr(div8, "class", "sg-timeline sg-view svelte-8uspd");
+    			attr(div8, "onscroll", div8_onscroll_value = /*func*/ ctx[128]);
     			attr(div9, "class", div9_class_value = "sg-gantt " + /*classes*/ ctx[5] + " svelte-8uspd");
     			toggle_class(div9, "sg-disable-transition", !/*disableTransition*/ ctx[21]);
     		},
@@ -3961,7 +3963,6 @@
     					action_destroyer(ctx[42].call(null, div1)),
     					action_destroyer(ctx[41].call(null, div7)),
     					listen(div7, "wheel", /*onwheel*/ ctx[44]),
-    					listen(div8, "scroll", /*scroll_handler*/ ctx[128]),
     					listen(div9, "click", onEvent),
     					listen(div9, "mouseover", onEvent),
     					listen(div9, "mouseleave", onEvent)
@@ -4087,6 +4088,10 @@
 
     			if (dirty[0] & /*zooming*/ 16384) {
     				toggle_class(div7, "zooming", /*zooming*/ ctx[14]);
+    			}
+
+    			if (!current || dirty[0] & /*columnStrokeColor*/ 16 && div8_onscroll_value !== (div8_onscroll_value = /*func*/ ctx[128])) {
+    				attr(div8, "onscroll", div8_onscroll_value);
     			}
 
     			if (!current || dirty[0] & /*classes*/ 32 && div9_class_value !== (div9_class_value = "sg-gantt " + /*classes*/ ctx[5] + " svelte-8uspd")) {
@@ -4864,7 +4869,7 @@
     		visibleWidth.set($visibleWidth);
     	}
 
-    	const scroll_handler = e => $$invalidate(4, columnStrokeColor = "red");
+    	const func = e => $$invalidate(4, columnStrokeColor = "red");
 
     	function div9_binding($$value) {
     		binding_callbacks[$$value ? "unshift" : "push"](() => {
@@ -5176,7 +5181,7 @@
     		div4_binding,
     		div7_binding,
     		div7_elementresize_handler,
-    		scroll_handler,
+    		func,
     		div9_binding
     	];
     }
