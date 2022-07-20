@@ -3889,6 +3889,7 @@ function create_fragment$8(ctx) {
 			attr(div6, "class", "content svelte-u5vp6r");
 			set_style(div6, "width", /*$_width*/ ctx[22] + "px");
 			attr(div7, "class", "sg-timeline-body svelte-u5vp6r");
+			attr(div7, "id", "sg-timeline-body");
 			add_render_callback(() => /*div7_elementresize_handler*/ ctx[128].call(div7));
 			toggle_class(div7, "zooming", /*zooming*/ ctx[14]);
 			attr(div8, "class", "sg-timeline sg-view svelte-u5vp6r");
