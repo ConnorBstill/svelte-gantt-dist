@@ -4402,7 +4402,7 @@ function instance$8($$self, $$props, $$invalidate) {
 		let columnFrom = from;
 		let left = 0;
 
-		for (let i = 0; i < count - 7; i++) {
+		for (let i = 0; i < count; i++) {
 			const from = columnFrom;
 			const to = columnFrom + dur;
 			const duration = to - from;
