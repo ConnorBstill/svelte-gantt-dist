@@ -2487,7 +2487,7 @@
     						$$invalidate(1, _headers = headers);
     					});
     				} else {
-    					for (let i = 0; i < columnCount - 7; i++) {
+    					for (let i = 0; i < columnCount - 1; i++) {
     						headers.push({
     							width: Math.min(columnWidth, $width),
     							label: dateAdapter.format(headerTime, header.format),
