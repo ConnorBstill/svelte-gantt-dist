@@ -2872,9 +2872,10 @@
     		for (let i = 0; i < columns.length; i += 4) {
     			const column = columns[i];
 
-    			// if (index % 4 === 0) {
-    			ctx.fillRect(column.left, 0, columns[0].width * 4, canvas.height);
-    		} // }
+    			if (i === 0) {
+    				ctx.fillRect(column.left, 0, columns[0].width * 4, canvas.height);
+    			}
+    		}
 
     		const dataURL = canvas.toDataURL();
     		return `url("${dataURL}")`;
