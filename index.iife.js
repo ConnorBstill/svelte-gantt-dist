@@ -2862,10 +2862,15 @@
     		ctx.lineWidth = columnStrokeWidth;
     		ctx.lineCap = "square";
     		ctx.strokeStyle = columnStrokeColor;
+    		ctx.fillStyle = "#a9a9a9";
     		ctx.translate(0.5, 0.5);
 
-    		columns.forEach(column => {
+    		columns.forEach((column, index) => {
     			lineAt(ctx, column.left);
+
+    			if (index % 2 === 0) {
+    				ctx.fillRect(column.left, 0, columns[0].width, canvas.height);
+    			}
     		});
 
     		const dataURL = canvas.toDataURL();
