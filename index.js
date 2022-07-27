@@ -2880,7 +2880,7 @@ function get_each_context$2(ctx, list, i) {
 	return child_ctx;
 }
 
-// (73:4) {:else}
+// (81:4) {:else}
 function create_else_block$1(ctx) {
 	let current;
 
@@ -2921,7 +2921,7 @@ function create_else_block$1(ctx) {
 	};
 }
 
-// (71:4) {#if (i / 4) % 1 === 0}
+// (79:4) {#if alternateColumnColorCondition(i)}
 function create_if_block$2(ctx) {
 	let current;
 
@@ -2961,7 +2961,7 @@ function create_if_block$2(ctx) {
 	};
 }
 
-// (70:1) {#each columns as column, i}
+// (78:1) {#each columns as column, i}
 function create_each_block$2(ctx) {
 	let current_block_type_index;
 	let if_block;
@@ -2971,7 +2971,7 @@ function create_each_block$2(ctx) {
 	const if_blocks = [];
 
 	function select_block_type(ctx, dirty) {
-		if (/*i*/ ctx[10] / 4 % 1 === 0) return 0;
+		if (alternateColumnColorCondition(/*i*/ ctx[10])) return 0;
 		return 1;
 	}
 
@@ -3042,7 +3042,7 @@ function create_fragment$7(ctx) {
 			current = true;
 		},
 		p(ctx, [dirty]) {
-			if (dirty & /*columns*/ 1) {
+			if (dirty & /*columns, alternateColumnColorCondition*/ 1) {
 				each_value = /*columns*/ ctx[0];
 				let i;
 
@@ -3099,6 +3099,12 @@ function lineAt(ctx, x) {
 	ctx.moveTo(x, 0);
 	ctx.lineTo(x, 20);
 	ctx.stroke();
+}
+
+function alternateColumnColorCondition(index) {
+	if (index / 4 % 1 === 0 || (index - 1 / 4) % 1 === 0 || (index - 2 / 4) % 1 === 0 || (index - 3 / 4) % 1 === 0) {
+		return true;
+	}
 }
 
 function instance$7($$self, $$props, $$invalidate) {
