@@ -2924,7 +2924,7 @@
     	};
     }
 
-    // (71:4) {#if i % 4 === 0}
+    // (71:4) {#if (i / 4) % 1 === 0}
     function create_if_block$2(ctx) {
     	let current;
 
@@ -2974,7 +2974,7 @@
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
-    		if (/*i*/ ctx[10] % 4 === 0) return 0;
+    		if (/*i*/ ctx[10] / 4 % 1 === 0) return 0;
     		return 1;
     	}
 
