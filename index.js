@@ -2867,7 +2867,7 @@ function instance$6($$self, $$props, $$invalidate) {
 			lineAt(ctx, column.left);
 		});
 
-		for (let i = 0; i < columns.length; i += 4) {
+		for (let i = 0; i < columns.length; i++) {
 			const column = columns[i];
 
 			// if (i === 0) {
