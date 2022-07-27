@@ -2816,6 +2816,7 @@ function create_fragment$6(ctx) {
 	return {
 		c() {
 			div = element("div");
+			attr(div, "id", "container");
 			attr(div, "class", "sg-columns svelte-1l5kzly");
 			set_style(div, "background-image", /*backgroundImage*/ ctx[0] + ", " + /*shadedBackgroundImage*/ ctx[1]);
 		},
@@ -2846,6 +2847,10 @@ function instance$6($$self, $$props, $$invalidate) {
 	let { columns = [] } = $$props;
 	let { columnStrokeWidth = 1 } = $$props;
 	let { columnStrokeColor = "#efefef" } = $$props;
+
+	onMount(() => {
+		const el = document.getElementById("container");
+	});
 
 	function createBackground(columns) {
 		const canvas = document.createElement("canvas");
