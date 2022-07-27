@@ -2870,8 +2870,7 @@ function instance$6($$self, $$props, $$invalidate) {
 		for (let i = 0; i < columns.length; i += 8) {
 			if (columns[i]) {
 				const column = columns[i];
-				ctx.fillRect(column.left, 0, columns[0].width, canvas.height);
-			}
+			} // ctx.fillRect(column.left, 0, columns[0].width, canvas.height);
 		}
 
 		const dataURL = canvas.toDataURL();
