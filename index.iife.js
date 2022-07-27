@@ -2870,7 +2870,7 @@
     			lineAt(ctx, column.left);
     		});
 
-    		for (let i = 0; i < columns.length; i += 8) {
+    		for (let i = 0; i < columns.length; i += 4) {
     			const column = columns[i];
 
     			// if (i === 0) {
