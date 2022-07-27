@@ -2865,8 +2865,8 @@ function instance$6($$self, $$props, $$invalidate) {
 		columns.forEach((column, index) => {
 			lineAt(ctx, column.left);
 
-			if (index % 2 === 0) {
-				ctx.fillRect(column.left, 0, columns[0].width, canvas.height);
+			if (index % 4 === 0) {
+				ctx.fillRect(column.left, 0, columns[0].width * 4, canvas.height);
 			}
 		});
 
