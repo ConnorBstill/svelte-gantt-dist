@@ -2871,11 +2871,11 @@
     		});
 
     		for (let i = 0; i < columns.length; i += 8) {
-    			const column = columns[i];
-
-    			// if (i === 0) {
-    			ctx.fillRect(column.left, 0, columns[0].width, canvas.height);
-    		} // }
+    			if (columns[i]) {
+    				const column = columns[i];
+    				ctx.fillRect(column.left, 0, columns[0].width * 4, canvas.height);
+    			}
+    		}
 
     		const dataURL = canvas.toDataURL();
     		return `url("${dataURL}")`;
