@@ -2870,7 +2870,7 @@
     			lineAt(ctx, column.left);
     		});
 
-    		ctx.fillRect(columns[0].left, 0, columns[0].width, canvas.height - 5);
+    		ctx.fillRect(columns[0].left, 0, columns[0].width - 5, canvas.height);
 
     		// for (let i = 0; i < columns.length; i += 8) {
     		//     if (columns[i]) {
