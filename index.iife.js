@@ -2850,15 +2850,17 @@
     	let { columns = [] } = $$props;
     	let { columnStrokeWidth = 1 } = $$props;
     	let { columnStrokeColor = "#efefef" } = $$props;
+    	let componentHeight;
 
     	onMount(() => {
     		const el = document.getElementById("container");
+    		componentHeight = el.clientHeight;
     	});
 
     	function createBackground(columns) {
     		const canvas = document.createElement("canvas");
     		canvas.width = (columns.length - 1) * columns[0].width;
-    		canvas.height = 20;
+    		canvas.height = componentHeight;
     		const ctx = canvas.getContext("2d");
     		ctx.shadowColor = "rgba(128,128,128,0.5)";
     		ctx.shadowOffsetX = 0;
@@ -2882,7 +2884,7 @@
     	function createBackgroundShaded(columns) {
     		const canvas = document.createElement("canvas");
     		canvas.width = (columns.length - 1) * columns[0].width;
-    		canvas.height = 20;
+    		canvas.height = componentHeight;
     		const ctx = canvas.getContext("2d");
     		ctx.shadowColor = "rgba(128,128,128,0.5)";
     		ctx.shadowOffsetX = 0;
