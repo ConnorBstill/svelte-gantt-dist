@@ -2820,14 +2820,14 @@
     		c() {
     			div = element("div");
     			attr(div, "class", "sg-columns svelte-16rqlu8");
-    			set_style(div, "background-image", /*backgroundImage*/ ctx[0]);
+    			set_style(div, "background-image", /*backgroundImage*/ ctx[0] + ", " + /*shadedBackgroundImage*/ ctx[1]);
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
     		},
     		p(ctx, [dirty]) {
-    			if (dirty & /*backgroundImage*/ 1) {
-    				set_style(div, "background-image", /*backgroundImage*/ ctx[0]);
+    			if (dirty & /*backgroundImage, shadedBackgroundImage*/ 3) {
+    				set_style(div, "background-image", /*backgroundImage*/ ctx[0] + ", " + /*shadedBackgroundImage*/ ctx[1]);
     			}
     		},
     		i: noop,
@@ -2883,23 +2883,64 @@
     		return `url("${dataURL}")`;
     	}
 
+    	function createBackgroundShaded(columns) {
+    		const canvas = document.createElement("canvas");
+    		canvas.width = (columns.length - 1) * columns[0].width;
+    		canvas.height = 20;
+    		const ctx = canvas.getContext("2d");
+    		ctx.shadowColor = "rgba(128,128,128,0.5)";
+    		ctx.shadowOffsetX = 0;
+    		ctx.shadowOffsetY = 0;
+    		ctx.shadowBlur = 0.5;
+    		ctx.lineWidth = columnStrokeWidth;
+    		ctx.lineCap = "square";
+    		ctx.strokeStyle = columnStrokeColor;
+
+    		// ctx.fillStyle = '#a9a9a9';
+    		ctx.translate(0.5, 0.5);
+
+    		columns.forEach((column, index) => {
+    			lineAt(ctx, column.left);
+    		});
+
+    		ctx.fillRect(columns[0].left, 0, columns[0].width + 5, canvas.height);
+
+    		// for (let i = 0; i < columns.length; i += 8) {
+    		//     if (columns[i]) {
+    		//         const column = columns[i];
+    		//         ctx.fillRect(column.left, 0, columns[0].width, canvas.height);
+    		//     }
+    		// }
+    		const dataURL = canvas.toDataURL();
+
+    		return `url("${dataURL}")`;
+    	}
+
     	let backgroundImage;
+    	let shadedBackgroundImage;
 
     	$$self.$set = $$props => {
-    		if ("columns" in $$props) $$invalidate(1, columns = $$props.columns);
-    		if ("columnStrokeWidth" in $$props) $$invalidate(2, columnStrokeWidth = $$props.columnStrokeWidth);
-    		if ("columnStrokeColor" in $$props) $$invalidate(3, columnStrokeColor = $$props.columnStrokeColor);
+    		if ("columns" in $$props) $$invalidate(2, columns = $$props.columns);
+    		if ("columnStrokeWidth" in $$props) $$invalidate(3, columnStrokeWidth = $$props.columnStrokeWidth);
+    		if ("columnStrokeColor" in $$props) $$invalidate(4, columnStrokeColor = $$props.columnStrokeColor);
     	};
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*columns*/ 2) {
+    		if ($$self.$$.dirty & /*columns*/ 4) {
     			 {
     				$$invalidate(0, backgroundImage = createBackground(columns.slice(0, 5)));
+    				$$invalidate(1, shadedBackgroundImage = createBackgroundShaded(columns.slice(0, 5)));
     			}
     		}
     	};
 
-    	return [backgroundImage, columns, columnStrokeWidth, columnStrokeColor];
+    	return [
+    		backgroundImage,
+    		shadedBackgroundImage,
+    		columns,
+    		columnStrokeWidth,
+    		columnStrokeColor
+    	];
     }
 
     class Columns extends SvelteComponent {
@@ -2907,9 +2948,9 @@
     		super();
 
     		init(this, options, instance$6, create_fragment$6, safe_not_equal, {
-    			columns: 1,
-    			columnStrokeWidth: 2,
-    			columnStrokeColor: 3
+    			columns: 2,
+    			columnStrokeWidth: 3,
+    			columnStrokeColor: 4
     		});
     	}
     }
