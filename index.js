@@ -2871,7 +2871,7 @@ function instance$6($$self, $$props, $$invalidate) {
 			const column = columns[i];
 
 			// if (i === 0) {
-			ctx.fillRect(column.left, 0, columns[0].width * 4, canvas.height);
+			ctx.fillRect(column.left, 0, columns[0].width, canvas.height);
 		} // }
 
 		const dataURL = canvas.toDataURL();
