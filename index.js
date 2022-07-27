@@ -2864,11 +2864,14 @@ function instance$6($$self, $$props, $$invalidate) {
 
 		columns.forEach((column, index) => {
 			lineAt(ctx, column.left);
-
-			if (index % 4 === 0) {
-				ctx.fillRect(column.left, 0, columns[0].width * 4, canvas.height);
-			}
 		});
+
+		for (let i = 0; i < columns.length; i += 4) {
+			const column = columns[i];
+
+			// if (index % 4 === 0) {
+			ctx.fillRect(column.left, 0, columns[0].width * 4, canvas.height);
+		} // }
 
 		const dataURL = canvas.toDataURL();
 		return `url("${dataURL}")`;
