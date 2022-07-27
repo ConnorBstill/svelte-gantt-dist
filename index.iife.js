@@ -5962,6 +5962,10 @@
     			t = space();
     			attr(div, "class", "sg-table-body-cell sg-table-cell svelte-1kx78zo");
     			set_style(div, "width", /*header*/ ctx[12].width + "px");
+
+    			set_style(div, "border-left", /*header*/ ctx[12].property.includes("html")
+    			? "none"
+    			: "1px solid #eee;");
     		},
     		m(target, anchor) {
     			insert(target, div, anchor);
@@ -5996,6 +6000,12 @@
 
     			if (!current || dirty & /*headers*/ 1) {
     				set_style(div, "width", /*header*/ ctx[12].width + "px");
+    			}
+
+    			if (!current || dirty & /*headers*/ 1) {
+    				set_style(div, "border-left", /*header*/ ctx[12].property.includes("html")
+    				? "none"
+    				: "1px solid #eee;");
     			}
     		},
     		i(local) {
