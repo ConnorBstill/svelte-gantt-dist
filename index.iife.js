@@ -2870,13 +2870,16 @@
     			lineAt(ctx, column.left);
     		});
 
-    		for (let i = 0; i < columns.length; i += 8) {
-    			if (columns[i]) {
-    				const column = columns[i];
-    			} // ctx.fillRect(column.left, 0, columns[0].width, canvas.height);
-    		}
+    		ctx.fillRect(columns[0].left, 0, columns[0].width, canvas.height);
 
+    		// for (let i = 0; i < columns.length; i += 8) {
+    		//     if (columns[i]) {
+    		//         const column = columns[i];
+    		//         ctx.fillRect(column.left, 0, columns[0].width, canvas.height);
+    		//     }
+    		// }
     		const dataURL = canvas.toDataURL();
+
     		return `url("${dataURL}")`;
     	}
 
