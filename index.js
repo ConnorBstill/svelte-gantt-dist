@@ -2056,34 +2056,20 @@ styleInject(css_248z$5);
 
 function create_fragment$4(ctx) {
 	let div;
+	let div_style_value;
 
 	return {
 		c() {
 			div = element("div");
 			attr(div, "class", "column svelte-1mx1tfz");
-			set_style(div, "left", /*left*/ ctx[0] + "px");
-			set_style(div, "width", /*width*/ ctx[1] + "px");
-
-			set_style(div, "background-color", /*backgroundColor*/ ctx[2]
-			? /*backgroundColor*/ ctx[2]
-			: "none");
+			attr(div, "style", div_style_value = "left:" + /*left*/ ctx[0] + "px;width:" + /*width*/ ctx[1] + "px;" + /*stylesWithBackgroundColor*/ ctx[2]());
 		},
 		m(target, anchor) {
 			insert(target, div, anchor);
 		},
 		p(ctx, [dirty]) {
-			if (dirty & /*left*/ 1) {
-				set_style(div, "left", /*left*/ ctx[0] + "px");
-			}
-
-			if (dirty & /*width*/ 2) {
-				set_style(div, "width", /*width*/ ctx[1] + "px");
-			}
-
-			if (dirty & /*backgroundColor*/ 4) {
-				set_style(div, "background-color", /*backgroundColor*/ ctx[2]
-				? /*backgroundColor*/ ctx[2]
-				: "none");
+			if (dirty & /*left, width*/ 3 && div_style_value !== (div_style_value = "left:" + /*left*/ ctx[0] + "px;width:" + /*width*/ ctx[1] + "px;" + /*stylesWithBackgroundColor*/ ctx[2]())) {
+				attr(div, "style", div_style_value);
 			}
 		},
 		i: noop,
@@ -2099,19 +2085,27 @@ function instance$4($$self, $$props, $$invalidate) {
 	let { width } = $$props;
 	let { backgroundColor = undefined } = $$props;
 
+	function stylesWithBackgroundColor() {
+		if (backgroundColor) {
+			return `background-color:${backgroundColor};border-right: #fff 1px solid;`;
+		} else {
+			return "";
+		}
+	}
+
 	$$self.$set = $$props => {
 		if ("left" in $$props) $$invalidate(0, left = $$props.left);
 		if ("width" in $$props) $$invalidate(1, width = $$props.width);
-		if ("backgroundColor" in $$props) $$invalidate(2, backgroundColor = $$props.backgroundColor);
+		if ("backgroundColor" in $$props) $$invalidate(3, backgroundColor = $$props.backgroundColor);
 	};
 
-	return [left, width, backgroundColor];
+	return [left, width, stylesWithBackgroundColor, backgroundColor];
 }
 
 class Column extends SvelteComponent {
 	constructor(options) {
 		super();
-		init(this, options, instance$4, create_fragment$4, safe_not_equal, { left: 0, width: 1, backgroundColor: 2 });
+		init(this, options, instance$4, create_fragment$4, safe_not_equal, { left: 0, width: 1, backgroundColor: 3 });
 	}
 }
 
