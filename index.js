@@ -3102,7 +3102,7 @@ function lineAt(ctx, x) {
 }
 
 function alternateColumnColorCondition(index) {
-	if (index / 8 % 1 === 0 || (index - 1 / 8) % 1 === 0 || (index - 2 / 8) % 1 === 0 || (index - 3 / 8) % 1 === 0) {
+	if (index / 8 % 1 === 0 || (index - 1) / 8 % 1 === 0 || (index - 2) / 8 % 1 === 0 || (index - 3) / 8 % 1 === 0) {
 		return true;
 	} else {
 		return false;
