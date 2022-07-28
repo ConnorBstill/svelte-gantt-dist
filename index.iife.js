@@ -2883,8 +2883,10 @@
     	return child_ctx;
     }
 
-    // (81:4) {:else}
+    // (83:4) {:else}
     function create_else_block$1(ctx) {
+    	let div;
+    	let t;
     	let current;
 
     	const column = new Column({
@@ -2897,9 +2899,13 @@
 
     	return {
     		c() {
+    			div = element("div");
+    			t = space();
     			create_component(column.$$.fragment);
     		},
     		m(target, anchor) {
+    			insert(target, div, anchor);
+    			insert(target, t, anchor);
     			mount_component(column, target, anchor);
     			current = true;
     		},
@@ -2919,6 +2925,8 @@
     			current = false;
     		},
     		d(detaching) {
+    			if (detaching) detach(div);
+    			if (detaching) detach(t);
     			destroy_component(column, detaching);
     		}
     	};
@@ -2926,6 +2934,8 @@
 
     // (79:4) {#if alternateColumnColorCondition(i)}
     function create_if_block$2(ctx) {
+    	let div;
+    	let t;
     	let current;
 
     	const column = new Column({
@@ -2937,10 +2947,14 @@
 
     	return {
     		c() {
+    			div = element("div");
     			create_component(column.$$.fragment);
+    			t = space();
     		},
     		m(target, anchor) {
-    			mount_component(column, target, anchor);
+    			insert(target, div, anchor);
+    			mount_component(column, div, null);
+    			append(div, t);
     			current = true;
     		},
     		p(ctx, dirty) {
@@ -2959,7 +2973,8 @@
     			current = false;
     		},
     		d(detaching) {
-    			destroy_component(column, detaching);
+    			if (detaching) detach(div);
+    			destroy_component(column);
     		}
     	};
     }
@@ -3105,7 +3120,7 @@
     }
 
     function alternateColumnColorCondition(index) {
-    	if (index / 4 % 1 === 0 || (index + 1 / 4) % 1 === 0 || (index + 2 / 4) % 1 === 0 || (index + 3 / 4) % 1 === 0) {
+    	if (index / 8 % 1 === 0 || (index - 1 / 8) % 1 === 0 || (index - 2 / 8) % 1 === 0 || (index - 3 / 8) % 1 === 0) {
     		return true;
     	}
     }
