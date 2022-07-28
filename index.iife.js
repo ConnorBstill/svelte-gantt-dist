@@ -1113,7 +1113,7 @@
     	};
     }
 
-    // (295:4) {:else}
+    // (297:4) {:else}
     function create_else_block(ctx) {
     	let t_value = /*model*/ ctx[0].label + "";
     	let t;
@@ -1134,7 +1134,7 @@
     	};
     }
 
-    // (293:26) 
+    // (295:26) 
     function create_if_block_3(ctx) {
     	let html_tag;
     	let raw_value = /*taskContent*/ ctx[8](/*model*/ ctx[0]) + "";
@@ -1155,7 +1155,7 @@
     	};
     }
 
-    // (291:4) {#if model.html}
+    // (293:4) {#if model.html}
     function create_if_block_2(ctx) {
     	let html_tag;
     	let raw_value = /*model*/ ctx[0].html + "";
@@ -1176,7 +1176,7 @@
     	};
     }
 
-    // (297:4) {#if model.showButton}
+    // (299:4) {#if model.showButton}
     function create_if_block_1(ctx) {
     	let span;
     	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1212,7 +1212,7 @@
     	};
     }
 
-    // (304:2) {#if model.labelBottom}
+    // (306:2) {#if model.labelBottom}
     function create_if_block(ctx) {
     	let label;
     	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1544,7 +1544,9 @@
     					setCursor("default");
     				},
     				onResize: event => {
-    					($$invalidate(6, _position.x = event.x, _position), $$invalidate(6, _position.width = event.width, _position), $$invalidate(5, _resizing = true));
+    					if (model.resizable) {
+    						($$invalidate(6, _position.x = event.x, _position), $$invalidate(6, _position.width = event.width, _position), $$invalidate(5, _resizing = true));
+    					}
     				},
     				onDrag: event => {
     					($$invalidate(6, _position.x = event.x, _position), $$invalidate(6, _position.y = event.y, _position), $$invalidate(4, _dragging = true));

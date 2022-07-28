@@ -5,6 +5,7 @@ export interface TaskModel {
     resourceId: number;
     from: any;
     to: any;
+    resizable: boolean;
     amountDone?: number;
     classes?: string | string[];
     label?: string;
@@ -44,6 +45,7 @@ export declare function reflectTask(task: SvelteTask, row: SvelteRow, options: {
         enableDragging: boolean;
         from: any;
         to: any;
+        resizable: boolean;
         amountDone?: number;
         classes?: string | string[];
         label?: string;
