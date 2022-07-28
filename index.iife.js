@@ -2883,10 +2883,8 @@
     	return child_ctx;
     }
 
-    // (83:4) {:else}
+    // (84:4) {:else}
     function create_else_block$1(ctx) {
-    	let div;
-    	let t;
     	let current;
 
     	const column = new Column({
@@ -2899,13 +2897,9 @@
 
     	return {
     		c() {
-    			div = element("div");
-    			t = space();
     			create_component(column.$$.fragment);
     		},
     		m(target, anchor) {
-    			insert(target, div, anchor);
-    			insert(target, t, anchor);
     			mount_component(column, target, anchor);
     			current = true;
     		},
@@ -2925,17 +2919,13 @@
     			current = false;
     		},
     		d(detaching) {
-    			if (detaching) detach(div);
-    			if (detaching) detach(t);
     			destroy_component(column, detaching);
     		}
     	};
     }
 
-    // (79:4) {#if alternateColumnColorCondition(i)}
+    // (82:4) {#if alternateColumnColorCondition(i)}
     function create_if_block$2(ctx) {
-    	let div;
-    	let t;
     	let current;
 
     	const column = new Column({
@@ -2947,14 +2937,10 @@
 
     	return {
     		c() {
-    			div = element("div");
     			create_component(column.$$.fragment);
-    			t = space();
     		},
     		m(target, anchor) {
-    			insert(target, div, anchor);
-    			mount_component(column, div, null);
-    			append(div, t);
+    			mount_component(column, target, anchor);
     			current = true;
     		},
     		p(ctx, dirty) {
@@ -2973,13 +2959,12 @@
     			current = false;
     		},
     		d(detaching) {
-    			if (detaching) detach(div);
-    			destroy_component(column);
+    			destroy_component(column, detaching);
     		}
     	};
     }
 
-    // (78:1) {#each columns as column, i}
+    // (81:1) {#each columns as column, i}
     function create_each_block$2(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -3122,6 +3107,8 @@
     function alternateColumnColorCondition(index) {
     	if (index / 8 % 1 === 0 || (index - 1 / 8) % 1 === 0 || (index - 2 / 8) % 1 === 0 || (index - 3 / 8) % 1 === 0) {
     		return true;
+    	} else {
+    		return false;
     	}
     }
 
