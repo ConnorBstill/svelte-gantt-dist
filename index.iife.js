@@ -2324,7 +2324,7 @@
     	return child_ctx;
     }
 
-    // (109:8) {#if i <= _headers.length - 7}
+    // (109:8) {#if i <= _headers.length - 7 && typeof _header.label === 'number'}
     function create_if_block$2(ctx) {
     	let div1;
     	let div0;
@@ -2369,7 +2369,7 @@
     // (108:4) {#each _headers as _header, i}
     function create_each_block(ctx) {
     	let if_block_anchor;
-    	let if_block = /*i*/ ctx[16] <= /*_headers*/ ctx[1].length - 7 && create_if_block$2(ctx);
+    	let if_block = /*i*/ ctx[16] <= /*_headers*/ ctx[1].length - 7 && typeof /*_header*/ ctx[14].label === "number" && create_if_block$2(ctx);
 
     	return {
     		c() {
@@ -2381,7 +2381,7 @@
     			insert(target, if_block_anchor, anchor);
     		},
     		p(ctx, dirty) {
-    			if (/*i*/ ctx[16] <= /*_headers*/ ctx[1].length - 7) {
+    			if (/*i*/ ctx[16] <= /*_headers*/ ctx[1].length - 7 && typeof /*_header*/ ctx[14].label === "number") {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
