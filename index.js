@@ -2543,7 +2543,7 @@ function instance$5($$self, $$props, $$invalidate) {
 						$$invalidate(1, _headers = headers);
 					});
 				} else {
-					for (let i = 0; i < columnCount - 1; i++) {
+					for (let i = 0; i < columnCount - 2; i++) {
 						headers.push({
 							width: Math.min(columnWidth, $width),
 							label: dateAdapter.format(headerTime, header.format),
