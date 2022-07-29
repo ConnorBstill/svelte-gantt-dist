@@ -2874,19 +2874,19 @@
 
     function get_each_context$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[8] = list[i];
-    	child_ctx[10] = i;
+    	child_ctx[6] = list[i];
+    	child_ctx[8] = i;
     	return child_ctx;
     }
 
-    // (84:4) {:else}
+    // (61:4) {:else}
     function create_else_block$1(ctx) {
     	let current;
 
     	const column = new Column({
     			props: {
-    				left: /*column*/ ctx[8].left,
-    				width: /*column*/ ctx[8].width,
+    				left: /*column*/ ctx[6].left,
+    				width: /*column*/ ctx[6].width,
     				backgroundColor: "#efefef"
     			}
     		});
@@ -2901,8 +2901,8 @@
     		},
     		p(ctx, dirty) {
     			const column_changes = {};
-    			if (dirty & /*columns*/ 1) column_changes.left = /*column*/ ctx[8].left;
-    			if (dirty & /*columns*/ 1) column_changes.width = /*column*/ ctx[8].width;
+    			if (dirty & /*columns*/ 1) column_changes.left = /*column*/ ctx[6].left;
+    			if (dirty & /*columns*/ 1) column_changes.width = /*column*/ ctx[6].width;
     			column.$set(column_changes);
     		},
     		i(local) {
@@ -2920,14 +2920,14 @@
     	};
     }
 
-    // (82:4) {#if alternateColumnColorCondition(i)}
+    // (59:4) {#if alternateColumnColorCondition(i)}
     function create_if_block$2(ctx) {
     	let current;
 
     	const column = new Column({
     			props: {
-    				left: /*column*/ ctx[8].left,
-    				width: /*column*/ ctx[8].width
+    				left: /*column*/ ctx[6].left,
+    				width: /*column*/ ctx[6].width
     			}
     		});
 
@@ -2941,8 +2941,8 @@
     		},
     		p(ctx, dirty) {
     			const column_changes = {};
-    			if (dirty & /*columns*/ 1) column_changes.left = /*column*/ ctx[8].left;
-    			if (dirty & /*columns*/ 1) column_changes.width = /*column*/ ctx[8].width;
+    			if (dirty & /*columns*/ 1) column_changes.left = /*column*/ ctx[6].left;
+    			if (dirty & /*columns*/ 1) column_changes.width = /*column*/ ctx[6].width;
     			column.$set(column_changes);
     		},
     		i(local) {
@@ -2960,7 +2960,7 @@
     	};
     }
 
-    // (81:1) {#each columns as column, i}
+    // (58:1) {#each columns as column, i}
     function create_each_block$2(ctx) {
     	let current_block_type_index;
     	let if_block;
@@ -2970,7 +2970,7 @@
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
-    		if (alternateColumnColorCondition(/*i*/ ctx[10])) return 0;
+    		if (alternateColumnColorCondition(/*i*/ ctx[8])) return 0;
     		return 1;
     	}
 
@@ -3142,31 +3142,6 @@
     		return `url("${dataURL}")`;
     	}
 
-    	function createBackgroundShaded(columns) {
-    		const canvas = document.createElement("canvas");
-    		canvas.width = (columns.length - 1) * columns[0].width;
-    		canvas.height = 20;
-    		const ctx = canvas.getContext("2d");
-    		ctx.shadowColor = "rgba(128,128,128,0.5)";
-    		ctx.shadowOffsetX = 0;
-    		ctx.shadowOffsetY = 0;
-    		ctx.shadowBlur = 0.5;
-    		ctx.lineWidth = columnStrokeWidth;
-    		ctx.lineCap = "square";
-    		ctx.strokeStyle = columnStrokeColor;
-
-    		// ctx.fillStyle = '#a9a9a9';
-    		ctx.translate(0.5, 0.5);
-
-    		columns.forEach((column, index) => {
-    			lineAt(ctx, column.left);
-    		});
-
-    		ctx.fillRect(columns[0].left, 0, columns[0].width * 4, canvas.height);
-    		const dataURL = canvas.toDataURL();
-    		return `url("${dataURL}")`;
-    	}
-
     	$$self.$set = $$props => {
     		if ("columns" in $$props) $$invalidate(0, columns = $$props.columns);
     		if ("columnStrokeWidth" in $$props) $$invalidate(1, columnStrokeWidth = $$props.columnStrokeWidth);
@@ -3177,7 +3152,6 @@
     		if ($$self.$$.dirty & /*columns*/ 1) {
     			 {
     				createBackground(columns.slice(0, 5));
-    				createBackgroundShaded(columns.slice(0, 5));
     			}
     		}
     	};
@@ -4699,7 +4673,7 @@
     		let columnFrom = from;
     		let left = 0;
 
-    		for (let i = 0; i < count; i++) {
+    		for (let i = 0; i < count - 4; i++) {
     			const from = columnFrom;
     			const to = columnFrom + dur;
     			const duration = to - from;
