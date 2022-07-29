@@ -2543,7 +2543,7 @@ function instance$5($$self, $$props, $$invalidate) {
 						$$invalidate(1, _headers = headers);
 					});
 				} else {
-					for (let i = 0; i < columnCount; i++) {
+					for (let i = 0; i < columnCount - 1; i++) {
 						headers.push({
 							width: Math.min(columnWidth, $width),
 							label: dateAdapter.format(headerTime, header.format),
@@ -4670,7 +4670,7 @@ function instance$9($$self, $$props, $$invalidate) {
 		let columnFrom = from;
 		let left = 0;
 
-		for (let i = 0; i < count - 4; i++) {
+		for (let i = 0; i < count; i++) {
 			const from = columnFrom;
 			const to = columnFrom + dur;
 			const duration = to - from;
