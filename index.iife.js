@@ -2324,7 +2324,49 @@
     	return child_ctx;
     }
 
-    // (109:4) {#if _header.unit}
+    // (113:37) 
+    function create_if_block_1$1(ctx) {
+    	let div1;
+    	let div0;
+    	let t0_value = (/*_header*/ ctx[14].label || "N/A") + "";
+    	let t0;
+    	let t1;
+
+    	return {
+    		c() {
+    			div1 = element("div");
+    			div0 = element("div");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			attr(div0, "class", "column-header-cell-label svelte-wohu79");
+    			attr(div1, "class", "column-header-cell svelte-wohu79");
+    			set_style(div1, "width", /*_header*/ ctx[14].width + "px");
+    			toggle_class(div1, "sticky", /*header*/ ctx[0].sticky);
+    		},
+    		m(target, anchor) {
+    			insert(target, div1, anchor);
+    			append(div1, div0);
+    			append(div0, t0);
+    			append(div1, t1);
+    		},
+    		p(ctx, dirty) {
+    			if (dirty & /*_headers*/ 2 && t0_value !== (t0_value = (/*_header*/ ctx[14].label || "N/A") + "")) set_data(t0, t0_value);
+
+    			if (dirty & /*_headers*/ 2) {
+    				set_style(div1, "width", /*_header*/ ctx[14].width + "px");
+    			}
+
+    			if (dirty & /*header*/ 1) {
+    				toggle_class(div1, "sticky", /*header*/ ctx[0].sticky);
+    			}
+    		},
+    		d(detaching) {
+    			if (detaching) detach(div1);
+    		}
+    	};
+    }
+
+    // (109:4) {#if _header.unit === 'hour' && i <= 167}
     function create_if_block$2(ctx) {
     	let div1;
     	let div0;
@@ -2369,7 +2411,14 @@
     // (108:4) {#each _headers as _header, i}
     function create_each_block(ctx) {
     	let if_block_anchor;
-    	let if_block = /*_header*/ ctx[14].unit && create_if_block$2(ctx);
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*_header*/ ctx[14].unit === "hour" && /*i*/ ctx[16] <= 167) return create_if_block$2;
+    		if (/*_header*/ ctx[14].unit === "day") return create_if_block_1$1;
+    	}
+
+    	let current_block_type = select_block_type(ctx);
+    	let if_block = current_block_type && current_block_type(ctx);
 
     	return {
     		c() {
@@ -2381,21 +2430,23 @@
     			insert(target, if_block_anchor, anchor);
     		},
     		p(ctx, dirty) {
-    			if (/*_header*/ ctx[14].unit) {
+    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+    				if_block.p(ctx, dirty);
+    			} else {
+    				if (if_block) if_block.d(1);
+    				if_block = current_block_type && current_block_type(ctx);
+
     				if (if_block) {
-    					if_block.p(ctx, dirty);
-    				} else {
-    					if_block = create_if_block$2(ctx);
     					if_block.c();
     					if_block.m(if_block_anchor.parentNode, if_block_anchor);
     				}
-    			} else if (if_block) {
-    				if_block.d(1);
-    				if_block = null;
     			}
     		},
     		d(detaching) {
-    			if (if_block) if_block.d(detaching);
+    			if (if_block) {
+    				if_block.d(detaching);
+    			}
+
     			if (detaching) detach(if_block_anchor);
     		}
     	};
@@ -5559,7 +5610,7 @@
     	let dispose;
 
     	function select_block_type(ctx, dirty) {
-    		if (/*row*/ ctx[0].expanded) return create_if_block_1$1;
+    		if (/*row*/ ctx[0].expanded) return create_if_block_1$2;
     		return create_else_block$2;
     	}
 
@@ -5620,7 +5671,7 @@
     }
 
     // (18:12) {#if row.expanded}
-    function create_if_block_1$1(ctx) {
+    function create_if_block_1$2(ctx) {
     	let i;
 
     	return {
@@ -6089,7 +6140,7 @@
     }
 
     // (36:20) {#if row.model.headerHtml}
-    function create_if_block_1$2(ctx) {
+    function create_if_block_1$3(ctx) {
     	let html_tag;
     	let raw_value = /*row*/ ctx[1].model.headerHtml + "";
 
@@ -6116,7 +6167,7 @@
     	let if_block0 = /*row*/ ctx[1].model.iconClass && create_if_block_3$1(ctx);
 
     	function select_block_type_1(ctx, dirty) {
-    		if (/*row*/ ctx[1].model.headerHtml) return create_if_block_1$2;
+    		if (/*row*/ ctx[1].model.headerHtml) return create_if_block_1$3;
     		if (/*header*/ ctx[12].renderer) return create_if_block_2$1;
     		return create_else_block$3;
     	}
