@@ -2321,7 +2321,7 @@ function get_each_context(ctx, list, i) {
 	return child_ctx;
 }
 
-// (113:37) 
+// (113:47) 
 function create_if_block_1$1(ctx) {
 	let div1;
 	let div0;
@@ -2411,7 +2411,7 @@ function create_each_block(ctx) {
 
 	function select_block_type(ctx, dirty) {
 		if (/*_header*/ ctx[14].unit === "hour" && /*i*/ ctx[16] <= 167) return create_if_block$2;
-		if (/*_header*/ ctx[14].unit === "day") return create_if_block_1$1;
+		if (/*_header*/ ctx[14].unit === "day" && /*i*/ ctx[16] <= 6) return create_if_block_1$1;
 	}
 
 	let current_block_type = select_block_type(ctx);
