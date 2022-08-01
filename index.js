@@ -2336,7 +2336,7 @@ function create_if_block_1$1(ctx) {
 			t0 = text(t0_value);
 			t1 = space();
 			attr(div0, "class", "column-header-cell-label svelte-wohu79");
-			attr(div1, "class", "column-header-cell svelte-wohu79");
+			attr(div1, "class", "column-header-cell day svelte-wohu79");
 			set_style(div1, "width", /*_header*/ ctx[14].width + "px");
 			toggle_class(div1, "sticky", /*header*/ ctx[0].sticky);
 		},
