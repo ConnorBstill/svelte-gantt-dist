@@ -1716,7 +1716,7 @@
     			if (if_block) if_block.c();
     			attr(div, "class", div_class_value = "sg-row " + /*row*/ ctx[0].model.classes + " svelte-g7ygi0");
     			attr(div, "data-row-id", div_data_row_id_value = /*row*/ ctx[0].model.id);
-    			set_style(div, "height", /*$rowHeight*/ ctx[3] + "px");
+    			set_style(div, "height", /*$rowHeight*/ ctx[3] + 1 + "px");
     			toggle_class(div, "sg-hover", /*$hoveredRow*/ ctx[1] == /*row*/ ctx[0].model.id);
     			toggle_class(div, "sg-selected", /*$selectedRow*/ ctx[2] == /*row*/ ctx[0].model.id);
     		},
@@ -1747,7 +1747,7 @@
     			}
 
     			if (dirty & /*$rowHeight*/ 8) {
-    				set_style(div, "height", /*$rowHeight*/ ctx[3] + "px");
+    				set_style(div, "height", /*$rowHeight*/ ctx[3] + 1 + "px");
     			}
 
     			if (dirty & /*row, $hoveredRow, row*/ 3) {
