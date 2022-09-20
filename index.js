@@ -3734,7 +3734,7 @@ function create_each_block_1(key_1, ctx) {
 		{ left: /*task*/ ctx[133].left },
 		{ width: /*task*/ ctx[133].width },
 		{ height: /*task*/ ctx[133].height },
-		{ top: /*task*/ ctx[133].top },
+		{ top: /*task*/ ctx[133].top + 2 },
 		/*task*/ ctx[133]
 	];
 
@@ -3766,7 +3766,7 @@ function create_each_block_1(key_1, ctx) {
 					{ left: /*task*/ ctx[133].left },
 					{ width: /*task*/ ctx[133].width },
 					{ height: /*task*/ ctx[133].height },
-					{ top: /*task*/ ctx[133].top },
+					{ top: /*task*/ ctx[133].top + 2 },
 					get_spread_object(/*task*/ ctx[133])
 				])
 			: {};
