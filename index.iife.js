@@ -1430,7 +1430,7 @@
     	function updatePosition(x, y, width) {
     		if (!_dragging && !_resizing) {
     			$$invalidate(6, _position.x = x, _position);
-    			$$invalidate(6, _position.y = y, _position); //row.y + 6;
+    			$$invalidate(6, _position.y = y + 4, _position); //row.y + 6;
     			$$invalidate(6, _position.width = width, _position);
     		} // should NOT animate on resize/update of columns
     	}
@@ -3737,7 +3737,7 @@
     		{ left: /*task*/ ctx[133].left },
     		{ width: /*task*/ ctx[133].width },
     		{ height: /*task*/ ctx[133].height },
-    		{ top: /*task*/ ctx[133].top + 2 },
+    		{ top: /*task*/ ctx[133].top },
     		/*task*/ ctx[133]
     	];
 
@@ -3769,7 +3769,7 @@
     					{ left: /*task*/ ctx[133].left },
     					{ width: /*task*/ ctx[133].width },
     					{ height: /*task*/ ctx[133].height },
-    					{ top: /*task*/ ctx[133].top + 2 },
+    					{ top: /*task*/ ctx[133].top },
     					get_spread_object(/*task*/ ctx[133])
     				])
     			: {};
