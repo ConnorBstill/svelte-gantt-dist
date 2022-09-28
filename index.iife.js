@@ -3737,7 +3737,7 @@
     		{ left: /*task*/ ctx[133].left },
     		{ width: /*task*/ ctx[133].width },
     		{ height: /*task*/ ctx[133].height },
-    		{ top: /*task*/ ctx[133].top },
+    		{ top: /*task*/ ctx[133].top + 5 },
     		/*task*/ ctx[133]
     	];
 
@@ -3769,7 +3769,7 @@
     					{ left: /*task*/ ctx[133].left },
     					{ width: /*task*/ ctx[133].width },
     					{ height: /*task*/ ctx[133].height },
-    					{ top: /*task*/ ctx[133].top },
+    					{ top: /*task*/ ctx[133].top + 5 },
     					get_spread_object(/*task*/ ctx[133])
     				])
     			: {};
