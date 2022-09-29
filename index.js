@@ -1049,12 +1049,6 @@ class DragDropManager {
     }
 }
 
-function reflectTask(task, row, options) {
-    const reflectedId = `reflected-task-${task.model.id}-${row.model.id}`;
-    const model = Object.assign(Object.assign({}, task.model), { resourceId: row.model.id, id: reflectedId, enableDragging: false });
-    return Object.assign(Object.assign({}, task), { model, top: row.y + options.rowPadding, reflected: true, reflectedOnParent: false, reflectedOnChild: true, originalId: task.model.id });
-}
-
 function styleInject(css, ref) {
   if ( ref === void 0 ) ref = {};
   var insertAt = ref.insertAt;
@@ -1110,7 +1104,7 @@ function create_if_block_4(ctx) {
 	};
 }
 
-// (299:4) {:else}
+// (300:4) {:else}
 function create_else_block(ctx) {
 	let t_value = /*model*/ ctx[0].label + "";
 	let t;
@@ -1131,7 +1125,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (297:26) 
+// (298:26) 
 function create_if_block_3(ctx) {
 	let html_tag;
 	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1152,7 +1146,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (295:4) {#if model.html}
+// (296:4) {#if model.html}
 function create_if_block_2(ctx) {
 	let html_tag;
 	let raw_value = /*model*/ ctx[0].html + "";
@@ -1173,7 +1167,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (301:4) {#if model.showButton}
+// (302:4) {#if model.showButton}
 function create_if_block_1(ctx) {
 	let span;
 	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1209,7 +1203,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (308:2) {#if model.labelBottom}
+// (309:2) {#if model.labelBottom}
 function create_if_block(ctx) {
 	let label;
 	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1487,57 +1481,48 @@ function instance($$self, $$props, $$invalidate) {
 				const top = $rowPadding + targetRow.y;
 				updatePosition(left, top, width);
 				const newTask = Object.assign(Object.assign({}, task), { left, width, top, model });
-				const changed = prevFrom != newFrom || prevTo != newTo || sourceRow && sourceRow.model.id !== targetRow.model.id;
-
-				if (changed) {
-					api.tasks.raise.change({ task: newTask, sourceRow, targetRow });
-				}
-
 				taskStore.update(newTask);
-
-				if (changed) {
-					api.tasks.raise.changed({ task: newTask, sourceRow, targetRow });
-				}
-
-				// update shadow tasks
-				if (newTask.reflections) {
-					taskStore.deleteAll(newTask.reflections);
-				}
-
-				const reflectedTasks = [];
-
-				if (reflectOnChildRows && targetRow.allChildren) {
-					if (!newTask.reflections) newTask.reflections = [];
-					const opts = { rowPadding: $rowPadding };
-
-					targetRow.allChildren.forEach(r => {
-						const reflectedTask = reflectTask(newTask, r, opts);
-						newTask.reflections.push(reflectedTask.model.id);
-						reflectedTasks.push(reflectedTask);
-					});
-				}
-
-				if (reflectOnParentRows && targetRow.allParents.length > 0) {
-					if (!newTask.reflections) newTask.reflections = [];
-					const opts = { rowPadding: $rowPadding };
-
-					targetRow.allParents.forEach(r => {
-						const reflectedTask = reflectTask(newTask, r, opts);
-						newTask.reflections.push(reflectedTask.model.id);
-						reflectedTasks.push(reflectedTask);
-					});
-				}
-
-				if (reflectedTasks.length > 0) {
-					taskStore.upsertAll(reflectedTasks);
-				}
-
-				if (!(targetRow.allParents.length > 0) && !targetRow.allChildren) {
-					newTask.reflections = null;
-				}
-			} else {
+			} else // if(changed) {
+			//     api.tasks.raise.change({ task: newTask, sourceRow, targetRow });
+			// }
+			// taskStore.update(newTask);
+			// if(changed) {
+			//     api.tasks.raise.changed({ task: newTask, sourceRow, targetRow });
+			// }
+			// // update shadow tasks
+			// if(newTask.reflections) {
+			//     taskStore.deleteAll(newTask.reflections);
+			// }
+			// const reflectedTasks = [];
+			// if(reflectOnChildRows && targetRow.allChildren) {
+			//     if(!newTask.reflections)
+			//         newTask.reflections = [];
+			//     const opts = { rowPadding: $rowPadding };
+			//     targetRow.allChildren.forEach(r => {
+			//         const reflectedTask = reflectTask(newTask, r, opts);
+			//         newTask.reflections.push(reflectedTask.model.id);
+			//         reflectedTasks.push(reflectedTask);
+			//     });
+			// }
+			// if(reflectOnParentRows && targetRow.allParents.length > 0) {
+			//     if(!newTask.reflections)
+			//         newTask.reflections = [];
+			//     const opts = { rowPadding: $rowPadding };
+			//     targetRow.allParents.forEach(r => {
+			//         const reflectedTask = reflectTask(newTask, r, opts);
+			//         newTask.reflections.push(reflectedTask.model.id);
+			//         reflectedTasks.push(reflectedTask);
+			//     });
+			// }
+			// if(reflectedTasks.length > 0) {
+			//     taskStore.upsertAll(reflectedTasks);
+			// }
+			// if(!(targetRow.allParents.length > 0) && !targetRow.allChildren) {
+			//     newTask.reflections = null;
+			// }
+			{
 				// reset position
-				($$invalidate(7, _position.x = task.left, _position), $$invalidate(7, _position.width = task.width, _position), $$invalidate(7, _position.y = task.top, _position));
+				($$invalidate(7, _position.x = task.left, _position), $$invalidate(7, _position.width = task.width, _position), $$invalidate(7, _position.y = task.top, _position)); // const changed = prevFrom != newFrom || prevTo != newTo || (sourceRow && sourceRow.model.id !== targetRow.model.id);
 			}
 		};
 
@@ -3336,7 +3321,7 @@ class TaskFactory {
         return this.row(model.resourceId).y + this.rowPadding;
     }
 }
-function reflectTask$1(task, row, options) {
+function reflectTask(task, row, options) {
     const reflectedId = `reflected-task-${task.model.id}-${row.model.id}`;
     const model = Object.assign(Object.assign({}, task.model), { resourceId: row.model.id, id: reflectedId, enableDragging: false });
     return Object.assign(Object.assign({}, task), { model, top: row.y + options.rowPadding, reflected: true, reflectedOnParent: false, reflectedOnChild: true, originalId: task.model.id });
@@ -4826,7 +4811,7 @@ function instance$8($$self, $$props, $$invalidate) {
 
 				if (reflectOnChildRows && row.allChildren) {
 					row.allChildren.forEach(r => {
-						const reflectedTask = reflectTask$1(task, r, opts);
+						const reflectedTask = reflectTask(task, r, opts);
 						task.reflections.push(reflectedTask.model.id);
 						tasks.push(reflectedTask);
 					});
@@ -4834,7 +4819,7 @@ function instance$8($$self, $$props, $$invalidate) {
 
 				if (reflectOnParentRows && row.allParents.length > 0) {
 					row.allParents.forEach(r => {
-						const reflectedTask = reflectTask$1(task, r, opts);
+						const reflectedTask = reflectTask(task, r, opts);
 						task.reflections.push(reflectedTask.model.id);
 						tasks.push(reflectedTask);
 					});
