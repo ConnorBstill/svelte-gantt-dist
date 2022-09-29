@@ -1110,7 +1110,7 @@ function create_if_block_4(ctx) {
 	};
 }
 
-// (299:4) {:else}
+// (300:4) {:else}
 function create_else_block(ctx) {
 	let t_value = /*model*/ ctx[0].label + "";
 	let t;
@@ -1131,7 +1131,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (297:26) 
+// (298:26) 
 function create_if_block_3(ctx) {
 	let html_tag;
 	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1152,7 +1152,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (295:4) {#if model.html}
+// (296:4) {#if model.html}
 function create_if_block_2(ctx) {
 	let html_tag;
 	let raw_value = /*model*/ ctx[0].html + "";
@@ -1173,7 +1173,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (301:4) {#if model.showButton}
+// (302:4) {#if model.showButton}
 function create_if_block_1(ctx) {
 	let span;
 	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1209,7 +1209,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (308:2) {#if model.labelBottom}
+// (309:2) {#if model.labelBottom}
 function create_if_block(ctx) {
 	let label;
 	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1241,7 +1241,7 @@ function create_fragment(ctx) {
 	let t1;
 	let t2;
 	let pre;
-	let t3_value = /*task*/ ctx[3].rowIndex + "";
+	let t3_value = /*taskObject*/ ctx[3].rowIndex + "";
 	let t3;
 	let t4;
 	let div1_data_task_id_value;
@@ -1281,7 +1281,7 @@ function create_fragment(ctx) {
 			attr(div1, "class", div1_class_value = "sg-task " + /*model*/ ctx[0].classes + " svelte-2v4qmo");
 			set_style(div1, "width", /*_position*/ ctx[7].width + "px");
 			set_style(div1, "height", /*height*/ ctx[1] + "px");
-			set_style(div1, "transform", "translate(" + /*_position*/ ctx[7].x + "px, " + (8 + 40 * /*task*/ ctx[3].rowIndex) + "px)");
+			set_style(div1, "transform", "translate(" + /*_position*/ ctx[7].x + "px, " + (8 + 40 * /*taskObject*/ ctx[3].rowIndex) + "px)");
 			toggle_class(div1, "moving", /*_dragging*/ ctx[5] || /*_resizing*/ ctx[6]);
 			toggle_class(div1, "selected", /*selected*/ ctx[8]);
 			toggle_class(div1, "animating", animating);
@@ -1350,7 +1350,7 @@ function create_fragment(ctx) {
 				if_block2 = null;
 			}
 
-			if (dirty[0] & /*task*/ 8 && t3_value !== (t3_value = /*task*/ ctx[3].rowIndex + "")) set_data(t3, t3_value);
+			if (dirty[0] & /*taskObject*/ 8 && t3_value !== (t3_value = /*taskObject*/ ctx[3].rowIndex + "")) set_data(t3, t3_value);
 
 			if (/*model*/ ctx[0].labelBottom) {
 				if (if_block3) {
@@ -1381,8 +1381,8 @@ function create_fragment(ctx) {
 				set_style(div1, "height", /*height*/ ctx[1] + "px");
 			}
 
-			if (dirty[0] & /*_position, task*/ 136) {
-				set_style(div1, "transform", "translate(" + /*_position*/ ctx[7].x + "px, " + (8 + 40 * /*task*/ ctx[3].rowIndex) + "px)");
+			if (dirty[0] & /*_position, taskObject*/ 136) {
+				set_style(div1, "transform", "translate(" + /*_position*/ ctx[7].x + "px, " + (8 + 40 * /*taskObject*/ ctx[3].rowIndex) + "px)");
 			}
 
 			if (taskElement_action && is_function(taskElement_action.update) && dirty[0] & /*model*/ 1) taskElement_action.update.call(null, /*model*/ ctx[0]);
@@ -1432,7 +1432,7 @@ function instance($$self, $$props, $$invalidate) {
 	let { top } = $$props;
 	let { width } = $$props;
 	let { reflected = false } = $$props;
-	let { task } = $$props;
+	let { taskObject } = $$props;
 	let _dragging = false;
 	let _resizing = false;
 	let _position = { x: left, y: top, width };
@@ -1472,6 +1472,7 @@ function instance($$self, $$props, $$invalidate) {
 
 			$$invalidate(5, _dragging = $$invalidate(6, _resizing = false));
 			const task = $taskStore.entities[model.id];
+			rowChangeValid = false;
 
 			if (rowChangeValid) {
 				const prevFrom = model.from;
@@ -1607,7 +1608,7 @@ function instance($$self, $$props, $$invalidate) {
 		if ("top" in $$props) $$invalidate(16, top = $$props.top);
 		if ("width" in $$props) $$invalidate(17, width = $$props.width);
 		if ("reflected" in $$props) $$invalidate(2, reflected = $$props.reflected);
-		if ("task" in $$props) $$invalidate(3, task = $$props.task);
+		if ("taskObject" in $$props) $$invalidate(3, taskObject = $$props.taskObject);
 	};
 
 	$$self.$$.update = () => {
@@ -1628,7 +1629,7 @@ function instance($$self, $$props, $$invalidate) {
 		model,
 		height,
 		reflected,
-		task,
+		taskObject,
 		onclick,
 		_dragging,
 		_resizing,
@@ -1682,7 +1683,7 @@ class Task extends SvelteComponent {
 				top: 16,
 				width: 17,
 				reflected: 2,
-				task: 3,
+				taskObject: 3,
 				onclick: 4
 			},
 			[-1, -1]
@@ -3748,7 +3749,7 @@ function create_each_block_1(key_1, ctx) {
 	let current;
 
 	const task_spread_levels = [
-		{ task: /*task*/ ctx[133] },
+		{ taskObject: /*task*/ ctx[133] },
 		{ model: /*task*/ ctx[133].model },
 		{ left: /*task*/ ctx[133].left },
 		{ width: /*task*/ ctx[133].width },
@@ -3781,7 +3782,7 @@ function create_each_block_1(key_1, ctx) {
 		p(ctx, dirty) {
 			const task_changes = (dirty[0] & /*visibleTasks*/ 1048576)
 			? get_spread_update(task_spread_levels, [
-					{ task: /*task*/ ctx[133] },
+					{ taskObject: /*task*/ ctx[133] },
 					{ model: /*task*/ ctx[133].model },
 					{ left: /*task*/ ctx[133].left },
 					{ width: /*task*/ ctx[133].width },
