@@ -1241,7 +1241,7 @@ function create_fragment(ctx) {
 	let t1;
 	let t2;
 	let pre;
-	let t3_value = /*model*/ ctx[0].resizable + "";
+	let t3_value = /*task*/ ctx[3].rowIndex + "";
 	let t3;
 	let t4;
 	let div1_data_task_id_value;
@@ -1350,7 +1350,7 @@ function create_fragment(ctx) {
 				if_block2 = null;
 			}
 
-			if (dirty[0] & /*model*/ 1 && t3_value !== (t3_value = /*model*/ ctx[0].resizable + "")) set_data(t3, t3_value);
+			if (dirty[0] & /*task*/ 8 && t3_value !== (t3_value = /*task*/ ctx[3].rowIndex + "")) set_data(t3, t3_value);
 
 			if (/*model*/ ctx[0].labelBottom) {
 				if (if_block3) {
