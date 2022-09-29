@@ -3503,7 +3503,7 @@ function get_each_context_5(ctx, list, i) {
 	return child_ctx;
 }
 
-// (583:4) {#each ganttTableModules as module}
+// (584:4) {#each ganttTableModules as module}
 function create_each_block_5(ctx) {
 	let switch_instance_anchor;
 	let current;
@@ -3604,7 +3604,7 @@ function create_each_block_5(ctx) {
 	};
 }
 
-// (594:20) {#each $allTimeRanges as timeRange (timeRange.model.id)}
+// (595:20) {#each $allTimeRanges as timeRange (timeRange.model.id)}
 function create_each_block_4(key_1, ctx) {
 	let first;
 	let current;
@@ -3653,7 +3653,7 @@ function create_each_block_4(key_1, ctx) {
 	};
 }
 
-// (607:24) {#each visibleRows as row (row.model.id)}
+// (608:24) {#each visibleRows as row (row.model.id)}
 function create_each_block_3(key_1, ctx) {
 	let first;
 	let current;
@@ -3689,7 +3689,7 @@ function create_each_block_3(key_1, ctx) {
 	};
 }
 
-// (613:20) {#each $allTimeRanges as timeRange (timeRange.model.id)}
+// (614:20) {#each $allTimeRanges as timeRange (timeRange.model.id)}
 function create_each_block_2(key_1, ctx) {
 	let first;
 	let current;
@@ -3738,7 +3738,7 @@ function create_each_block_2(key_1, ctx) {
 	};
 }
 
-// (617:20) {#each visibleTasks as task (task.model.id)}
+// (618:20) {#each visibleTasks as task (task.model.id)}
 function create_each_block_1(key_1, ctx) {
 	let first;
 	let current;
@@ -3805,7 +3805,7 @@ function create_each_block_1(key_1, ctx) {
 	};
 }
 
-// (622:16) {#each ganttBodyModules as module}
+// (623:16) {#each ganttBodyModules as module}
 function create_each_block$2(ctx) {
 	let switch_instance_anchor;
 	let current;
@@ -5010,7 +5010,7 @@ function instance$8($$self, $$props, $$invalidate) {
 	let endIndex;
 	let paddingTop = 0;
 	let paddingBottom = 0;
-	let visibleRows = [];
+	let visibleRows = $allRows;
 
 	// $: visibleRows = filteredRows.slice(startIndex, endIndex + 1);
 	let visibleTasks;
@@ -5176,7 +5176,8 @@ function instance$8($$self, $$props, $$invalidate) {
 		}
 
 		if ($$self.$$.dirty[3] & /*$allRows*/ 32768) {
-			 $$invalidate(92, filteredRows = $allRows.filter(row => !row.hidden));
+			// $: filteredRows = $allRows.filter(row => !row.hidden);
+			 $$invalidate(92, filteredRows = $allRows);
 		}
 
 		if ($$self.$$.dirty[1] & /*rowHeight*/ 2097152 | $$self.$$.dirty[2] & /*filteredRows*/ 1073741824) {
