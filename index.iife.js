@@ -1113,7 +1113,7 @@
     	};
     }
 
-    // (297:4) {:else}
+    // (298:4) {:else}
     function create_else_block(ctx) {
     	let t_value = /*model*/ ctx[0].label + "";
     	let t;
@@ -1134,10 +1134,10 @@
     	};
     }
 
-    // (295:26) 
+    // (296:26) 
     function create_if_block_3(ctx) {
     	let html_tag;
-    	let raw_value = /*taskContent*/ ctx[8](/*model*/ ctx[0]) + "";
+    	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
 
     	return {
     		c() {
@@ -1147,7 +1147,7 @@
     			html_tag.m(raw_value, target, anchor);
     		},
     		p(ctx, dirty) {
-    			if (dirty[0] & /*model*/ 1 && raw_value !== (raw_value = /*taskContent*/ ctx[8](/*model*/ ctx[0]) + "")) html_tag.p(raw_value);
+    			if (dirty[0] & /*model*/ 1 && raw_value !== (raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "")) html_tag.p(raw_value);
     		},
     		d(detaching) {
     			if (detaching) html_tag.d();
@@ -1155,7 +1155,7 @@
     	};
     }
 
-    // (293:4) {#if model.html}
+    // (294:4) {#if model.html}
     function create_if_block_2(ctx) {
     	let html_tag;
     	let raw_value = /*model*/ ctx[0].html + "";
@@ -1176,7 +1176,7 @@
     	};
     }
 
-    // (299:4) {#if model.showButton}
+    // (300:4) {#if model.showButton}
     function create_if_block_1(ctx) {
     	let span;
     	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1212,7 +1212,7 @@
     	};
     }
 
-    // (306:2) {#if model.labelBottom}
+    // (307:2) {#if model.labelBottom}
     function create_if_block(ctx) {
     	let label;
     	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1252,7 +1252,7 @@
 
     	function select_block_type(ctx, dirty) {
     		if (/*model*/ ctx[0].html) return create_if_block_2;
-    		if (/*taskContent*/ ctx[8]) return create_if_block_3;
+    		if (/*taskContent*/ ctx[9]) return create_if_block_3;
     		return create_else_block;
     	}
 
@@ -1277,7 +1277,7 @@
     			attr(div1, "class", div1_class_value = "sg-task " + /*model*/ ctx[0].classes + " svelte-2v4qmo");
     			set_style(div1, "width", /*_position*/ ctx[6].width + "px");
     			set_style(div1, "height", /*height*/ ctx[1] + "px");
-    			set_style(div1, "transform", "translate(" + /*_position*/ ctx[6].x + "px, " + /*_position*/ ctx[6].y + "px)");
+    			set_style(div1, "transform", "translate(" + /*_position*/ ctx[6].x + "px, " + /*rowY*/ ctx[8] + "px)");
     			toggle_class(div1, "moving", /*_dragging*/ ctx[4] || /*_resizing*/ ctx[5]);
     			toggle_class(div1, "selected", /*selected*/ ctx[7]);
     			toggle_class(div1, "animating", animating);
@@ -1296,9 +1296,9 @@
 
     			if (!mounted) {
     				dispose = [
-    					listen(div1, "dblclick", /*dblclick_handler*/ ctx[34]),
-    					action_destroyer(ctx[11].call(null, div1)),
-    					action_destroyer(taskElement_action = /*taskElement*/ ctx[12].call(null, div1, /*model*/ ctx[0]))
+    					listen(div1, "dblclick", /*dblclick_handler*/ ctx[35]),
+    					action_destroyer(ctx[12].call(null, div1)),
+    					action_destroyer(taskElement_action = /*taskElement*/ ctx[13].call(null, div1, /*model*/ ctx[0]))
     				];
 
     				mounted = true;
@@ -1373,7 +1373,7 @@
     			}
 
     			if (dirty[0] & /*_position*/ 64) {
-    				set_style(div1, "transform", "translate(" + /*_position*/ ctx[6].x + "px, " + /*_position*/ ctx[6].y + "px)");
+    				set_style(div1, "transform", "translate(" + /*_position*/ ctx[6].x + "px, " + /*rowY*/ ctx[8] + "px)");
     			}
 
     			if (taskElement_action && is_function(taskElement_action.update) && dirty[0] & /*model*/ 1) taskElement_action.update.call(null, /*model*/ ctx[0]);
@@ -1415,8 +1415,8 @@
     	let $taskStore;
     	let $rowPadding;
     	let $selection;
-    	component_subscribe($$self, rowStore, $$value => $$invalidate(18, $rowStore = $$value));
-    	component_subscribe($$self, taskStore, $$value => $$invalidate(19, $taskStore = $$value));
+    	component_subscribe($$self, rowStore, $$value => $$invalidate(19, $rowStore = $$value));
+    	component_subscribe($$self, taskStore, $$value => $$invalidate(20, $taskStore = $$value));
     	let { model } = $$props;
     	let { height } = $$props;
     	let { left } = $$props;
@@ -1437,8 +1437,9 @@
 
     	const { dimensionsChanged } = getContext("dimensions");
     	const { rowContainer } = getContext("gantt");
+    	const rowY = rowContainer.getBoundingClientRect().top;
     	const { taskContent, resizeHandleWidth, rowPadding, onTaskButtonClick, reflectOnParentRows, reflectOnChildRows, taskElementHook } = getContext("options");
-    	component_subscribe($$self, rowPadding, value => $$invalidate(20, $rowPadding = value));
+    	component_subscribe($$self, rowPadding, value => $$invalidate(21, $rowPadding = value));
     	const { dndManager, api, utils, selectionManager, columnService } = getContext("services");
 
     	function drag(node) {
@@ -1581,7 +1582,7 @@
     	}
 
     	let selection = selectionManager.selection;
-    	component_subscribe($$self, selection, value => $$invalidate(21, $selection = value));
+    	component_subscribe($$self, selection, value => $$invalidate(22, $selection = value));
     	let selected = false;
     	let row;
 
@@ -1592,22 +1593,22 @@
     	$$self.$set = $$props => {
     		if ("model" in $$props) $$invalidate(0, model = $$props.model);
     		if ("height" in $$props) $$invalidate(1, height = $$props.height);
-    		if ("left" in $$props) $$invalidate(14, left = $$props.left);
-    		if ("top" in $$props) $$invalidate(15, top = $$props.top);
-    		if ("width" in $$props) $$invalidate(16, width = $$props.width);
+    		if ("left" in $$props) $$invalidate(15, left = $$props.left);
+    		if ("top" in $$props) $$invalidate(16, top = $$props.top);
+    		if ("width" in $$props) $$invalidate(17, width = $$props.width);
     		if ("reflected" in $$props) $$invalidate(2, reflected = $$props.reflected);
     	};
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty[0] & /*left, top, width*/ 114688) {
+    		if ($$self.$$.dirty[0] & /*left, top, width*/ 229376) {
     			 updatePosition(left, top, width);
     		}
 
-    		if ($$self.$$.dirty[0] & /*$selection, model*/ 2097153) {
+    		if ($$self.$$.dirty[0] & /*$selection, model*/ 4194305) {
     			 $$invalidate(7, selected = $selection.indexOf(model.id) !== -1);
     		}
 
-    		if ($$self.$$.dirty[0] & /*$rowStore, model*/ 262145) {
+    		if ($$self.$$.dirty[0] & /*$rowStore, model*/ 524289) {
     			 row = $rowStore.entities[model.resourceId];
     		}
     	};
@@ -1621,6 +1622,7 @@
     		_resizing,
     		_position,
     		selected,
+    		rowY,
     		taskContent,
     		rowPadding,
     		api,
@@ -1664,9 +1666,9 @@
     			{
     				model: 0,
     				height: 1,
-    				left: 14,
-    				top: 15,
-    				width: 16,
+    				left: 15,
+    				top: 16,
+    				width: 17,
     				reflected: 2,
     				onclick: 3
     			},
