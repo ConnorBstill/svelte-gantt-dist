@@ -4051,7 +4051,7 @@
     			toggle_class(div2, "right-scrollbar-visible", /*rightScrollbarVisible*/ ctx[15]);
     			set_style(div3, "transform", "translateY(" + /*paddingTop*/ ctx[17] + "px)");
     			attr(div4, "class", "sg-rows svelte-1tkyqm1");
-    			set_style(div4, "height", /*rowContainerHeight*/ ctx[16] + /*visibleRows*/ ctx[19].length + "px");
+    			set_style(div4, "height", /*rowContainerHeight*/ ctx[16] + "px");
     			attr(div5, "class", "sg-foreground svelte-1tkyqm1");
     			attr(div6, "class", "content svelte-1tkyqm1");
     			set_style(div6, "width", /*$_width*/ ctx[22] + "px");
@@ -4200,8 +4200,8 @@
     				set_style(div3, "transform", "translateY(" + /*paddingTop*/ ctx[17] + "px)");
     			}
 
-    			if (!current || dirty[0] & /*rowContainerHeight, visibleRows*/ 589824) {
-    				set_style(div4, "height", /*rowContainerHeight*/ ctx[16] + /*visibleRows*/ ctx[19].length + "px");
+    			if (!current || dirty[0] & /*rowContainerHeight*/ 65536) {
+    				set_style(div4, "height", /*rowContainerHeight*/ ctx[16] + "px");
     			}
 
     			if (dirty[0] & /*$allTimeRanges*/ 33554432) {
