@@ -1113,7 +1113,7 @@
     	};
     }
 
-    // (300:4) {:else}
+    // (299:4) {:else}
     function create_else_block(ctx) {
     	let t_value = /*model*/ ctx[0].label + "";
     	let t;
@@ -1134,7 +1134,7 @@
     	};
     }
 
-    // (298:26) 
+    // (297:26) 
     function create_if_block_3(ctx) {
     	let html_tag;
     	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1155,7 +1155,7 @@
     	};
     }
 
-    // (296:4) {#if model.html}
+    // (295:4) {#if model.html}
     function create_if_block_2(ctx) {
     	let html_tag;
     	let raw_value = /*model*/ ctx[0].html + "";
@@ -1176,7 +1176,7 @@
     	};
     }
 
-    // (302:4) {#if model.showButton}
+    // (301:4) {#if model.showButton}
     function create_if_block_1(ctx) {
     	let span;
     	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1212,7 +1212,7 @@
     	};
     }
 
-    // (309:2) {#if model.labelBottom}
+    // (308:2) {#if model.labelBottom}
     function create_if_block(ctx) {
     	let label;
     	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1443,7 +1443,8 @@
     	function updatePosition(x, y, width) {
     		if (!_dragging && !_resizing) {
     			$$invalidate(7, _position.x = x, _position);
-    			$$invalidate(7, _position.y = y, _position); //row.y + 6;
+
+    			// _position.y = y;//row.y + 6;
     			$$invalidate(7, _position.width = width, _position);
     		} // should NOT animate on resize/update of columns
     	}
@@ -1475,7 +1476,6 @@
 
     			$$invalidate(5, _dragging = $$invalidate(6, _resizing = false));
     			const task = $taskStore.entities[model.id];
-    			rowChangeValid = false;
 
     			if (rowChangeValid) {
     				const prevFrom = model.from;
