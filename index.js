@@ -1104,7 +1104,7 @@ function create_if_block_4(ctx) {
 	};
 }
 
-// (300:4) {:else}
+// (302:4) {:else}
 function create_else_block(ctx) {
 	let t_value = /*model*/ ctx[0].label + "";
 	let t;
@@ -1125,7 +1125,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (298:26) 
+// (300:26) 
 function create_if_block_3(ctx) {
 	let html_tag;
 	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1146,7 +1146,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (296:4) {#if model.html}
+// (298:4) {#if model.html}
 function create_if_block_2(ctx) {
 	let html_tag;
 	let raw_value = /*model*/ ctx[0].html + "";
@@ -1167,7 +1167,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (302:4) {#if model.showButton}
+// (304:4) {#if model.showButton}
 function create_if_block_1(ctx) {
 	let span;
 	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1203,7 +1203,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (309:2) {#if model.labelBottom}
+// (311:2) {#if model.labelBottom}
 function create_if_block(ctx) {
 	let label;
 	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1436,120 +1436,122 @@ function instance($$self, $$props, $$invalidate) {
 	const { dndManager, api, utils, selectionManager, columnService } = getContext("services");
 
 	function drag(node) {
-		const ondrop = event => {
-			let rowChangeValid = true;
+		if (row.model.enableDragging) {
+			const ondrop = event => {
+				let rowChangeValid = true;
 
-			//row switching
-			const sourceRow = $rowStore.entities[model.resourceId];
+				//row switching
+				const sourceRow = $rowStore.entities[model.resourceId];
 
-			if (event.dragging) {
-				const targetRow = dndManager.getTarget("row", event.mouseEvent);
+				if (event.dragging) {
+					const targetRow = dndManager.getTarget("row", event.mouseEvent);
 
-				if (targetRow) {
-					$$invalidate(0, model.resourceId = sourceRow.model.id, model);
-				} else {
-					rowChangeValid = false; // api.tasks.raise.switchRow(this, targetRow, sourceRow);
+					if (targetRow) {
+						$$invalidate(0, model.resourceId = sourceRow.model.id, model);
+					} else {
+						rowChangeValid = false; // api.tasks.raise.switchRow(this, targetRow, sourceRow);
+					}
 				}
-			}
 
-			$$invalidate(5, _dragging = $$invalidate(6, _resizing = false));
-			const task = $taskStore.entities[model.id];
+				$$invalidate(5, _dragging = $$invalidate(6, _resizing = false));
+				const task = $taskStore.entities[model.id];
 
-			if (rowChangeValid) {
-				const prevFrom = model.from;
-				const prevTo = model.to;
-				const newFrom = $$invalidate(0, model.from = utils.roundTo(columnService.getDateByPosition(event.x)), model);
-				const newTo = $$invalidate(0, model.to = utils.roundTo(columnService.getDateByPosition(event.x + event.width)), model);
-				const newLeft = columnService.getPositionByDate(newFrom) | 0;
-				const newRight = columnService.getPositionByDate(newTo) | 0;
-				const targetRow = sourceRow;
-				const left = newLeft;
-				const width = newRight - newLeft;
-				const top = $rowPadding + targetRow.y;
-				updatePosition(left, top, width);
-				const newTask = Object.assign(Object.assign({}, task), { left, width, top, model });
-				taskStore.update(newTask);
-			} else // if(changed) {
-			//     api.tasks.raise.change({ task: newTask, sourceRow, targetRow });
-			// }
-			// taskStore.update(newTask);
-			// if(changed) {
-			//     api.tasks.raise.changed({ task: newTask, sourceRow, targetRow });
-			// }
-			// // update shadow tasks
-			// if(newTask.reflections) {
-			//     taskStore.deleteAll(newTask.reflections);
-			// }
-			// const reflectedTasks = [];
-			// if(reflectOnChildRows && targetRow.allChildren) {
-			//     if(!newTask.reflections)
-			//         newTask.reflections = [];
-			//     const opts = { rowPadding: $rowPadding };
-			//     targetRow.allChildren.forEach(r => {
-			//         const reflectedTask = reflectTask(newTask, r, opts);
-			//         newTask.reflections.push(reflectedTask.model.id);
-			//         reflectedTasks.push(reflectedTask);
-			//     });
-			// }
-			// if(reflectOnParentRows && targetRow.allParents.length > 0) {
-			//     if(!newTask.reflections)
-			//         newTask.reflections = [];
-			//     const opts = { rowPadding: $rowPadding };
-			//     targetRow.allParents.forEach(r => {
-			//         const reflectedTask = reflectTask(newTask, r, opts);
-			//         newTask.reflections.push(reflectedTask.model.id);
-			//         reflectedTasks.push(reflectedTask);
-			//     });
-			// }
-			// if(reflectedTasks.length > 0) {
-			//     taskStore.upsertAll(reflectedTasks);
-			// }
-			// if(!(targetRow.allParents.length > 0) && !targetRow.allChildren) {
-			//     newTask.reflections = null;
-			// }
+				if (rowChangeValid) {
+					const prevFrom = model.from;
+					const prevTo = model.to;
+					const newFrom = $$invalidate(0, model.from = utils.roundTo(columnService.getDateByPosition(event.x)), model);
+					const newTo = $$invalidate(0, model.to = utils.roundTo(columnService.getDateByPosition(event.x + event.width)), model);
+					const newLeft = columnService.getPositionByDate(newFrom) | 0;
+					const newRight = columnService.getPositionByDate(newTo) | 0;
+					const targetRow = sourceRow;
+					const left = newLeft;
+					const width = newRight - newLeft;
+					const top = $rowPadding + targetRow.y;
+					updatePosition(left, top, width);
+					const newTask = Object.assign(Object.assign({}, task), { left, width, top, model });
+					taskStore.update(newTask);
+				} else // if(changed) {
+				//     api.tasks.raise.change({ task: newTask, sourceRow, targetRow });
+				// }
+				// taskStore.update(newTask);
+				// if(changed) {
+				//     api.tasks.raise.changed({ task: newTask, sourceRow, targetRow });
+				// }
+				// // update shadow tasks
+				// if(newTask.reflections) {
+				//     taskStore.deleteAll(newTask.reflections);
+				// }
+				// const reflectedTasks = [];
+				// if(reflectOnChildRows && targetRow.allChildren) {
+				//     if(!newTask.reflections)
+				//         newTask.reflections = [];
+				//     const opts = { rowPadding: $rowPadding };
+				//     targetRow.allChildren.forEach(r => {
+				//         const reflectedTask = reflectTask(newTask, r, opts);
+				//         newTask.reflections.push(reflectedTask.model.id);
+				//         reflectedTasks.push(reflectedTask);
+				//     });
+				// }
+				// if(reflectOnParentRows && targetRow.allParents.length > 0) {
+				//     if(!newTask.reflections)
+				//         newTask.reflections = [];
+				//     const opts = { rowPadding: $rowPadding };
+				//     targetRow.allParents.forEach(r => {
+				//         const reflectedTask = reflectTask(newTask, r, opts);
+				//         newTask.reflections.push(reflectedTask.model.id);
+				//         reflectedTasks.push(reflectedTask);
+				//     });
+				// }
+				// if(reflectedTasks.length > 0) {
+				//     taskStore.upsertAll(reflectedTasks);
+				// }
+				// if(!(targetRow.allParents.length > 0) && !targetRow.allChildren) {
+				//     newTask.reflections = null;
+				// }
+				{
+					// reset position
+					($$invalidate(7, _position.x = task.left, _position), $$invalidate(7, _position.width = task.width, _position), $$invalidate(7, _position.y = task.top, _position)); // const changed = prevFrom != newFrom || prevTo != newTo || (sourceRow && sourceRow.model.id !== targetRow.model.id);
+				}
+			};
+
+			const draggable = new Draggable(node,
 			{
-				// reset position
-				($$invalidate(7, _position.x = task.left, _position), $$invalidate(7, _position.width = task.width, _position), $$invalidate(7, _position.y = task.top, _position)); // const changed = prevFrom != newFrom || prevTo != newTo || (sourceRow && sourceRow.model.id !== targetRow.model.id);
-			}
-		};
+					onDown: event => {
+						if (event.dragging) {
+							setCursor("move");
+						}
 
-		const draggable = new Draggable(node,
-		{
-				onDown: event => {
-					if (event.dragging) {
-						setCursor("move");
-					}
+						if (event.resizing) {
+							setCursor("e-resize");
+						}
+					},
+					onMouseUp: () => {
+						setCursor("default");
+					},
+					onResize: event => {
+						if (model.resizable) {
+							($$invalidate(7, _position.x = event.x, _position), $$invalidate(7, _position.width = event.width, _position), $$invalidate(6, _resizing = true));
+						}
+					},
+					onDrag: event => {
+						($$invalidate(7, _position.x = event.x, _position), $$invalidate(5, _dragging = true));
+					},
+					dragAllowed: () => {
+						return row.model.enableDragging && model.enableDragging;
+					},
+					resizeAllowed: () => {
+						return row.model.enableDragging && model.enableDragging;
+					},
+					onDrop: ondrop,
+					container: rowContainer,
+					resizeHandleWidth,
+					getX: () => _position.x,
+					getY: () => _position.y,
+					getWidth: () => _position.width
+				});
 
-					if (event.resizing) {
-						setCursor("e-resize");
-					}
-				},
-				onMouseUp: () => {
-					setCursor("default");
-				},
-				onResize: event => {
-					if (model.resizable) {
-						($$invalidate(7, _position.x = event.x, _position), $$invalidate(7, _position.width = event.width, _position), $$invalidate(6, _resizing = true));
-					}
-				},
-				onDrag: event => {
-					($$invalidate(7, _position.x = event.x, _position), $$invalidate(5, _dragging = true));
-				},
-				dragAllowed: () => {
-					return row.model.enableDragging && model.enableDragging;
-				},
-				resizeAllowed: () => {
-					return row.model.enableDragging && model.enableDragging;
-				},
-				onDrop: ondrop,
-				container: rowContainer,
-				resizeHandleWidth,
-				getX: () => _position.x,
-				getY: () => _position.y,
-				getWidth: () => _position.width
-			});
-
-		return { destroy: () => draggable.destroy() };
+			return { destroy: () => draggable.destroy() };
+		}
 	}
 
 	function taskElement(node, model) {
