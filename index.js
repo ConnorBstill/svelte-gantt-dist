@@ -1458,10 +1458,9 @@ function instance($$self, $$props, $$invalidate) {
 				const targetRow = dndManager.getTarget("row", event.mouseEvent);
 
 				if (targetRow) {
-					$$invalidate(0, model.resourceId = targetRow.model.id, model);
-					api.tasks.raise.switchRow(this, targetRow, sourceRow);
+					$$invalidate(0, model.resourceId = sourceRow.model.id, model);
 				} else {
-					rowChangeValid = false;
+					rowChangeValid = false; // api.tasks.raise.switchRow(this, targetRow, sourceRow);
 				}
 			}
 
@@ -1475,7 +1474,7 @@ function instance($$self, $$props, $$invalidate) {
 				const newTo = $$invalidate(0, model.to = utils.roundTo(columnService.getDateByPosition(event.x + event.width)), model);
 				const newLeft = columnService.getPositionByDate(newFrom) | 0;
 				const newRight = columnService.getPositionByDate(newTo) | 0;
-				const targetRow = $rowStore.entities[model.resourceId];
+				const targetRow = sourceRow;
 				const left = newLeft;
 				const width = newRight - newLeft;
 				const top = $rowPadding + targetRow.y;
