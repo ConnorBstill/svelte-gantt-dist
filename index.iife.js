@@ -1113,7 +1113,7 @@
     	};
     }
 
-    // (298:4) {:else}
+    // (299:4) {:else}
     function create_else_block(ctx) {
     	let t_value = /*model*/ ctx[0].label + "";
     	let t;
@@ -1134,7 +1134,7 @@
     	};
     }
 
-    // (296:26) 
+    // (297:26) 
     function create_if_block_3(ctx) {
     	let html_tag;
     	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1155,7 +1155,7 @@
     	};
     }
 
-    // (294:4) {#if model.html}
+    // (295:4) {#if model.html}
     function create_if_block_2(ctx) {
     	let html_tag;
     	let raw_value = /*model*/ ctx[0].html + "";
@@ -1176,7 +1176,7 @@
     	};
     }
 
-    // (300:4) {#if model.showButton}
+    // (301:4) {#if model.showButton}
     function create_if_block_1(ctx) {
     	let span;
     	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1194,7 +1194,7 @@
     			span.innerHTML = raw_value;
 
     			if (!mounted) {
-    				dispose = listen(span, "click", /*onclick*/ ctx[3]);
+    				dispose = listen(span, "click", /*onclick*/ ctx[4]);
     				mounted = true;
     			}
     		},
@@ -1212,7 +1212,7 @@
     	};
     }
 
-    // (307:2) {#if model.labelBottom}
+    // (308:2) {#if model.labelBottom}
     function create_if_block(ctx) {
     	let label;
     	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1243,7 +1243,8 @@
     	let div0;
     	let t1;
     	let t2;
-    	let p;
+    	let pre;
+    	let t3;
     	let t4;
     	let div1_data_task_id_value;
     	let div1_class_value;
@@ -1273,18 +1274,18 @@
     			t1 = space();
     			if (if_block2) if_block2.c();
     			t2 = space();
-    			p = element("p");
-    			p.textContent = `${/*rowY*/ ctx[8]}`;
+    			pre = element("pre");
+    			t3 = text(/*task*/ ctx[3]);
     			t4 = space();
     			if (if_block3) if_block3.c();
     			attr(div0, "class", "sg-task-content svelte-2v4qmo");
     			attr(div1, "data-task-id", div1_data_task_id_value = /*model*/ ctx[0].id);
     			attr(div1, "class", div1_class_value = "sg-task " + /*model*/ ctx[0].classes + " svelte-2v4qmo");
-    			set_style(div1, "width", /*_position*/ ctx[6].width + "px");
+    			set_style(div1, "width", /*_position*/ ctx[7].width + "px");
     			set_style(div1, "height", /*height*/ ctx[1] + "px");
-    			set_style(div1, "transform", "translate(" + /*_position*/ ctx[6].x + "px, " + /*_position*/ ctx[6].y + "px)");
-    			toggle_class(div1, "moving", /*_dragging*/ ctx[4] || /*_resizing*/ ctx[5]);
-    			toggle_class(div1, "selected", /*selected*/ ctx[7]);
+    			set_style(div1, "transform", "translate(" + /*_position*/ ctx[7].x + "px, " + (8 + 40 * /*task*/ ctx[3].rowIndex) + "px)");
+    			toggle_class(div1, "moving", /*_dragging*/ ctx[5] || /*_resizing*/ ctx[6]);
+    			toggle_class(div1, "selected", /*selected*/ ctx[8]);
     			toggle_class(div1, "animating", animating);
     			toggle_class(div1, "sg-task-reflected", /*reflected*/ ctx[2]);
     		},
@@ -1297,13 +1298,14 @@
     			append(div0, t1);
     			if (if_block2) if_block2.m(div0, null);
     			append(div1, t2);
-    			append(div1, p);
+    			append(div1, pre);
+    			append(pre, t3);
     			append(div1, t4);
     			if (if_block3) if_block3.m(div1, null);
 
     			if (!mounted) {
     				dispose = [
-    					listen(div1, "dblclick", /*dblclick_handler*/ ctx[35]),
+    					listen(div1, "dblclick", /*dblclick_handler*/ ctx[36]),
     					action_destroyer(ctx[12].call(null, div1)),
     					action_destroyer(taskElement_action = /*taskElement*/ ctx[13].call(null, div1, /*model*/ ctx[0]))
     				];
@@ -1350,6 +1352,8 @@
     				if_block2 = null;
     			}
 
+    			if (dirty[0] & /*task*/ 8) set_data(t3, /*task*/ ctx[3]);
+
     			if (/*model*/ ctx[0].labelBottom) {
     				if (if_block3) {
     					if_block3.p(ctx, dirty);
@@ -1371,26 +1375,26 @@
     				attr(div1, "class", div1_class_value);
     			}
 
-    			if (dirty[0] & /*_position*/ 64) {
-    				set_style(div1, "width", /*_position*/ ctx[6].width + "px");
+    			if (dirty[0] & /*_position*/ 128) {
+    				set_style(div1, "width", /*_position*/ ctx[7].width + "px");
     			}
 
     			if (dirty[0] & /*height*/ 2) {
     				set_style(div1, "height", /*height*/ ctx[1] + "px");
     			}
 
-    			if (dirty[0] & /*_position*/ 64) {
-    				set_style(div1, "transform", "translate(" + /*_position*/ ctx[6].x + "px, " + /*_position*/ ctx[6].y + "px)");
+    			if (dirty[0] & /*_position, task*/ 136) {
+    				set_style(div1, "transform", "translate(" + /*_position*/ ctx[7].x + "px, " + (8 + 40 * /*task*/ ctx[3].rowIndex) + "px)");
     			}
 
     			if (taskElement_action && is_function(taskElement_action.update) && dirty[0] & /*model*/ 1) taskElement_action.update.call(null, /*model*/ ctx[0]);
 
-    			if (dirty[0] & /*model, _dragging, _resizing*/ 49) {
-    				toggle_class(div1, "moving", /*_dragging*/ ctx[4] || /*_resizing*/ ctx[5]);
+    			if (dirty[0] & /*model, _dragging, _resizing*/ 97) {
+    				toggle_class(div1, "moving", /*_dragging*/ ctx[5] || /*_resizing*/ ctx[6]);
     			}
 
-    			if (dirty[0] & /*model, selected*/ 129) {
-    				toggle_class(div1, "selected", /*selected*/ ctx[7]);
+    			if (dirty[0] & /*model, selected*/ 257) {
+    				toggle_class(div1, "selected", /*selected*/ ctx[8]);
     			}
 
     			if (dirty[0] & /*model*/ 1) {
@@ -1430,15 +1434,16 @@
     	let { top } = $$props;
     	let { width } = $$props;
     	let { reflected = false } = $$props;
+    	let { task } = $$props;
     	let _dragging = false;
     	let _resizing = false;
     	let _position = { x: left, y: top, width };
 
     	function updatePosition(x, y, width) {
     		if (!_dragging && !_resizing) {
-    			$$invalidate(6, _position.x = x, _position);
-    			$$invalidate(6, _position.y = y, _position); //row.y + 6;
-    			$$invalidate(6, _position.width = width, _position);
+    			$$invalidate(7, _position.x = x, _position);
+    			$$invalidate(7, _position.y = y, _position); //row.y + 6;
+    			$$invalidate(7, _position.width = width, _position);
     		} // should NOT animate on resize/update of columns
     	}
 
@@ -1467,7 +1472,7 @@
     				}
     			}
 
-    			$$invalidate(4, _dragging = $$invalidate(5, _resizing = false));
+    			$$invalidate(5, _dragging = $$invalidate(6, _resizing = false));
     			const task = $taskStore.entities[model.id];
 
     			if (rowChangeValid) {
@@ -1533,7 +1538,7 @@
     				}
     			} else {
     				// reset position
-    				($$invalidate(6, _position.x = task.left, _position), $$invalidate(6, _position.width = task.width, _position), $$invalidate(6, _position.y = task.top, _position));
+    				($$invalidate(7, _position.x = task.left, _position), $$invalidate(7, _position.width = task.width, _position), $$invalidate(7, _position.y = task.top, _position));
     			}
     		};
 
@@ -1553,11 +1558,11 @@
     				},
     				onResize: event => {
     					if (model.resizable) {
-    						($$invalidate(6, _position.x = event.x, _position), $$invalidate(6, _position.width = event.width, _position), $$invalidate(5, _resizing = true));
+    						($$invalidate(7, _position.x = event.x, _position), $$invalidate(7, _position.width = event.width, _position), $$invalidate(6, _resizing = true));
     					}
     				},
     				onDrag: event => {
-    					($$invalidate(6, _position.x = event.x, _position), $$invalidate(6, _position.y = event.y, _position), $$invalidate(4, _dragging = true));
+    					($$invalidate(7, _position.x = event.x, _position), $$invalidate(7, _position.y = event.y, _position), $$invalidate(5, _dragging = true));
     				},
     				dragAllowed: () => {
     					return row.model.enableDragging && model.enableDragging;
@@ -1604,6 +1609,7 @@
     		if ("top" in $$props) $$invalidate(16, top = $$props.top);
     		if ("width" in $$props) $$invalidate(17, width = $$props.width);
     		if ("reflected" in $$props) $$invalidate(2, reflected = $$props.reflected);
+    		if ("task" in $$props) $$invalidate(3, task = $$props.task);
     	};
 
     	$$self.$$.update = () => {
@@ -1612,7 +1618,7 @@
     		}
 
     		if ($$self.$$.dirty[0] & /*$selection, model*/ 4194305) {
-    			 $$invalidate(7, selected = $selection.indexOf(model.id) !== -1);
+    			 $$invalidate(8, selected = $selection.indexOf(model.id) !== -1);
     		}
 
     		if ($$self.$$.dirty[0] & /*$rowStore, model*/ 524289) {
@@ -1624,12 +1630,12 @@
     		model,
     		height,
     		reflected,
+    		task,
     		onclick,
     		_dragging,
     		_resizing,
     		_position,
     		selected,
-    		rowY,
     		taskContent,
     		rowPadding,
     		api,
@@ -1647,6 +1653,7 @@
     		updatePosition,
     		dimensionsChanged,
     		rowContainer,
+    		rowY,
     		resizeHandleWidth,
     		onTaskButtonClick,
     		reflectOnParentRows,
@@ -1677,14 +1684,15 @@
     				top: 16,
     				width: 17,
     				reflected: 2,
-    				onclick: 3
+    				task: 3,
+    				onclick: 4
     			},
     			[-1, -1]
     		);
     	}
 
     	get onclick() {
-    		return this.$$.ctx[3];
+    		return this.$$.ctx[4];
     	}
     }
 
@@ -3742,6 +3750,7 @@
     	let current;
 
     	const task_spread_levels = [
+    		{ task: /*task*/ ctx[133] },
     		{ model: /*task*/ ctx[133].model },
     		{ left: /*task*/ ctx[133].left },
     		{ width: /*task*/ ctx[133].width },
@@ -3774,6 +3783,7 @@
     		p(ctx, dirty) {
     			const task_changes = (dirty[0] & /*visibleTasks*/ 1048576)
     			? get_spread_update(task_spread_levels, [
+    					{ task: /*task*/ ctx[133] },
     					{ model: /*task*/ ctx[133].model },
     					{ left: /*task*/ ctx[133].left },
     					{ width: /*task*/ ctx[133].width },
@@ -5204,10 +5214,10 @@
     			 {
     				const tasks = [];
 
-    				visibleRows.forEach(row => {
+    				visibleRows.forEach((row, rowIndex) => {
     					if ($rowTaskCache[row.model.id]) {
     						$rowTaskCache[row.model.id].forEach(id => {
-    							tasks.push($taskStore.entities[id]);
+    							tasks.push(Object.assign(Object.assign({}, $taskStore.entities[id]), { rowIndex }));
     						});
     					}
     				});

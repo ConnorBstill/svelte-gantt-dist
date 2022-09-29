@@ -22,6 +22,7 @@ export interface SvelteTask {
     width: number;
     height: number;
     reflections?: string[];
+    rowIndex?: number;
 }
 export declare class TaskFactory {
     columnService: ColumnService;
@@ -63,4 +64,5 @@ export declare function reflectTask(task: SvelteTask, row: SvelteRow, options: {
     width: number;
     height: number;
     reflections?: string[];
+    rowIndex?: number;
 };
