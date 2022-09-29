@@ -1244,6 +1244,7 @@
     	let t1;
     	let t2;
     	let pre;
+    	let t3_value = /*model*/ ctx[0].resizable + "";
     	let t3;
     	let t4;
     	let div1_data_task_id_value;
@@ -1275,7 +1276,7 @@
     			if (if_block2) if_block2.c();
     			t2 = space();
     			pre = element("pre");
-    			t3 = text(/*task*/ ctx[3]);
+    			t3 = text(t3_value);
     			t4 = space();
     			if (if_block3) if_block3.c();
     			attr(div0, "class", "sg-task-content svelte-2v4qmo");
@@ -1352,7 +1353,7 @@
     				if_block2 = null;
     			}
 
-    			if (dirty[0] & /*task*/ 8) set_data(t3, /*task*/ ctx[3]);
+    			if (dirty[0] & /*model*/ 1 && t3_value !== (t3_value = /*model*/ ctx[0].resizable + "")) set_data(t3, t3_value);
 
     			if (/*model*/ ctx[0].labelBottom) {
     				if (if_block3) {
