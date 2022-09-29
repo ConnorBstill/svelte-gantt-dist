@@ -1282,7 +1282,7 @@
     			attr(div1, "class", div1_class_value = "sg-task " + /*model*/ ctx[0].classes + " svelte-2v4qmo");
     			set_style(div1, "width", /*_position*/ ctx[6].width + "px");
     			set_style(div1, "height", /*height*/ ctx[1] + "px");
-    			set_style(div1, "transform", "translate(" + /*_position*/ ctx[6].x + "px, " + /*rowY*/ ctx[8] + "px)");
+    			set_style(div1, "transform", "translate(" + /*_position*/ ctx[6].x + "px, " + /*_position*/ ctx[6].y + "px)");
     			toggle_class(div1, "moving", /*_dragging*/ ctx[4] || /*_resizing*/ ctx[5]);
     			toggle_class(div1, "selected", /*selected*/ ctx[7]);
     			toggle_class(div1, "animating", animating);
@@ -1380,7 +1380,7 @@
     			}
 
     			if (dirty[0] & /*_position*/ 64) {
-    				set_style(div1, "transform", "translate(" + /*_position*/ ctx[6].x + "px, " + /*rowY*/ ctx[8] + "px)");
+    				set_style(div1, "transform", "translate(" + /*_position*/ ctx[6].x + "px, " + /*_position*/ ctx[6].y + "px)");
     			}
 
     			if (taskElement_action && is_function(taskElement_action.update) && dirty[0] & /*model*/ 1) taskElement_action.update.call(null, /*model*/ ctx[0]);
