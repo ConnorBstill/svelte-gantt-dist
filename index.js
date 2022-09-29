@@ -1560,7 +1560,7 @@ function instance($$self, $$props, $$invalidate) {
 					}
 				},
 				onDrag: event => {
-					($$invalidate(7, _position.x = event.x, _position), $$invalidate(7, _position.y = event.y, _position), $$invalidate(5, _dragging = true));
+					($$invalidate(7, _position.x = event.x, _position), $$invalidate(5, _dragging = true));
 				},
 				dragAllowed: () => {
 					return row.model.enableDragging && model.enableDragging;
