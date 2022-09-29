@@ -1243,6 +1243,8 @@
     	let div0;
     	let t1;
     	let t2;
+    	let p;
+    	let t4;
     	let div1_data_task_id_value;
     	let div1_class_value;
     	let taskElement_action;
@@ -1271,6 +1273,9 @@
     			t1 = space();
     			if (if_block2) if_block2.c();
     			t2 = space();
+    			p = element("p");
+    			p.textContent = `${/*rowY*/ ctx[8]}`;
+    			t4 = space();
     			if (if_block3) if_block3.c();
     			attr(div0, "class", "sg-task-content svelte-2v4qmo");
     			attr(div1, "data-task-id", div1_data_task_id_value = /*model*/ ctx[0].id);
@@ -1292,6 +1297,8 @@
     			append(div0, t1);
     			if (if_block2) if_block2.m(div0, null);
     			append(div1, t2);
+    			append(div1, p);
+    			append(div1, t4);
     			if (if_block3) if_block3.m(div1, null);
 
     			if (!mounted) {
