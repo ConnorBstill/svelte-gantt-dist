@@ -5180,8 +5180,8 @@ function instance$8($$self, $$props, $$invalidate) {
 			 $$invalidate(18, paddingBottom = (filteredRows.length - endIndex - 1) * rowHeight);
 		}
 
-		if ($$self.$$.dirty[2] & /*filteredRows*/ 1073741824) {
-			 $$invalidate(19, visibleRows = filteredRows);
+		if ($$self.$$.dirty[3] & /*$allRows*/ 32768) {
+			 $$invalidate(19, visibleRows = $allRows);
 		}
 
 		if ($$self.$$.dirty[0] & /*visibleRows*/ 524288 | $$self.$$.dirty[3] & /*$rowTaskCache, $taskStore*/ 66560) {
@@ -6435,10 +6435,6 @@ function create_each_block_1$1(ctx) {
 
 // (109:16) {#each visibleRows as row}
 function create_each_block$4(ctx) {
-	let t0;
-	let p;
-	let t1_value = /*visibleRows*/ ctx[4].length + "";
-	let t1;
 	let current;
 
 	const tablerow = new TableRow({
@@ -6454,15 +6450,9 @@ function create_each_block$4(ctx) {
 	return {
 		c() {
 			create_component(tablerow.$$.fragment);
-			t0 = space();
-			p = element("p");
-			t1 = text(t1_value);
 		},
 		m(target, anchor) {
 			mount_component(tablerow, target, anchor);
-			insert(target, t0, anchor);
-			insert(target, p, anchor);
-			append(p, t1);
 			current = true;
 		},
 		p(ctx, dirty) {
@@ -6470,7 +6460,6 @@ function create_each_block$4(ctx) {
 			if (dirty[0] & /*visibleRows*/ 16) tablerow_changes.row = /*row*/ ctx[30];
 			if (dirty[0] & /*tableHeaders*/ 32) tablerow_changes.headers = /*tableHeaders*/ ctx[5];
 			tablerow.$set(tablerow_changes);
-			if ((!current || dirty[0] & /*visibleRows*/ 16) && t1_value !== (t1_value = /*visibleRows*/ ctx[4].length + "")) set_data(t1, t1_value);
 		},
 		i(local) {
 			if (current) return;
@@ -6483,8 +6472,6 @@ function create_each_block$4(ctx) {
 		},
 		d(detaching) {
 			destroy_component(tablerow, detaching);
-			if (detaching) detach(t0);
-			if (detaching) detach(p);
 		}
 	};
 }
