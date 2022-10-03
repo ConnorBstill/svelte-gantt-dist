@@ -4726,7 +4726,7 @@ function instance$8($$self, $$props, $$invalidate) {
 				}
 			});
 
-			$$invalidate(91, __scrollTop = scrollTop);
+			__scrollTop = scrollTop;
 			__scrollLeft = scrollLeft;
 		};
 
@@ -5194,12 +5194,8 @@ function instance$8($$self, $$props, $$invalidate) {
 			 $$invalidate(15, rightScrollbarVisible = rowContainerHeight > $visibleHeight);
 		}
 
-		if ($$self.$$.dirty[1] & /*rowHeight*/ 8388608 | $$self.$$.dirty[2] & /*__scrollTop*/ 536870912) {
-			 $$invalidate(96, startIndex = Math.floor(__scrollTop / rowHeight));
-		}
-
-		if ($$self.$$.dirty[0] & /*$visibleHeight*/ 33554432 | $$self.$$.dirty[1] & /*rowHeight*/ 8388608 | $$self.$$.dirty[3] & /*startIndex, filteredRows*/ 10) {
-			 $$invalidate(97, endIndex = Math.min(startIndex + Math.ceil($visibleHeight / rowHeight), filteredRows.length - 1));
+		if ($$self.$$.dirty[0] & /*$allRows*/ 16777216) {
+			 $$invalidate(97, endIndex = $allRows.length - 1);
 		}
 
 		if ($$self.$$.dirty[1] & /*rowHeight*/ 8388608 | $$self.$$.dirty[3] & /*startIndex*/ 8) {
@@ -5238,6 +5234,8 @@ function instance$8($$self, $$props, $$invalidate) {
 			 if ($dimensionsChanged) tickWithoutCSSTransition();
 		}
 	};
+
+	 $$invalidate(96, startIndex = 0);
 
 	return [
 		headers,
