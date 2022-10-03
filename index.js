@@ -1696,6 +1696,12 @@ function create_if_block$1(ctx) {
 
 function create_fragment$1(ctx) {
 	let div;
+	let p;
+	let t0;
+	let t1;
+	let t2_value = /*row*/ ctx[0].model.id + "";
+	let t2;
+	let t3;
 	let div_class_value;
 	let div_data_row_id_value;
 	let if_block = /*row*/ ctx[0].model.contentHtml && create_if_block$1(ctx);
@@ -1703,6 +1709,11 @@ function create_fragment$1(ctx) {
 	return {
 		c() {
 			div = element("div");
+			p = element("p");
+			t0 = text(/*$selectedRow*/ ctx[2]);
+			t1 = space();
+			t2 = text(t2_value);
+			t3 = space();
 			if (if_block) if_block.c();
 			attr(div, "class", div_class_value = "sg-row " + /*row*/ ctx[0].model.classes + " svelte-kxujys");
 			attr(div, "data-row-id", div_data_row_id_value = /*row*/ ctx[0].model.id);
@@ -1712,9 +1723,17 @@ function create_fragment$1(ctx) {
 		},
 		m(target, anchor) {
 			insert(target, div, anchor);
+			append(div, p);
+			append(p, t0);
+			append(p, t1);
+			append(p, t2);
+			append(div, t3);
 			if (if_block) if_block.m(div, null);
 		},
 		p(ctx, [dirty]) {
+			if (dirty & /*$selectedRow*/ 4) set_data(t0, /*$selectedRow*/ ctx[2]);
+			if (dirty & /*row*/ 1 && t2_value !== (t2_value = /*row*/ ctx[0].model.id + "")) set_data(t2, t2_value);
+
 			if (/*row*/ ctx[0].model.contentHtml) {
 				if (if_block) {
 					if_block.p(ctx, dirty);
