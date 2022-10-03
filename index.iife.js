@@ -3655,11 +3655,7 @@
 
     // (612:24) {#each $allRows as row (row.model.id)}
     function create_each_block_3(key_1, ctx) {
-    	let p;
-    	let t0;
-    	let t1_value = /*$allRows*/ ctx[24].length + "";
-    	let t1;
-    	let t2;
+    	let first;
     	let current;
     	const row = new Row({ props: { row: /*row*/ ctx[141] } });
 
@@ -3667,23 +3663,16 @@
     		key: key_1,
     		first: null,
     		c() {
-    			p = element("p");
-    			t0 = text("ALLROWS: ");
-    			t1 = text(t1_value);
-    			t2 = space();
+    			first = empty();
     			create_component(row.$$.fragment);
-    			this.first = p;
+    			this.first = first;
     		},
     		m(target, anchor) {
-    			insert(target, p, anchor);
-    			append(p, t0);
-    			append(p, t1);
-    			insert(target, t2, anchor);
+    			insert(target, first, anchor);
     			mount_component(row, target, anchor);
     			current = true;
     		},
     		p(ctx, dirty) {
-    			if ((!current || dirty[0] & /*$allRows*/ 16777216) && t1_value !== (t1_value = /*$allRows*/ ctx[24].length + "")) set_data(t1, t1_value);
     			const row_changes = {};
     			if (dirty[0] & /*$allRows*/ 16777216) row_changes.row = /*row*/ ctx[141];
     			row.$set(row_changes);
@@ -3698,8 +3687,7 @@
     			current = false;
     		},
     		d(detaching) {
-    			if (detaching) detach(p);
-    			if (detaching) detach(t2);
+    			if (detaching) detach(first);
     			destroy_component(row, detaching);
     		}
     	};
