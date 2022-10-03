@@ -3652,7 +3652,11 @@ function create_each_block_4(key_1, ctx) {
 
 // (612:24) {#each $allRows as row (row.model.id)}
 function create_each_block_3(key_1, ctx) {
-	let first;
+	let p;
+	let t0;
+	let t1_value = /*$allRows*/ ctx[24].length + "";
+	let t1;
+	let t2;
 	let current;
 	const row = new Row({ props: { row: /*row*/ ctx[141] } });
 
@@ -3660,16 +3664,23 @@ function create_each_block_3(key_1, ctx) {
 		key: key_1,
 		first: null,
 		c() {
-			first = empty();
+			p = element("p");
+			t0 = text("ALLROWS: ");
+			t1 = text(t1_value);
+			t2 = space();
 			create_component(row.$$.fragment);
-			this.first = first;
+			this.first = p;
 		},
 		m(target, anchor) {
-			insert(target, first, anchor);
+			insert(target, p, anchor);
+			append(p, t0);
+			append(p, t1);
+			insert(target, t2, anchor);
 			mount_component(row, target, anchor);
 			current = true;
 		},
 		p(ctx, dirty) {
+			if ((!current || dirty[0] & /*$allRows*/ 16777216) && t1_value !== (t1_value = /*$allRows*/ ctx[24].length + "")) set_data(t1, t1_value);
 			const row_changes = {};
 			if (dirty[0] & /*$allRows*/ 16777216) row_changes.row = /*row*/ ctx[141];
 			row.$set(row_changes);
@@ -3684,13 +3695,14 @@ function create_each_block_3(key_1, ctx) {
 			current = false;
 		},
 		d(detaching) {
-			if (detaching) detach(first);
+			if (detaching) detach(p);
+			if (detaching) detach(t2);
 			destroy_component(row, detaching);
 		}
 	};
 }
 
-// (618:20) {#each $allTimeRanges as timeRange (timeRange.model.id)}
+// (619:20) {#each $allTimeRanges as timeRange (timeRange.model.id)}
 function create_each_block_2(key_1, ctx) {
 	let first;
 	let current;
@@ -3739,7 +3751,7 @@ function create_each_block_2(key_1, ctx) {
 	};
 }
 
-// (622:20) {#each visibleTasks as task (task.model.id)}
+// (623:20) {#each visibleTasks as task (task.model.id)}
 function create_each_block_1(key_1, ctx) {
 	let first;
 	let current;
@@ -3806,7 +3818,7 @@ function create_each_block_1(key_1, ctx) {
 	};
 }
 
-// (627:16) {#each ganttBodyModules as module}
+// (628:16) {#each ganttBodyModules as module}
 function create_each_block$2(ctx) {
 	let switch_instance_anchor;
 	let current;
