@@ -5015,7 +5015,7 @@ function instance$8($$self, $$props, $$invalidate) {
 	let endIndex;
 	let paddingTop = 0;
 	let paddingBottom = 0;
-	let visibleRows = [];
+	let visibleRows = $allRows;
 	let tableRows = [];
 	let visibleTasks;
 	let disableTransition = true;
@@ -5210,8 +5210,8 @@ function instance$8($$self, $$props, $$invalidate) {
 			 $$invalidate(18, paddingBottom = (filteredRows.length - endIndex - 1) * rowHeight);
 		}
 
-		if ($$self.$$.dirty[3] & /*filteredRows, startIndex, endIndex*/ 13) {
-			 $$invalidate(19, visibleRows = filteredRows.slice(startIndex, endIndex + 1));
+		if ($$self.$$.dirty[3] & /*$allRows*/ 131072) {
+			 $$invalidate(19, visibleRows = $allRows);
 		}
 
 		if ($$self.$$.dirty[3] & /*tableFilteredRows, startIndex, endIndex*/ 14) {
