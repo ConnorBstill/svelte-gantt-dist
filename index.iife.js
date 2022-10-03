@@ -1107,7 +1107,7 @@
     	};
     }
 
-    // (302:4) {:else}
+    // (301:4) {:else}
     function create_else_block(ctx) {
     	let t_value = /*model*/ ctx[0].label + "";
     	let t;
@@ -1128,7 +1128,7 @@
     	};
     }
 
-    // (300:26) 
+    // (299:26) 
     function create_if_block_3(ctx) {
     	let html_tag;
     	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1149,7 +1149,7 @@
     	};
     }
 
-    // (298:4) {#if model.html}
+    // (297:4) {#if model.html}
     function create_if_block_2(ctx) {
     	let html_tag;
     	let raw_value = /*model*/ ctx[0].html + "";
@@ -1170,7 +1170,7 @@
     	};
     }
 
-    // (304:4) {#if model.showButton}
+    // (303:4) {#if model.showButton}
     function create_if_block_1(ctx) {
     	let span;
     	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1206,7 +1206,7 @@
     	};
     }
 
-    // (311:2) {#if model.labelBottom}
+    // (310:2) {#if model.labelBottom}
     function create_if_block(ctx) {
     	let label;
     	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1290,7 +1290,7 @@
 
     			if (!mounted) {
     				dispose = [
-    					listen(div1, "dblclick", /*dblclick_handler*/ ctx[36]),
+    					listen(div1, "dblclick", /*dblclick_handler*/ ctx[35]),
     					action_destroyer(ctx[12].call(null, div1)),
     					action_destroyer(taskElement_action = /*taskElement*/ ctx[13].call(null, div1, /*model*/ ctx[0]))
     				];
@@ -1432,7 +1432,6 @@
 
     	const { dimensionsChanged } = getContext("dimensions");
     	const { rowContainer } = getContext("gantt");
-    	const rowY = rowContainer.getBoundingClientRect().top;
     	const { taskContent, resizeHandleWidth, rowPadding, onTaskButtonClick, reflectOnParentRows, reflectOnChildRows, taskElementHook } = getContext("options");
     	component_subscribe($$self, rowPadding, value => $$invalidate(21, $rowPadding = value));
     	const { dndManager, api, utils, selectionManager, columnService } = getContext("services");
@@ -1628,7 +1627,6 @@
     		updatePosition,
     		dimensionsChanged,
     		rowContainer,
-    		rowY,
     		resizeHandleWidth,
     		onTaskButtonClick,
     		reflectOnParentRows,
