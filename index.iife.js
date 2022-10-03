@@ -1702,9 +1702,10 @@
     	let p;
     	let t0;
     	let t1;
-    	let t2_value = /*row*/ ctx[0].model.id + "";
     	let t2;
+    	let t3_value = /*row*/ ctx[0].model.id + "";
     	let t3;
+    	let t4;
     	let div_class_value;
     	let div_data_row_id_value;
     	let if_block = /*row*/ ctx[0].model.contentHtml && create_if_block$1(ctx);
@@ -1713,10 +1714,11 @@
     		c() {
     			div = element("div");
     			p = element("p");
-    			t0 = text(/*$selectedRow*/ ctx[2]);
-    			t1 = space();
-    			t2 = text(t2_value);
-    			t3 = space();
+    			t0 = text("selected:");
+    			t1 = text(/*$selectedRow*/ ctx[2]);
+    			t2 = text(" row id:");
+    			t3 = text(t3_value);
+    			t4 = space();
     			if (if_block) if_block.c();
     			attr(div, "class", div_class_value = "sg-row " + /*row*/ ctx[0].model.classes + " svelte-kxujys");
     			attr(div, "data-row-id", div_data_row_id_value = /*row*/ ctx[0].model.id);
@@ -1730,12 +1732,13 @@
     			append(p, t0);
     			append(p, t1);
     			append(p, t2);
-    			append(div, t3);
+    			append(p, t3);
+    			append(div, t4);
     			if (if_block) if_block.m(div, null);
     		},
     		p(ctx, [dirty]) {
-    			if (dirty & /*$selectedRow*/ 4) set_data(t0, /*$selectedRow*/ ctx[2]);
-    			if (dirty & /*row*/ 1 && t2_value !== (t2_value = /*row*/ ctx[0].model.id + "")) set_data(t2, t2_value);
+    			if (dirty & /*$selectedRow*/ 4) set_data(t1, /*$selectedRow*/ ctx[2]);
+    			if (dirty & /*row*/ 1 && t3_value !== (t3_value = /*row*/ ctx[0].model.id + "")) set_data(t3, t3_value);
 
     			if (/*row*/ ctx[0].model.contentHtml) {
     				if (if_block) {
@@ -5015,7 +5018,7 @@
     	let endIndex;
     	let paddingTop = 0;
     	let paddingBottom = 0;
-    	let visibleRows = $allRows;
+    	let visibleRows = [];
     	let tableRows = [];
     	let visibleTasks;
     	let disableTransition = true;
@@ -5210,8 +5213,8 @@
     			 $$invalidate(18, paddingBottom = (filteredRows.length - endIndex - 1) * rowHeight);
     		}
 
-    		if ($$self.$$.dirty[3] & /*$allRows*/ 131072) {
-    			 $$invalidate(19, visibleRows = $allRows);
+    		if ($$self.$$.dirty[3] & /*filteredRows, startIndex, endIndex*/ 13) {
+    			 $$invalidate(19, visibleRows = filteredRows.slice(startIndex, endIndex + 1));
     		}
 
     		if ($$self.$$.dirty[3] & /*tableFilteredRows, startIndex, endIndex*/ 14) {
