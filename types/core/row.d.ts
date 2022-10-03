@@ -26,6 +26,7 @@ export interface SvelteRow {
     allParents?: SvelteRow[];
     expanded?: boolean;
     childLevel?: number;
+    rowIndex?: number;
 }
 export declare class RowFactory {
     rowHeight: number;
