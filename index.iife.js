@@ -5005,7 +5005,10 @@
     	}
 
     	let filteredRows = [];
+
+    	// $: filteredRows = $allRows
     	let tableFilteredRows = [];
+
     	let rightScrollbarVisible;
     	let rowContainerHeight;
     	let startIndex;
@@ -5176,8 +5179,7 @@
     		}
 
     		if ($$self.$$.dirty[3] & /*$allRows*/ 131072) {
-    			// $: filteredRows = $allRows.filter(row => !row.hidden);
-    			 $$invalidate(93, filteredRows = $allRows);
+    			 $$invalidate(93, filteredRows = $allRows.filter(row => !row.hidden));
     		}
 
     		if ($$self.$$.dirty[3] & /*$allRows*/ 131072) {
