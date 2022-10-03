@@ -1422,8 +1422,7 @@ function instance($$self, $$props, $$invalidate) {
 	function updatePosition(x, y, width) {
 		if (!_dragging && !_resizing) {
 			$$invalidate(7, _position.x = x, _position);
-
-			// _position.y = y;//row.y + 6;
+			$$invalidate(7, _position.y = y, _position); //row.y + 6;
 			$$invalidate(7, _position.width = width, _position);
 		} // should NOT animate on resize/update of columns
 	}
