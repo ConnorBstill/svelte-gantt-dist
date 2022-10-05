@@ -1107,7 +1107,7 @@
     	};
     }
 
-    // (301:4) {:else}
+    // (302:4) {:else}
     function create_else_block(ctx) {
     	let t_value = /*model*/ ctx[0].label + "";
     	let t;
@@ -1128,7 +1128,7 @@
     	};
     }
 
-    // (299:26) 
+    // (300:26) 
     function create_if_block_3(ctx) {
     	let html_tag;
     	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1149,7 +1149,7 @@
     	};
     }
 
-    // (297:4) {#if model.html}
+    // (298:4) {#if model.html}
     function create_if_block_2(ctx) {
     	let html_tag;
     	let raw_value = /*model*/ ctx[0].html + "";
@@ -1170,7 +1170,7 @@
     	};
     }
 
-    // (303:4) {#if model.showButton}
+    // (304:4) {#if model.showButton}
     function create_if_block_1(ctx) {
     	let span;
     	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1206,7 +1206,7 @@
     	};
     }
 
-    // (310:2) {#if model.labelBottom}
+    // (311:2) {#if model.labelBottom}
     function create_if_block(ctx) {
     	let label;
     	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1235,8 +1235,12 @@
     	let div1;
     	let t0;
     	let div0;
+    	let span;
+    	let t1_value = /*taskObject*/ ctx[3].taskCount + "";
     	let t1;
     	let t2;
+    	let t3;
+    	let t4;
     	let div1_data_task_id_value;
     	let div1_class_value;
     	let taskElement_action;
@@ -1261,10 +1265,13 @@
     			if (if_block0) if_block0.c();
     			t0 = space();
     			div0 = element("div");
-    			if_block1.c();
-    			t1 = space();
-    			if (if_block2) if_block2.c();
+    			span = element("span");
+    			t1 = text(t1_value);
     			t2 = space();
+    			if_block1.c();
+    			t3 = space();
+    			if (if_block2) if_block2.c();
+    			t4 = space();
     			if (if_block3) if_block3.c();
     			attr(div0, "class", "sg-task-content svelte-2v4qmo");
     			attr(div1, "data-task-id", div1_data_task_id_value = /*model*/ ctx[0].id);
@@ -1282,10 +1289,13 @@
     			if (if_block0) if_block0.m(div1, null);
     			append(div1, t0);
     			append(div1, div0);
+    			append(div0, span);
+    			append(span, t1);
+    			append(div0, t2);
     			if_block1.m(div0, null);
-    			append(div0, t1);
+    			append(div0, t3);
     			if (if_block2) if_block2.m(div0, null);
-    			append(div1, t2);
+    			append(div1, t4);
     			if (if_block3) if_block3.m(div1, null);
 
     			if (!mounted) {
@@ -1312,6 +1322,8 @@
     				if_block0 = null;
     			}
 
+    			if (dirty[0] & /*taskObject*/ 8 && t1_value !== (t1_value = /*taskObject*/ ctx[3].taskCount + "")) set_data(t1, t1_value);
+
     			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block1) {
     				if_block1.p(ctx, dirty);
     			} else {
@@ -1320,7 +1332,7 @@
 
     				if (if_block1) {
     					if_block1.c();
-    					if_block1.m(div0, t1);
+    					if_block1.m(div0, t3);
     				}
     			}
 
@@ -1470,8 +1482,8 @@
     					const top = $rowPadding + targetRow.y;
     					updatePosition(left, top, width);
     					const newTask = Object.assign(Object.assign({}, task), { left, width, top, model });
-    				} else // const changed = prevFrom != newFrom || prevTo != newTo || (sourceRow && sourceRow.model.id !== targetRow.model.id);
-    				// if(changed) {
+    					taskStore.update(newTask);
+    				} else // if(changed) {
     				//     api.tasks.raise.change({ task: newTask, sourceRow, targetRow });
     				// }
     				// taskStore.update(newTask);
@@ -1511,7 +1523,7 @@
     				// }
     				{
     					// reset position
-    					($$invalidate(7, _position.x = task.left, _position), $$invalidate(7, _position.width = task.width, _position), $$invalidate(7, _position.y = task.top, _position)); // taskStore.update(newTask);
+    					($$invalidate(7, _position.x = task.left, _position), $$invalidate(7, _position.width = task.width, _position), $$invalidate(7, _position.y = task.top, _position)); // const changed = prevFrom != newFrom || prevTo != newTo || (sourceRow && sourceRow.model.id !== targetRow.model.id);
     				}
     			};
 
@@ -3668,7 +3680,7 @@
     	};
     }
 
-    // (627:20) {#each $allTimeRanges as timeRange (timeRange.model.id)}
+    // (628:20) {#each $allTimeRanges as timeRange (timeRange.model.id)}
     function create_each_block_2(key_1, ctx) {
     	let first;
     	let current;
@@ -3717,7 +3729,7 @@
     	};
     }
 
-    // (631:20) {#each visibleTasks as task (task.model.id)}
+    // (632:20) {#each visibleTasks as task (task.model.id)}
     function create_each_block_1(key_1, ctx) {
     	let first;
     	let current;
@@ -3784,7 +3796,7 @@
     	};
     }
 
-    // (636:16) {#each ganttBodyModules as module}
+    // (637:16) {#each ganttBodyModules as module}
     function create_each_block$2(ctx) {
     	let switch_instance_anchor;
     	let current;
@@ -5213,7 +5225,10 @@
     				visibleRows.forEach((row, rowIndex) => {
     					if ($rowTaskCache[row.model.id]) {
     						$rowTaskCache[row.model.id].forEach(id => {
-    							tasks.push(Object.assign(Object.assign({}, $taskStore.entities[id]), { rowIndex }));
+    							tasks.push(Object.assign(Object.assign({}, $taskStore.entities[id]), {
+    								rowIndex,
+    								taskCount: $rowTaskCache[row.model.id].length
+    							}));
     						});
     					}
     				});
