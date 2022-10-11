@@ -1107,7 +1107,7 @@
     	};
     }
 
-    // (301:4) {:else}
+    // (302:4) {:else}
     function create_else_block(ctx) {
     	let t_value = /*model*/ ctx[0].label + "";
     	let t;
@@ -1128,7 +1128,7 @@
     	};
     }
 
-    // (299:26) 
+    // (300:26) 
     function create_if_block_3(ctx) {
     	let html_tag;
     	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1149,7 +1149,7 @@
     	};
     }
 
-    // (297:4) {#if model.html}
+    // (298:4) {#if model.html}
     function create_if_block_2(ctx) {
     	let html_tag;
     	let raw_value = /*model*/ ctx[0].html + "";
@@ -1170,7 +1170,7 @@
     	};
     }
 
-    // (303:4) {#if model.showButton}
+    // (304:4) {#if model.showButton}
     function create_if_block_1(ctx) {
     	let span;
     	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1206,7 +1206,7 @@
     	};
     }
 
-    // (310:2) {#if model.labelBottom}
+    // (311:2) {#if model.labelBottom}
     function create_if_block(ctx) {
     	let label;
     	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1536,6 +1536,7 @@
     					},
     					onDrag: event => {
     						($$invalidate(7, _position.x = event.x, _position), $$invalidate(5, _dragging = true));
+    						api["tasks"].raise.move($taskStore.entities[model.id]);
     					},
     					dragAllowed: () => {
     						return row.model.enableDragging && model.enableDragging;
