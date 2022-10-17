@@ -1539,7 +1539,7 @@
 
     						api["tasks"].raise.move({
     							task: $taskStore.entities[model.id],
-    							model
+    							taskObject
     						});
     					},
     					dragAllowed: () => {
