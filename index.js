@@ -1468,11 +1468,12 @@ function instance($$self, $$props, $$invalidate) {
 					updatePosition(left, top, width);
 					const newTask = Object.assign(Object.assign({}, task), { left, width, top, model });
 					taskStore.update(newTask);
+					const changed = prevFrom != newFrom || prevTo != newTo || sourceRow && sourceRow.model.id !== targetRow.model.id;
+
+					if (changed) {
+						api.tasks.raise.change({ task: newTask, sourceRow, targetRow });
+					}
 				} else // if(changed) {
-				//     api.tasks.raise.change({ task: newTask, sourceRow, targetRow });
-				// }
-				// taskStore.update(newTask);
-				// if(changed) {
 				//     api.tasks.raise.changed({ task: newTask, sourceRow, targetRow });
 				// }
 				// // update shadow tasks
@@ -1508,7 +1509,7 @@ function instance($$self, $$props, $$invalidate) {
 				// }
 				{
 					// reset position
-					($$invalidate(7, _position.x = task.left, _position), $$invalidate(7, _position.width = task.width, _position), $$invalidate(7, _position.y = task.top, _position)); // const changed = prevFrom != newFrom || prevTo != newTo || (sourceRow && sourceRow.model.id !== targetRow.model.id);
+					($$invalidate(7, _position.x = task.left, _position), $$invalidate(7, _position.width = task.width, _position), $$invalidate(7, _position.y = task.top, _position)); // taskStore.update(newTask);
 				}
 			};
 
