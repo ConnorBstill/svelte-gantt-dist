@@ -1533,7 +1533,11 @@ function instance($$self, $$props, $$invalidate) {
 					},
 					onDrag: event => {
 						($$invalidate(7, _position.x = event.x, _position), $$invalidate(5, _dragging = true));
-						api["tasks"].raise.move($taskStore.entities[model.id]);
+
+						api["tasks"].raise.move({
+							task: $taskStore.entities[model.id],
+							model
+						});
 					},
 					dragAllowed: () => {
 						return row.model.enableDragging && model.enableDragging;
