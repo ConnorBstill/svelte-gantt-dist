@@ -1543,13 +1543,12 @@ function instance($$self, $$props, $$invalidate) {
 
 						($$invalidate(7, _position.x = event.x, _position), $$invalidate(5, _dragging = true));
 
-						if (!(_position.x % 10)) {
-							api["tasks"].raise.move({
-								task: $taskStore.entities[model.id],
-								taskObject
-							});
-						}
-					},
+						// if (!(_position.x % 10)) {
+						api["tasks"].raise.move({
+							task: $taskStore.entities[model.id],
+							taskObject
+						});
+					}, // }
 					dragAllowed: () => {
 						return row.model.enableDragging && model.enableDragging;
 					},
