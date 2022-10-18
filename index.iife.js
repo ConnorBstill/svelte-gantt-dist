@@ -1107,7 +1107,7 @@
     	};
     }
 
-    // (304:4) {:else}
+    // (307:4) {:else}
     function create_else_block(ctx) {
     	let t_value = /*model*/ ctx[0].label + "";
     	let t;
@@ -1128,7 +1128,7 @@
     	};
     }
 
-    // (302:26) 
+    // (305:26) 
     function create_if_block_3(ctx) {
     	let html_tag;
     	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1149,7 +1149,7 @@
     	};
     }
 
-    // (300:4) {#if model.html}
+    // (303:4) {#if model.html}
     function create_if_block_2(ctx) {
     	let html_tag;
     	let raw_value = /*model*/ ctx[0].html + "";
@@ -1170,7 +1170,7 @@
     	};
     }
 
-    // (306:4) {#if model.showButton}
+    // (309:4) {#if model.showButton}
     function create_if_block_1(ctx) {
     	let span;
     	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1206,7 +1206,7 @@
     	};
     }
 
-    // (313:2) {#if model.labelBottom}
+    // (316:2) {#if model.labelBottom}
     function create_if_block(ctx) {
     	let label;
     	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1537,6 +1537,13 @@
     						}
     					},
     					onDrag: event => {
+    						if (_position.x === event.x && _dragging === false) {
+    							api["tasks"].raise.moveEnd({
+    								task: $taskStore.entities[model.id],
+    								taskObject
+    							});
+    						}
+
     						($$invalidate(7, _position.x = event.x, _position), $$invalidate(5, _dragging = true));
 
     						if (!(_position.x % 10)) {
