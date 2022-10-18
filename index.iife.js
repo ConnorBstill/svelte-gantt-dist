@@ -1107,7 +1107,7 @@
     	};
     }
 
-    // (307:4) {:else}
+    // (314:4) {:else}
     function create_else_block(ctx) {
     	let t_value = /*model*/ ctx[0].label + "";
     	let t;
@@ -1128,7 +1128,7 @@
     	};
     }
 
-    // (305:26) 
+    // (312:26) 
     function create_if_block_3(ctx) {
     	let html_tag;
     	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1149,7 +1149,7 @@
     	};
     }
 
-    // (303:4) {#if model.html}
+    // (310:4) {#if model.html}
     function create_if_block_2(ctx) {
     	let html_tag;
     	let raw_value = /*model*/ ctx[0].html + "";
@@ -1170,7 +1170,7 @@
     	};
     }
 
-    // (309:4) {#if model.showButton}
+    // (316:4) {#if model.showButton}
     function create_if_block_1(ctx) {
     	let span;
     	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1206,7 +1206,7 @@
     	};
     }
 
-    // (316:2) {#if model.labelBottom}
+    // (323:2) {#if model.labelBottom}
     function create_if_block(ctx) {
     	let label;
     	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1290,7 +1290,7 @@
 
     			if (!mounted) {
     				dispose = [
-    					listen(div1, "dblclick", /*dblclick_handler*/ ctx[35]),
+    					listen(div1, "dblclick", /*dblclick_handler*/ ctx[37]),
     					action_destroyer(ctx[12].call(null, div1)),
     					action_destroyer(taskElement_action = /*taskElement*/ ctx[13].call(null, div1, /*model*/ ctx[0]))
     				];
@@ -1405,12 +1405,12 @@
     let animating = true;
 
     function instance($$self, $$props, $$invalidate) {
-    	let $rowStore;
     	let $taskStore;
+    	let $rowStore;
     	let $rowPadding;
     	let $selection;
-    	component_subscribe($$self, rowStore, $$value => $$invalidate(19, $rowStore = $$value));
     	component_subscribe($$self, taskStore, $$value => $$invalidate(20, $taskStore = $$value));
+    	component_subscribe($$self, rowStore, $$value => $$invalidate(21, $rowStore = $$value));
     	let { model } = $$props;
     	let { height } = $$props;
     	let { left } = $$props;
@@ -1421,6 +1421,14 @@
     	let _dragging = false;
     	let _resizing = false;
     	let _position = { x: left, y: top, width };
+    	let timer;
+
+    	let timeout = () => {
+    		api["tasks"].raise.moveEnd({
+    			task: $taskStore.entities[model.id],
+    			taskObject
+    		});
+    	};
 
     	function updatePosition(x, y, width) {
     		if (!_dragging && !_resizing) {
@@ -1433,7 +1441,7 @@
     	const { dimensionsChanged } = getContext("dimensions");
     	const { rowContainer } = getContext("gantt");
     	const { taskContent, resizeHandleWidth, rowPadding, onTaskButtonClick, reflectOnParentRows, reflectOnChildRows, taskElementHook } = getContext("options");
-    	component_subscribe($$self, rowPadding, value => $$invalidate(21, $rowPadding = value));
+    	component_subscribe($$self, rowPadding, value => $$invalidate(22, $rowPadding = value));
     	const { dndManager, api, utils, selectionManager, columnService } = getContext("services");
 
     	function drag(node) {
@@ -1522,6 +1530,7 @@
     					onDown: event => {
     						if (event.dragging) {
     							setCursor("move");
+    							timer = setTimeout(timeout, 500);
     						}
 
     						if (event.resizing) {
@@ -1537,21 +1546,21 @@
     						}
     					},
     					onDrag: event => {
-    						if (_position.x >= event.x + 5 || _position.x <= event.x + 5) {
-    							api["tasks"].raise.moveEnd({
+    						// if (_position.x >= event.x + 5 || _position.x <= event.x + 5) {
+    						//     api['tasks'].raise.moveEnd({ task: $taskStore.entities[model.id], taskObject });
+    						// }
+    						($$invalidate(7, _position.x = event.x, _position), $$invalidate(5, _dragging = true));
+
+    						clearTimeout(timer);
+    						timer = setTimeout(timeout, 500);
+
+    						if (!(_position.x % 10)) {
+    							api["tasks"].raise.move({
     								task: $taskStore.entities[model.id],
     								taskObject
     							});
     						}
-
-    						($$invalidate(7, _position.x = event.x, _position), $$invalidate(5, _dragging = true));
-
-    						// if (!(_position.x % 10)) {
-    						api["tasks"].raise.move({
-    							task: $taskStore.entities[model.id],
-    							taskObject
-    						});
-    					}, // }
+    					},
     					dragAllowed: () => {
     						return row.model.enableDragging && model.enableDragging;
     					},
@@ -1583,7 +1592,7 @@
     	}
 
     	let selection = selectionManager.selection;
-    	component_subscribe($$self, selection, value => $$invalidate(22, $selection = value));
+    	component_subscribe($$self, selection, value => $$invalidate(23, $selection = value));
     	let selected = false;
     	let row;
 
@@ -1606,11 +1615,11 @@
     			 updatePosition(left, top, width);
     		}
 
-    		if ($$self.$$.dirty[0] & /*$selection, model*/ 4194305) {
+    		if ($$self.$$.dirty[0] & /*$selection, model*/ 8388609) {
     			 $$invalidate(8, selected = $selection.indexOf(model.id) !== -1);
     		}
 
-    		if ($$self.$$.dirty[0] & /*$rowStore, model*/ 524289) {
+    		if ($$self.$$.dirty[0] & /*$rowStore, model*/ 2097153) {
     			 row = $rowStore.entities[model.resourceId];
     		}
     	};
@@ -1634,11 +1643,13 @@
     		left,
     		top,
     		width,
+    		timer,
     		row,
-    		$rowStore,
     		$taskStore,
+    		$rowStore,
     		$rowPadding,
     		$selection,
+    		timeout,
     		updatePosition,
     		dimensionsChanged,
     		rowContainer,
