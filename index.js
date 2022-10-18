@@ -1104,7 +1104,7 @@ function create_if_block_4(ctx) {
 	};
 }
 
-// (302:4) {:else}
+// (304:4) {:else}
 function create_else_block(ctx) {
 	let t_value = /*model*/ ctx[0].label + "";
 	let t;
@@ -1125,7 +1125,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (300:26) 
+// (302:26) 
 function create_if_block_3(ctx) {
 	let html_tag;
 	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1146,7 +1146,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (298:4) {#if model.html}
+// (300:4) {#if model.html}
 function create_if_block_2(ctx) {
 	let html_tag;
 	let raw_value = /*model*/ ctx[0].html + "";
@@ -1167,7 +1167,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (304:4) {#if model.showButton}
+// (306:4) {#if model.showButton}
 function create_if_block_1(ctx) {
 	let span;
 	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1203,7 +1203,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (311:2) {#if model.labelBottom}
+// (313:2) {#if model.labelBottom}
 function create_if_block(ctx) {
 	let label;
 	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1473,11 +1473,12 @@ function instance($$self, $$props, $$invalidate) {
 					if (changed) {
 						api.tasks.raise.change({ task: newTask, sourceRow, targetRow });
 					}
-				} else // if(changed) {
-				//     api.tasks.raise.changed({ task: newTask, sourceRow, targetRow });
-				// }
-				// // update shadow tasks
-				// if(newTask.reflections) {
+
+					// taskStore.update(newTask);
+					if (changed) {
+						api.tasks.raise.changed({ task: newTask, sourceRow, targetRow });
+					}
+				} else // if(newTask.reflections) {
 				//     taskStore.deleteAll(newTask.reflections);
 				// }
 				// const reflectedTasks = [];
@@ -1509,7 +1510,7 @@ function instance($$self, $$props, $$invalidate) {
 				// }
 				{
 					// reset position
-					($$invalidate(7, _position.x = task.left, _position), $$invalidate(7, _position.width = task.width, _position), $$invalidate(7, _position.y = task.top, _position)); // taskStore.update(newTask);
+					($$invalidate(7, _position.x = task.left, _position), $$invalidate(7, _position.width = task.width, _position), $$invalidate(7, _position.y = task.top, _position)); // // update shadow tasks
 				}
 			};
 
@@ -1535,10 +1536,12 @@ function instance($$self, $$props, $$invalidate) {
 					onDrag: event => {
 						($$invalidate(7, _position.x = event.x, _position), $$invalidate(5, _dragging = true));
 
-						api["tasks"].raise.move({
-							task: $taskStore.entities[model.id],
-							taskObject
-						});
+						if (!(_position.x % 15)) {
+							api["tasks"].raise.move({
+								task: $taskStore.entities[model.id],
+								taskObject
+							});
+						}
 					},
 					dragAllowed: () => {
 						return row.model.enableDragging && model.enableDragging;
