@@ -1534,7 +1534,7 @@ function instance($$self, $$props, $$invalidate) {
 						}
 					},
 					onDrag: event => {
-						if (_position.x === event.x && _dragging === true) {
+						if (_position.x >= event.x + 5 || _position.x <= event.x + 5) {
 							api["tasks"].raise.moveEnd({
 								task: $taskStore.entities[model.id],
 								taskObject
