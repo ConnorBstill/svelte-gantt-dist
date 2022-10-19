@@ -1405,12 +1405,12 @@
     let animating = true;
 
     function instance($$self, $$props, $$invalidate) {
-    	let $taskStore;
     	let $rowStore;
+    	let $taskStore;
     	let $rowPadding;
     	let $selection;
-    	component_subscribe($$self, taskStore, $$value => $$invalidate(20, $taskStore = $$value));
-    	component_subscribe($$self, rowStore, $$value => $$invalidate(21, $rowStore = $$value));
+    	component_subscribe($$self, rowStore, $$value => $$invalidate(20, $rowStore = $$value));
+    	component_subscribe($$self, taskStore, $$value => $$invalidate(21, $taskStore = $$value));
     	let { model } = $$props;
     	let { height } = $$props;
     	let { left } = $$props;
@@ -1424,10 +1424,7 @@
     	let timer;
 
     	let timeout = () => {
-    		api["tasks"].raise.moveEnd({
-    			task: $taskStore.entities[model.id],
-    			taskObject
-    		});
+    		api["tasks"].raise.moveEnd({ task: taskObject });
     	};
 
     	function updatePosition(x, y, width) {
@@ -1555,10 +1552,7 @@
     						timer = setTimeout(timeout, 500);
 
     						if (!(_position.x % 10)) {
-    							api["tasks"].raise.move({
-    								task: $taskStore.entities[model.id],
-    								taskObject
-    							});
+    							api["tasks"].raise.move({ task: taskObject });
     						}
     					},
     					dragAllowed: () => {
@@ -1619,7 +1613,7 @@
     			 $$invalidate(8, selected = $selection.indexOf(model.id) !== -1);
     		}
 
-    		if ($$self.$$.dirty[0] & /*$rowStore, model*/ 2097153) {
+    		if ($$self.$$.dirty[0] & /*$rowStore, model*/ 1048577) {
     			 row = $rowStore.entities[model.resourceId];
     		}
     	};
@@ -1645,8 +1639,8 @@
     		width,
     		timer,
     		row,
-    		$taskStore,
     		$rowStore,
+    		$taskStore,
     		$rowPadding,
     		$selection,
     		timeout,
