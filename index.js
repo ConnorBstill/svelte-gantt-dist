@@ -1104,7 +1104,7 @@ function create_if_block_4(ctx) {
 	};
 }
 
-// (314:4) {:else}
+// (315:4) {:else}
 function create_else_block(ctx) {
 	let t_value = /*model*/ ctx[0].label + "";
 	let t;
@@ -1125,7 +1125,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (312:26) 
+// (313:26) 
 function create_if_block_3(ctx) {
 	let html_tag;
 	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1146,7 +1146,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (310:4) {#if model.html}
+// (311:4) {#if model.html}
 function create_if_block_2(ctx) {
 	let html_tag;
 	let raw_value = /*model*/ ctx[0].html + "";
@@ -1167,7 +1167,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (316:4) {#if model.showButton}
+// (317:4) {#if model.showButton}
 function create_if_block_1(ctx) {
 	let span;
 	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1203,7 +1203,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (323:2) {#if model.labelBottom}
+// (324:2) {#if model.labelBottom}
 function create_if_block(ctx) {
 	let label;
 	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1522,6 +1522,8 @@ function instance($$self, $$props, $$invalidate) {
 			const draggable = new Draggable(node,
 			{
 					onDown: event => {
+						api["tasks"].raise.select({ task: taskObject });
+
 						if (event.dragging) {
 							setCursor("move");
 							timer = setTimeout(timeout, 500);
@@ -4407,20 +4409,20 @@ function instance$8($$self, $$props, $$invalidate) {
 	let $columnWidth;
 	let $dimensionsChanged;
 	let $allRows;
-	let $taskStore;
 	let $hoveredRow;
 	let $selectedRow;
 	let $rowStore;
 	let $allTasks;
+	let $taskStore;
 	let $rowTaskCache;
 	let $visibleHeight;
 	let $headerHeight;
 	let $allTimeRanges;
 	let $visibleWidth;
 	component_subscribe($$self, allRows, $$value => $$invalidate(106, $allRows = $$value));
-	component_subscribe($$self, taskStore, $$value => $$invalidate(107, $taskStore = $$value));
-	component_subscribe($$self, rowStore, $$value => $$invalidate(110, $rowStore = $$value));
-	component_subscribe($$self, allTasks, $$value => $$invalidate(111, $allTasks = $$value));
+	component_subscribe($$self, rowStore, $$value => $$invalidate(109, $rowStore = $$value));
+	component_subscribe($$self, allTasks, $$value => $$invalidate(110, $allTasks = $$value));
+	component_subscribe($$self, taskStore, $$value => $$invalidate(111, $taskStore = $$value));
 	component_subscribe($$self, rowTaskCache, $$value => $$invalidate(112, $rowTaskCache = $$value));
 	component_subscribe($$self, allTimeRanges, $$value => $$invalidate(26, $allTimeRanges = $$value));
 
@@ -4643,9 +4645,9 @@ function instance$8($$self, $$props, $$invalidate) {
 	});
 
 	const hoveredRow = writable(null);
-	component_subscribe($$self, hoveredRow, value => $$invalidate(108, $hoveredRow = value));
+	component_subscribe($$self, hoveredRow, value => $$invalidate(107, $hoveredRow = value));
 	const selectedRow = writable(null);
-	component_subscribe($$self, selectedRow, value => $$invalidate(109, $selectedRow = value));
+	component_subscribe($$self, selectedRow, value => $$invalidate(108, $selectedRow = value));
 	const ganttContext = { scrollables, hoveredRow, selectedRow };
 	setContext("gantt", ganttContext);
 
@@ -4688,9 +4690,7 @@ function instance$8($$self, $$props, $$invalidate) {
 		} else {
 			selectionManager.selectSingle(taskId);
 		}
-
-		api["tasks"].raise.select($taskStore.entities[taskId]);
-	});
+	}); // api['tasks'].raise.select($taskStore.entities[taskId]);
 
 	onDelegatedEvent("mouseover", "data-row-id", (event, data, target) => {
 		set_store_value(hoveredRow, $hoveredRow = +data);
@@ -5159,7 +5159,7 @@ function instance$8($$self, $$props, $$invalidate) {
 			}
 		}
 
-		if ($$self.$$.dirty[3] & /*$_rowPadding, $rowStore*/ 131136) {
+		if ($$self.$$.dirty[3] & /*$_rowPadding, $rowStore*/ 65600) {
 			 {
 				$$invalidate(46, taskFactory.rowPadding = $_rowPadding, taskFactory);
 				$$invalidate(46, taskFactory.rowEntities = $rowStore.entities, taskFactory);
@@ -5223,7 +5223,7 @@ function instance$8($$self, $$props, $$invalidate) {
 			 $$invalidate(20, tableRows = tableFilteredRows.slice(startIndex, endIndex + 1));
 		}
 
-		if ($$self.$$.dirty[0] & /*visibleRows*/ 524288 | $$self.$$.dirty[3] & /*$rowTaskCache, $taskStore*/ 540672) {
+		if ($$self.$$.dirty[0] & /*visibleRows*/ 524288 | $$self.$$.dirty[3] & /*$rowTaskCache, $taskStore*/ 786432) {
 			 {
 				const tasks = [];
 
@@ -5355,11 +5355,11 @@ function instance$8($$self, $$props, $$invalidate) {
 		$columnWidth,
 		$dimensionsChanged,
 		$allRows,
-		$taskStore,
 		$hoveredRow,
 		$selectedRow,
 		$rowStore,
 		$allTasks,
+		$taskStore,
 		$rowTaskCache,
 		__awaiter,
 		scrollables,
