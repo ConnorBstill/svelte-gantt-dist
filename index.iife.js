@@ -1107,7 +1107,7 @@
     	};
     }
 
-    // (319:4) {:else}
+    // (321:4) {:else}
     function create_else_block(ctx) {
     	let t_value = /*model*/ ctx[0].label + "";
     	let t;
@@ -1128,7 +1128,7 @@
     	};
     }
 
-    // (317:26) 
+    // (319:26) 
     function create_if_block_3(ctx) {
     	let html_tag;
     	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1149,7 +1149,7 @@
     	};
     }
 
-    // (315:4) {#if model.html}
+    // (317:4) {#if model.html}
     function create_if_block_2(ctx) {
     	let html_tag;
     	let raw_value = /*model*/ ctx[0].html + "";
@@ -1170,7 +1170,7 @@
     	};
     }
 
-    // (321:4) {#if model.showButton}
+    // (323:4) {#if model.showButton}
     function create_if_block_1(ctx) {
     	let span;
     	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1206,7 +1206,7 @@
     	};
     }
 
-    // (328:2) {#if model.labelBottom}
+    // (330:2) {#if model.labelBottom}
     function create_if_block(ctx) {
     	let label;
     	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1430,7 +1430,9 @@
     	let timer;
 
     	let timeout = () => {
-    		api["tasks"].raise.moveEnd({ task: taskObject });
+    		if (_dragging) {
+    			api["tasks"].raise.moveEnd({ task: taskObject });
+    		}
     	};
 
     	function updatePosition(x, y, width) {
