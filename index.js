@@ -1267,7 +1267,7 @@ function create_fragment(ctx) {
 			attr(div0, "class", "sg-task-content svelte-2v4qmo");
 			attr(div1, "data-task-id", div1_data_task_id_value = /*model*/ ctx[0].id);
 			attr(div1, "class", div1_class_value = "sg-task " + /*model*/ ctx[0].classes + " svelte-2v4qmo");
-			attr(div1, "id", div1_id_value = /*model*/ ctx[0].id);
+			attr(div1, "id", div1_id_value = "task" + /*model*/ ctx[0].id);
 			set_style(div1, "width", /*_position*/ ctx[7].width + "px");
 			set_style(div1, "height", /*height*/ ctx[1] + "px");
 			set_style(div1, "transform", "translate(" + /*_position*/ ctx[7].x + "px, " + (8 + 40 * /*taskObject*/ ctx[3].rowIndex) + "px)");
@@ -1357,7 +1357,7 @@ function create_fragment(ctx) {
 				attr(div1, "class", div1_class_value);
 			}
 
-			if (dirty[0] & /*model*/ 1 && div1_id_value !== (div1_id_value = /*model*/ ctx[0].id)) {
+			if (dirty[0] & /*model*/ 1 && div1_id_value !== (div1_id_value = "task" + /*model*/ ctx[0].id)) {
 				attr(div1, "id", div1_id_value);
 			}
 
