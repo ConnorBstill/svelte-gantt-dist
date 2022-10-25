@@ -1532,7 +1532,7 @@ function instance($$self, $$props, $$invalidate) {
 
 						if (event.dragging) {
 							setCursor("move");
-							timer = setTimeout(timeout, 500);
+							timer = setTimeout(timeout, 250);
 						}
 
 						if (event.resizing) {
