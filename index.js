@@ -1104,7 +1104,7 @@ function create_if_block_4(ctx) {
 	};
 }
 
-// (315:4) {:else}
+// (316:4) {:else}
 function create_else_block(ctx) {
 	let t_value = /*model*/ ctx[0].label + "";
 	let t;
@@ -1125,7 +1125,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (313:26) 
+// (314:26) 
 function create_if_block_3(ctx) {
 	let html_tag;
 	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1146,7 +1146,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (311:4) {#if model.html}
+// (312:4) {#if model.html}
 function create_if_block_2(ctx) {
 	let html_tag;
 	let raw_value = /*model*/ ctx[0].html + "";
@@ -1167,7 +1167,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (317:4) {#if model.showButton}
+// (318:4) {#if model.showButton}
 function create_if_block_1(ctx) {
 	let span;
 	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1203,7 +1203,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (324:2) {#if model.labelBottom}
+// (325:2) {#if model.labelBottom}
 function create_if_block(ctx) {
 	let label;
 	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1236,6 +1236,7 @@ function create_fragment(ctx) {
 	let t2;
 	let div1_data_task_id_value;
 	let div1_class_value;
+	let div1_id_value;
 	let taskElement_action;
 	let mounted;
 	let dispose;
@@ -1266,6 +1267,7 @@ function create_fragment(ctx) {
 			attr(div0, "class", "sg-task-content svelte-2v4qmo");
 			attr(div1, "data-task-id", div1_data_task_id_value = /*model*/ ctx[0].id);
 			attr(div1, "class", div1_class_value = "sg-task " + /*model*/ ctx[0].classes + " svelte-2v4qmo");
+			attr(div1, "id", div1_id_value = /*model*/ ctx[0].id);
 			set_style(div1, "width", /*_position*/ ctx[7].width + "px");
 			set_style(div1, "height", /*height*/ ctx[1] + "px");
 			set_style(div1, "transform", "translate(" + /*_position*/ ctx[7].x + "px, " + (8 + 40 * /*taskObject*/ ctx[3].rowIndex) + "px)");
@@ -1353,6 +1355,10 @@ function create_fragment(ctx) {
 
 			if (dirty[0] & /*model*/ 1 && div1_class_value !== (div1_class_value = "sg-task " + /*model*/ ctx[0].classes + " svelte-2v4qmo")) {
 				attr(div1, "class", div1_class_value);
+			}
+
+			if (dirty[0] & /*model*/ 1 && div1_id_value !== (div1_id_value = /*model*/ ctx[0].id)) {
+				attr(div1, "id", div1_id_value);
 			}
 
 			if (dirty[0] & /*_position*/ 128) {
