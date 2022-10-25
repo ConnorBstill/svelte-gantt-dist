@@ -1104,7 +1104,7 @@ function create_if_block_4(ctx) {
 	};
 }
 
-// (316:4) {:else}
+// (319:4) {:else}
 function create_else_block(ctx) {
 	let t_value = /*model*/ ctx[0].label + "";
 	let t;
@@ -1125,7 +1125,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (314:26) 
+// (317:26) 
 function create_if_block_3(ctx) {
 	let html_tag;
 	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1146,7 +1146,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (312:4) {#if model.html}
+// (315:4) {#if model.html}
 function create_if_block_2(ctx) {
 	let html_tag;
 	let raw_value = /*model*/ ctx[0].html + "";
@@ -1167,7 +1167,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (318:4) {#if model.showButton}
+// (321:4) {#if model.showButton}
 function create_if_block_1(ctx) {
 	let span;
 	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1203,7 +1203,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (325:2) {#if model.labelBottom}
+// (328:2) {#if model.labelBottom}
 function create_if_block(ctx) {
 	let label;
 	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1551,8 +1551,11 @@ function instance($$self, $$props, $$invalidate) {
 						// if (_position.x >= event.x + 5 || _position.x <= event.x + 5) {
 						//     api['tasks'].raise.moveEnd({ task: $taskStore.entities[model.id], taskObject });
 						// }
-						($$invalidate(7, _position.x = event.x, _position), $$invalidate(5, _dragging = true));
+						if (model.enableDragging) {
+							$$invalidate(7, _position.x = event.x, _position);
+						}
 
+						$$invalidate(5, _dragging = true);
 						clearTimeout(timer);
 						timer = setTimeout(timeout, 500);
 
