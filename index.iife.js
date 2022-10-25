@@ -1275,7 +1275,7 @@
     			set_style(div1, "height", /*height*/ ctx[1] + "px");
     			set_style(div1, "transform", "translate(" + /*_position*/ ctx[7].x + "px, " + (8 + 40 * /*taskObject*/ ctx[3].rowIndex) + "px)");
     			toggle_class(div1, "moving", /*_dragging*/ ctx[5] || /*_resizing*/ ctx[6]);
-    			toggle_class(div1, "selected", /*selected*/ ctx[8]);
+    			toggle_class(div1, "selected", /*_dragging*/ ctx[5] || /*selected*/ ctx[8]);
     			toggle_class(div1, "animating", animating);
     			toggle_class(div1, "sg-task-reflected", /*reflected*/ ctx[2]);
     		},
@@ -1382,8 +1382,8 @@
     				toggle_class(div1, "moving", /*_dragging*/ ctx[5] || /*_resizing*/ ctx[6]);
     			}
 
-    			if (dirty[0] & /*model, selected*/ 257) {
-    				toggle_class(div1, "selected", /*selected*/ ctx[8]);
+    			if (dirty[0] & /*model, _dragging, selected*/ 289) {
+    				toggle_class(div1, "selected", /*_dragging*/ ctx[5] || /*selected*/ ctx[8]);
     			}
 
     			if (dirty[0] & /*model*/ 1) {
