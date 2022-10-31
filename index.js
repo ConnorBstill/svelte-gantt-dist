@@ -6456,28 +6456,86 @@ function get_each_context_1$1(ctx, list, i) {
 	return child_ctx;
 }
 
+// (103:16) {:else}
+function create_else_block$4(ctx) {
+	let t_value = /*header*/ ctx[33].title + "";
+	let t;
+
+	return {
+		c() {
+			t = text(t_value);
+		},
+		m(target, anchor) {
+			insert(target, t, anchor);
+		},
+		p(ctx, dirty) {
+			if (dirty[0] & /*tableHeaders*/ 32 && t_value !== (t_value = /*header*/ ctx[33].title + "")) set_data(t, t_value);
+		},
+		d(detaching) {
+			if (detaching) detach(t);
+		}
+	};
+}
+
+// (101:16) {#if header.isHtml}
+function create_if_block$6(ctx) {
+	let html_tag;
+	let raw_value = /*header*/ ctx[33].title + "";
+
+	return {
+		c() {
+			html_tag = new HtmlTag(null);
+		},
+		m(target, anchor) {
+			html_tag.m(raw_value, target, anchor);
+		},
+		p(ctx, dirty) {
+			if (dirty[0] & /*tableHeaders*/ 32 && raw_value !== (raw_value = /*header*/ ctx[33].title + "")) html_tag.p(raw_value);
+		},
+		d(detaching) {
+			if (detaching) html_tag.d();
+		}
+	};
+}
+
 // (99:8) {#each tableHeaders as header}
 function create_each_block_1$1(ctx) {
 	let div;
-	let t0_value = /*header*/ ctx[33].title + "";
-	let t0;
-	let t1;
+	let t;
+
+	function select_block_type(ctx, dirty) {
+		if (/*header*/ ctx[33].isHtml) return create_if_block$6;
+		return create_else_block$4;
+	}
+
+	let current_block_type = select_block_type(ctx);
+	let if_block = current_block_type(ctx);
 
 	return {
 		c() {
 			div = element("div");
-			t0 = text(t0_value);
-			t1 = space();
+			if_block.c();
+			t = space();
 			attr(div, "class", "sg-table-header-cell sg-table-cell svelte-87uanl");
 			set_style(div, "width", /*header*/ ctx[33].width + "px");
 		},
 		m(target, anchor) {
 			insert(target, div, anchor);
-			append(div, t0);
-			append(div, t1);
+			if_block.m(div, null);
+			append(div, t);
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*tableHeaders*/ 32 && t0_value !== (t0_value = /*header*/ ctx[33].title + "")) set_data(t0, t0_value);
+			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+				if_block.p(ctx, dirty);
+			} else {
+				if_block.d(1);
+				if_block = current_block_type(ctx);
+
+				if (if_block) {
+					if_block.c();
+					if_block.m(div, t);
+				}
+			}
 
 			if (dirty[0] & /*tableHeaders*/ 32) {
 				set_style(div, "width", /*header*/ ctx[33].width + "px");
@@ -6485,11 +6543,12 @@ function create_each_block_1$1(ctx) {
 		},
 		d(detaching) {
 			if (detaching) detach(div);
+			if_block.d();
 		}
 	};
 }
 
-// (109:16) {#each visibleRows as row}
+// (113:16) {#each visibleRows as row}
 function create_each_block$4(ctx) {
 	let current;
 
@@ -6756,7 +6815,8 @@ function instance$b($$self, $$props, $$invalidate) {
 		{
 			title: "Name",
 			property: "label",
-			width: 100
+			width: 100,
+			isHtml: false
 		}
 	] } = $$props;
 

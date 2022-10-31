@@ -9,4 +9,5 @@ export interface TableHeader {
     renderer?: (row: SvelteRow) => string;
     /** Type of header, can be `tree` */
     type?: 'tree' | any;
+    isHtml: boolean;
 }
