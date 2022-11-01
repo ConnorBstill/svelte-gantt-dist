@@ -1537,7 +1537,7 @@
 
     						if (event.dragging) {
     							setCursor("move");
-    							timer = setTimeout(() => timeout({ task: taskObject }, true), 16);
+    							timer = setTimeout(() => timeout({ task: taskObject }, true), 50);
     						}
 
     						if (event.resizing) {
@@ -1573,7 +1573,7 @@
     						}
 
     						clearTimeout(timer);
-    						timer = setTimeout(() => timeout({ task: taskObject }, onQuarterMark), 16);
+    						timer = setTimeout(() => timeout({ task: taskObject }, onQuarterMark), 50);
     					},
     					dragAllowed: () => {
     						return row.model.enableDragging && model.enableDragging;
