@@ -1104,7 +1104,7 @@ function create_if_block_4(ctx) {
 	};
 }
 
-// (323:4) {:else}
+// (325:4) {:else}
 function create_else_block(ctx) {
 	let t_value = /*model*/ ctx[0].label + "";
 	let t;
@@ -1125,7 +1125,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (321:26) 
+// (323:26) 
 function create_if_block_3(ctx) {
 	let html_tag;
 	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1146,7 +1146,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (319:4) {#if model.html}
+// (321:4) {#if model.html}
 function create_if_block_2(ctx) {
 	let html_tag;
 	let raw_value = /*model*/ ctx[0].html + "";
@@ -1167,7 +1167,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (325:4) {#if model.showButton}
+// (327:4) {#if model.showButton}
 function create_if_block_1(ctx) {
 	let span;
 	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1203,7 +1203,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (332:2) {#if model.labelBottom}
+// (334:2) {#if model.labelBottom}
 function create_if_block(ctx) {
 	let label;
 	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1426,8 +1426,8 @@ function instance($$self, $$props, $$invalidate) {
 	let _position = { x: left, y: top, width };
 	let timer;
 
-	let timeout = () => {
-		if (_dragging) {
+	let timeout = shouldRun => {
+		if (_dragging && shouldRun) {
 			api["tasks"].raise.moveEnd({ task: taskObject });
 		}
 	};
@@ -1534,7 +1534,7 @@ function instance($$self, $$props, $$invalidate) {
 
 						if (event.dragging) {
 							setCursor("move");
-							timer = setTimeout(timeout, 16);
+							timer = setTimeout(() => timeout(true), 16);
 						}
 
 						if (event.resizing) {
@@ -1558,12 +1558,15 @@ function instance($$self, $$props, $$invalidate) {
 						}
 
 						$$invalidate(5, _dragging = true);
-						clearTimeout(timer);
-						timer = setTimeout(timeout, 16);
+						let onQuarterMark = false;
 
 						if (!(_position.x % 10)) {
 							api["tasks"].raise.move({ task: taskObject });
+							onQuarterMark = true;
 						}
+
+						clearTimeout(timer);
+						timer = setTimeout(() => timeout(onQuarterMark), 16);
 					},
 					dragAllowed: () => {
 						return row.model.enableDragging && model.enableDragging;
