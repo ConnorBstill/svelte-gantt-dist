@@ -1104,7 +1104,7 @@ function create_if_block_4(ctx) {
 	};
 }
 
-// (325:4) {:else}
+// (329:4) {:else}
 function create_else_block(ctx) {
 	let t_value = /*model*/ ctx[0].label + "";
 	let t;
@@ -1125,7 +1125,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (323:26) 
+// (327:26) 
 function create_if_block_3(ctx) {
 	let html_tag;
 	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1146,7 +1146,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (321:4) {#if model.html}
+// (325:4) {#if model.html}
 function create_if_block_2(ctx) {
 	let html_tag;
 	let raw_value = /*model*/ ctx[0].html + "";
@@ -1167,7 +1167,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (327:4) {#if model.showButton}
+// (331:4) {#if model.showButton}
 function create_if_block_1(ctx) {
 	let span;
 	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1203,7 +1203,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (334:2) {#if model.labelBottom}
+// (338:2) {#if model.labelBottom}
 function create_if_block(ctx) {
 	let label;
 	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1269,12 +1269,12 @@ function create_fragment(ctx) {
 			attr(div1, "class", div1_class_value = "sg-task " + /*model*/ ctx[0].classes + " svelte-16vlgtg");
 			attr(div1, "id", div1_id_value = "task" + /*model*/ ctx[0].id);
 			set_style(div1, "width", /*_position*/ ctx[7].width + "px");
-			set_style(div1, "height", /*height*/ ctx[1] + "px");
-			set_style(div1, "transform", "translate(" + /*_position*/ ctx[7].x + "px, " + (8 + 40 * /*taskObject*/ ctx[3].rowIndex) + "px)");
+			set_style(div1, "height", /*height*/ ctx[2] + "px");
+			set_style(div1, "transform", "translate(" + /*_position*/ ctx[7].x + "px, " + (8 + 40 * /*taskObject*/ ctx[1].rowIndex) + "px)");
 			toggle_class(div1, "moving", /*_dragging*/ ctx[5] || /*_resizing*/ ctx[6]);
 			toggle_class(div1, "selected", /*_dragging*/ ctx[5] || /*selected*/ ctx[8]);
 			toggle_class(div1, "animating", animating);
-			toggle_class(div1, "sg-task-reflected", /*reflected*/ ctx[2]);
+			toggle_class(div1, "sg-task-reflected", /*reflected*/ ctx[3]);
 		},
 		m(target, anchor) {
 			insert(target, div1, anchor);
@@ -1365,12 +1365,12 @@ function create_fragment(ctx) {
 				set_style(div1, "width", /*_position*/ ctx[7].width + "px");
 			}
 
-			if (dirty[0] & /*height*/ 2) {
-				set_style(div1, "height", /*height*/ ctx[1] + "px");
+			if (dirty[0] & /*height*/ 4) {
+				set_style(div1, "height", /*height*/ ctx[2] + "px");
 			}
 
-			if (dirty[0] & /*_position, taskObject*/ 136) {
-				set_style(div1, "transform", "translate(" + /*_position*/ ctx[7].x + "px, " + (8 + 40 * /*taskObject*/ ctx[3].rowIndex) + "px)");
+			if (dirty[0] & /*_position, taskObject*/ 130) {
+				set_style(div1, "transform", "translate(" + /*_position*/ ctx[7].x + "px, " + (8 + 40 * /*taskObject*/ ctx[1].rowIndex) + "px)");
 			}
 
 			if (taskElement_action && is_function(taskElement_action.update) && dirty[0] & /*model*/ 1) taskElement_action.update.call(null, /*model*/ ctx[0]);
@@ -1387,8 +1387,8 @@ function create_fragment(ctx) {
 				toggle_class(div1, "animating", animating);
 			}
 
-			if (dirty[0] & /*model, reflected*/ 5) {
-				toggle_class(div1, "sg-task-reflected", /*reflected*/ ctx[2]);
+			if (dirty[0] & /*model, reflected*/ 9) {
+				toggle_class(div1, "sg-task-reflected", /*reflected*/ ctx[3]);
 			}
 		},
 		i: noop,
@@ -1557,8 +1557,12 @@ function instance($$self, $$props, $$invalidate) {
 							$$invalidate(7, _position.x = event.x, _position);
 						}
 
+						const newFrom = $$invalidate(0, model.from = utils.roundTo(columnService.getDateByPosition(event.x)), model);
+						const newTo = $$invalidate(0, model.to = utils.roundTo(columnService.getDateByPosition(event.x + _position.width)), model);
 						$$invalidate(5, _dragging = true);
 						let onQuarterMark = false;
+						$$invalidate(1, taskObject.model.from = newFrom, taskObject);
+						$$invalidate(1, taskObject.model.to = newTo, taskObject);
 
 						if (!(_position.x % 10)) {
 							api["tasks"].raise.move({ task: taskObject });
@@ -1609,12 +1613,12 @@ function instance($$self, $$props, $$invalidate) {
 
 	$$self.$set = $$props => {
 		if ("model" in $$props) $$invalidate(0, model = $$props.model);
-		if ("height" in $$props) $$invalidate(1, height = $$props.height);
+		if ("height" in $$props) $$invalidate(2, height = $$props.height);
 		if ("left" in $$props) $$invalidate(15, left = $$props.left);
 		if ("top" in $$props) $$invalidate(16, top = $$props.top);
 		if ("width" in $$props) $$invalidate(17, width = $$props.width);
-		if ("reflected" in $$props) $$invalidate(2, reflected = $$props.reflected);
-		if ("taskObject" in $$props) $$invalidate(3, taskObject = $$props.taskObject);
+		if ("reflected" in $$props) $$invalidate(3, reflected = $$props.reflected);
+		if ("taskObject" in $$props) $$invalidate(1, taskObject = $$props.taskObject);
 	};
 
 	$$self.$$.update = () => {
@@ -1633,9 +1637,9 @@ function instance($$self, $$props, $$invalidate) {
 
 	return [
 		model,
+		taskObject,
 		height,
 		reflected,
-		taskObject,
 		onclick,
 		_dragging,
 		_resizing,
@@ -1685,12 +1689,12 @@ class Task extends SvelteComponent {
 			safe_not_equal,
 			{
 				model: 0,
-				height: 1,
+				height: 2,
 				left: 15,
 				top: 16,
 				width: 17,
-				reflected: 2,
-				taskObject: 3,
+				reflected: 3,
+				taskObject: 1,
 				onclick: 4
 			},
 			[-1, -1]
