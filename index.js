@@ -1426,9 +1426,9 @@ function instance($$self, $$props, $$invalidate) {
 	let _position = { x: left, y: top, width };
 	let timer;
 
-	let timeout = shouldRun => {
+	let timeout = (newTaskObject, shouldRun) => {
 		if (_dragging && shouldRun) {
-			api["tasks"].raise.moveEnd({ task: taskObject });
+			api["tasks"].raise.moveEnd(newTaskObject);
 		}
 	};
 
@@ -1534,7 +1534,7 @@ function instance($$self, $$props, $$invalidate) {
 
 						if (event.dragging) {
 							setCursor("move");
-							timer = setTimeout(() => timeout(true), 16);
+							timer = setTimeout(() => timeout({ task: taskObject }, true), 16);
 						}
 
 						if (event.resizing) {
@@ -1566,7 +1566,7 @@ function instance($$self, $$props, $$invalidate) {
 						}
 
 						clearTimeout(timer);
-						timer = setTimeout(() => timeout(onQuarterMark), 16);
+						timer = setTimeout(() => timeout({ task: taskObject }, onQuarterMark), 16);
 					},
 					dragAllowed: () => {
 						return row.model.enableDragging && model.enableDragging;
