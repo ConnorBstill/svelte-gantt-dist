@@ -1559,7 +1559,7 @@ function instance($$self, $$props, $$invalidate) {
 
 						$$invalidate(5, _dragging = true);
 						clearTimeout(timer);
-						timer = setTimeout(timeout, 500);
+						timer = setTimeout(timeout, 250);
 
 						if (!(_position.x % 10)) {
 							api["tasks"].raise.move({ task: taskObject });
