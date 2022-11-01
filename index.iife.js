@@ -1537,7 +1537,7 @@
 
     						if (event.dragging) {
     							setCursor("move");
-    							timer = setTimeout(timeout, 100);
+    							timer = setTimeout(timeout, 16);
     						}
 
     						if (event.resizing) {
@@ -1562,7 +1562,7 @@
 
     						$$invalidate(5, _dragging = true);
     						clearTimeout(timer);
-    						timer = setTimeout(timeout, 100);
+    						timer = setTimeout(timeout, 16);
 
     						if (!(_position.x % 10)) {
     							api["tasks"].raise.move({ task: taskObject });
