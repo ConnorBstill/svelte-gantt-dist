@@ -1104,7 +1104,7 @@ function create_if_block_4(ctx) {
 	};
 }
 
-// (329:4) {:else}
+// (333:4) {:else}
 function create_else_block(ctx) {
 	let t_value = /*model*/ ctx[0].label + "";
 	let t;
@@ -1125,7 +1125,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (327:26) 
+// (331:26) 
 function create_if_block_3(ctx) {
 	let html_tag;
 	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1146,7 +1146,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (325:4) {#if model.html}
+// (329:4) {#if model.html}
 function create_if_block_2(ctx) {
 	let html_tag;
 	let raw_value = /*model*/ ctx[0].html + "";
@@ -1167,7 +1167,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (331:4) {#if model.showButton}
+// (335:4) {#if model.showButton}
 function create_if_block_1(ctx) {
 	let span;
 	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1203,7 +1203,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (338:2) {#if model.labelBottom}
+// (342:2) {#if model.labelBottom}
 function create_if_block(ctx) {
 	let label;
 	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1559,6 +1559,8 @@ function instance($$self, $$props, $$invalidate) {
 
 						const newFrom = $$invalidate(0, model.from = utils.roundTo(columnService.getDateByPosition(event.x)), model);
 						const newTo = $$invalidate(0, model.to = utils.roundTo(columnService.getDateByPosition(event.x + _position.width)), model);
+						const newLeft = columnService.getPositionByDate(newFrom) | 0;
+						const newRight = columnService.getPositionByDate(newTo) | 0;
 						$$invalidate(5, _dragging = true);
 						let onQuarterMark = false;
 						$$invalidate(1, taskObject.model.from = newFrom, taskObject);
@@ -1566,6 +1568,9 @@ function instance($$self, $$props, $$invalidate) {
 
 						if (!(_position.x % 10)) {
 							api["tasks"].raise.move({ task: taskObject });
+						}
+
+						if (_position.x <= newLeft - 2 || _position.x >= newLeft + 2) {
 							onQuarterMark = true;
 						}
 
