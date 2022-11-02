@@ -1483,7 +1483,8 @@
     					const top = $rowPadding + targetRow.y;
     					updatePosition(left, top, width);
     					const newTask = Object.assign(Object.assign({}, task), { left, width, top, model });
-    					taskStore.update(newTask);
+
+    					// taskStore.update(newTask);
     					const changed = prevFrom != newFrom || prevTo != newTo || sourceRow && sourceRow.model.id !== targetRow.model.id;
 
     					if (changed) {
