@@ -1104,7 +1104,7 @@ function create_if_block_4(ctx) {
 	};
 }
 
-// (337:4) {:else}
+// (335:4) {:else}
 function create_else_block(ctx) {
 	let t_value = /*model*/ ctx[0].label + "";
 	let t;
@@ -1125,7 +1125,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (335:26) 
+// (333:26) 
 function create_if_block_3(ctx) {
 	let html_tag;
 	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1146,7 +1146,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (333:4) {#if model.html}
+// (331:4) {#if model.html}
 function create_if_block_2(ctx) {
 	let html_tag;
 	let raw_value = /*model*/ ctx[0].html + "";
@@ -1167,7 +1167,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (339:4) {#if model.showButton}
+// (337:4) {#if model.showButton}
 function create_if_block_1(ctx) {
 	let span;
 	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1203,7 +1203,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (346:2) {#if model.labelBottom}
+// (344:2) {#if model.labelBottom}
 function create_if_block(ctx) {
 	let label;
 	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1468,8 +1468,8 @@ function instance($$self, $$props, $$invalidate) {
 				const task = $taskStore.entities[model.id];
 
 				if (rowChangeValid) {
-					const prevFrom = model.prevFrom;
-					const prevTo = model.prevTo;
+					const prevFrom = model.from;
+					const prevTo = model.to;
 					const newFrom = $$invalidate(0, model.from = utils.roundTo(columnService.getDateByPosition(event.x)), model);
 					const newTo = $$invalidate(0, model.to = utils.roundTo(columnService.getDateByPosition(event.x + event.width)), model);
 					const newLeft = columnService.getPositionByDate(newFrom) | 0;
@@ -1530,9 +1530,7 @@ function instance($$self, $$props, $$invalidate) {
 			const draggable = new Draggable(node,
 			{
 					onDown: event => {
-						api["tasks"].raise.select({
-							task: Object.assign(Object.assign({}, taskObject), { prevFrom: model.from, prevTo: model.to })
-						});
+						api["tasks"].raise.select({ task: taskObject });
 
 						if (event.dragging) {
 							setCursor("move");
@@ -1559,17 +1557,17 @@ function instance($$self, $$props, $$invalidate) {
 							$$invalidate(7, _position.x = event.x, _position);
 						}
 
-						const newFrom = $$invalidate(0, model.from = utils.roundTo(columnService.getDateByPosition(event.x)), model);
-						const newTo = $$invalidate(0, model.to = utils.roundTo(columnService.getDateByPosition(event.x + _position.width)), model);
+						const newFrom = utils.roundTo(columnService.getDateByPosition(event.x));
+						const newTo = utils.roundTo(columnService.getDateByPosition(event.x + _position.width));
 						const newLeft = columnService.getPositionByDate(newFrom) | 0;
 						const newRight = columnService.getPositionByDate(newTo) | 0;
 						$$invalidate(5, _dragging = true);
 						let onQuarterMark = false;
 						$$invalidate(1, taskObject.model.from = newFrom, taskObject);
 						$$invalidate(1, taskObject.model.to = newTo, taskObject);
-						$$invalidate(1, taskObject.model.prevFrom = model.from, taskObject);
-						$$invalidate(1, taskObject.model.prevTo = model.to, taskObject);
 
+						// taskObject.model.prevFrom = model.from;
+						// taskObject.model.prevTo = model.to;
 						if (!(_position.x % 10)) {
 							api["tasks"].raise.move({ task: taskObject });
 						}
