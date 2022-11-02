@@ -1570,7 +1570,7 @@ function instance($$self, $$props, $$invalidate) {
 							api["tasks"].raise.move({ task: taskObject });
 						}
 
-						if (_position.x <= newLeft - 2 || _position.x >= newLeft + 2) {
+						if (_position.x <= newLeft - 2 || _position.x >= newLeft + 2 || !(_position.x % 10)) {
 							onQuarterMark = true;
 						}
 
