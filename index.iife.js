@@ -1107,7 +1107,7 @@
     	};
     }
 
-    // (333:4) {:else}
+    // (337:4) {:else}
     function create_else_block(ctx) {
     	let t_value = /*model*/ ctx[0].label + "";
     	let t;
@@ -1128,7 +1128,7 @@
     	};
     }
 
-    // (331:26) 
+    // (335:26) 
     function create_if_block_3(ctx) {
     	let html_tag;
     	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1149,7 +1149,7 @@
     	};
     }
 
-    // (329:4) {#if model.html}
+    // (333:4) {#if model.html}
     function create_if_block_2(ctx) {
     	let html_tag;
     	let raw_value = /*model*/ ctx[0].html + "";
@@ -1170,7 +1170,7 @@
     	};
     }
 
-    // (335:4) {#if model.showButton}
+    // (339:4) {#if model.showButton}
     function create_if_block_1(ctx) {
     	let span;
     	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1206,7 +1206,7 @@
     	};
     }
 
-    // (342:2) {#if model.labelBottom}
+    // (346:2) {#if model.labelBottom}
     function create_if_block(ctx) {
     	let label;
     	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1471,8 +1471,8 @@
     				const task = $taskStore.entities[model.id];
 
     				if (rowChangeValid) {
-    					const prevFrom = model.from;
-    					const prevTo = model.to;
+    					const prevFrom = model.prevFrom;
+    					const prevTo = model.prevTo;
     					const newFrom = $$invalidate(0, model.from = utils.roundTo(columnService.getDateByPosition(event.x)), model);
     					const newTo = $$invalidate(0, model.to = utils.roundTo(columnService.getDateByPosition(event.x + event.width)), model);
     					const newLeft = columnService.getPositionByDate(newFrom) | 0;
@@ -1533,7 +1533,9 @@
     			const draggable = new Draggable(node,
     			{
     					onDown: event => {
-    						api["tasks"].raise.select({ task: taskObject });
+    						api["tasks"].raise.select({
+    							task: Object.assign(Object.assign({}, taskObject), { prevFrom: model.from, prevTo: model.to })
+    						});
 
     						if (event.dragging) {
     							setCursor("move");
@@ -1568,6 +1570,8 @@
     						let onQuarterMark = false;
     						$$invalidate(1, taskObject.model.from = newFrom, taskObject);
     						$$invalidate(1, taskObject.model.to = newTo, taskObject);
+    						$$invalidate(1, taskObject.model.prevFrom = model.from, taskObject);
+    						$$invalidate(1, taskObject.model.prevTo = model.to, taskObject);
 
     						if (!(_position.x % 10)) {
     							api["tasks"].raise.move({ task: taskObject });
