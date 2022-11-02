@@ -1564,8 +1564,8 @@ function instance($$self, $$props, $$invalidate) {
 						const newRight = columnService.getPositionByDate(newTo) | 0;
 						$$invalidate(5, _dragging = true);
 						let onQuarterMark = false;
-						$$invalidate(1, taskObject.model.from = newFrom, taskObject);
-						$$invalidate(1, taskObject.model.to = newTo, taskObject);
+						$$invalidate(1, taskObject.model.newFrom = newFrom, taskObject);
+						$$invalidate(1, taskObject.model.newTo = newTo, taskObject);
 
 						// taskObject.model.prevFrom = model.from;
 						// taskObject.model.prevTo = model.to;
