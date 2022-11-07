@@ -1104,7 +1104,7 @@ function create_if_block_4(ctx) {
 	};
 }
 
-// (335:4) {:else}
+// (339:4) {:else}
 function create_else_block(ctx) {
 	let t_value = /*model*/ ctx[0].label + "";
 	let t;
@@ -1125,7 +1125,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (333:26) 
+// (337:26) 
 function create_if_block_3(ctx) {
 	let html_tag;
 	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1146,7 +1146,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (331:4) {#if model.html}
+// (335:4) {#if model.html}
 function create_if_block_2(ctx) {
 	let html_tag;
 	let raw_value = /*model*/ ctx[0].html + "";
@@ -1167,7 +1167,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (337:4) {#if model.showButton}
+// (341:4) {#if model.showButton}
 function create_if_block_1(ctx) {
 	let span;
 	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1203,7 +1203,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (344:2) {#if model.labelBottom}
+// (348:2) {#if model.labelBottom}
 function create_if_block(ctx) {
 	let label;
 	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1232,8 +1232,11 @@ function create_fragment(ctx) {
 	let div1;
 	let t0;
 	let div0;
+	let svg;
+	let path;
 	let t1;
 	let t2;
+	let t3;
 	let div1_data_task_id_value;
 	let div1_class_value;
 	let div1_id_value;
@@ -1259,11 +1262,23 @@ function create_fragment(ctx) {
 			if (if_block0) if_block0.c();
 			t0 = space();
 			div0 = element("div");
-			if_block1.c();
+			svg = svg_element("svg");
+			path = svg_element("path");
 			t1 = space();
-			if (if_block2) if_block2.c();
+			if_block1.c();
 			t2 = space();
+			if (if_block2) if_block2.c();
+			t3 = space();
 			if (if_block3) if_block3.c();
+			attr(path, "stroke-linecap", "round");
+			attr(path, "stroke-linejoin", "round");
+			attr(path, "d", "M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z");
+			attr(svg, "xmlns", "http://www.w3.org/2000/svg");
+			attr(svg, "fill", "none");
+			attr(svg, "viewBox", "0 0 24 24");
+			attr(svg, "stroke-width", "1.5");
+			attr(svg, "stroke", "currentColor");
+			attr(svg, "class", "w-6 h-6");
 			attr(div0, "class", "sg-task-content svelte-16vlgtg");
 			attr(div1, "data-task-id", div1_data_task_id_value = /*model*/ ctx[0].id);
 			attr(div1, "class", div1_class_value = "sg-task " + /*model*/ ctx[0].classes + " svelte-16vlgtg");
@@ -1281,10 +1296,13 @@ function create_fragment(ctx) {
 			if (if_block0) if_block0.m(div1, null);
 			append(div1, t0);
 			append(div1, div0);
-			if_block1.m(div0, null);
+			append(div0, svg);
+			append(svg, path);
 			append(div0, t1);
+			if_block1.m(div0, null);
+			append(div0, t2);
 			if (if_block2) if_block2.m(div0, null);
-			append(div1, t2);
+			append(div1, t3);
 			if (if_block3) if_block3.m(div1, null);
 
 			if (!mounted) {
@@ -1319,7 +1337,7 @@ function create_fragment(ctx) {
 
 				if (if_block1) {
 					if_block1.c();
-					if_block1.m(div0, t1);
+					if_block1.m(div0, t2);
 				}
 			}
 
