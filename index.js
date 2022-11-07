@@ -1277,7 +1277,7 @@ function create_fragment(ctx) {
 			attr(svg, "fill", "none");
 			attr(svg, "viewBox", "0 0 24 24");
 			attr(svg, "stroke-width", "1.5");
-			attr(svg, "stroke", "currentColor");
+			attr(svg, "stroke", "black");
 			attr(svg, "class", "w-6 h-6");
 			attr(div0, "class", "sg-task-content svelte-16vlgtg");
 			attr(div1, "data-task-id", div1_data_task_id_value = /*model*/ ctx[0].id);
