@@ -1107,7 +1107,7 @@
     	};
     }
 
-    // (335:4) {#if !model.enableDragging}
+    // (336:4) {#if !model.enableDragging}
     function create_if_block_4(ctx) {
     	let svg;
     	let path;
@@ -1136,7 +1136,7 @@
     	};
     }
 
-    // (344:4) {:else}
+    // (345:4) {:else}
     function create_else_block(ctx) {
     	let t_value = /*model*/ ctx[0].label + "";
     	let t;
@@ -1157,7 +1157,7 @@
     	};
     }
 
-    // (342:26) 
+    // (343:26) 
     function create_if_block_3(ctx) {
     	let html_tag;
     	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1178,7 +1178,7 @@
     	};
     }
 
-    // (340:4) {#if model.html}
+    // (341:4) {#if model.html}
     function create_if_block_2(ctx) {
     	let html_tag;
     	let raw_value = /*model*/ ctx[0].html + "";
@@ -1199,7 +1199,7 @@
     	};
     }
 
-    // (346:4) {#if model.showButton}
+    // (347:4) {#if model.showButton}
     function create_if_block_1(ctx) {
     	let span;
     	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1235,7 +1235,7 @@
     	};
     }
 
-    // (353:2) {#if model.labelBottom}
+    // (354:2) {#if model.labelBottom}
     function create_if_block(ctx) {
     	let label;
     	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1456,6 +1456,7 @@
     }
 
     let animating = true;
+    const MOVE_END_DELAY = 250;
 
     function instance($$self, $$props, $$invalidate) {
     	let $rowStore;
@@ -1585,7 +1586,7 @@
 
     						if (event.dragging) {
     							setCursor("move");
-    							timer = setTimeout(() => timeout({ task: taskObject }, true), 150);
+    							timer = setTimeout(() => timeout({ task: taskObject }, true), MOVE_END_DELAY);
     						}
 
     						if (event.resizing) {
@@ -1628,7 +1629,7 @@
     						}
 
     						clearTimeout(timer);
-    						timer = setTimeout(() => timeout({ task: taskObject }, onQuarterMark), 150);
+    						timer = setTimeout(() => timeout({ task: taskObject }, onQuarterMark), MOVE_END_DELAY);
     					},
     					dragAllowed: () => {
     						return row.model.enableDragging && model.enableDragging;
