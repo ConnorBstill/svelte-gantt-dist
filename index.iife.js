@@ -1107,7 +1107,7 @@
     	};
     }
 
-    // (336:4) {#if !model.enableDragging}
+    // (334:4) {#if !model.enableDragging}
     function create_if_block_4(ctx) {
     	let svg;
     	let path;
@@ -1136,7 +1136,7 @@
     	};
     }
 
-    // (345:4) {:else}
+    // (343:4) {:else}
     function create_else_block(ctx) {
     	let t_value = /*model*/ ctx[0].label + "";
     	let t;
@@ -1157,7 +1157,7 @@
     	};
     }
 
-    // (343:26) 
+    // (341:26) 
     function create_if_block_3(ctx) {
     	let html_tag;
     	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1178,7 +1178,7 @@
     	};
     }
 
-    // (341:4) {#if model.html}
+    // (339:4) {#if model.html}
     function create_if_block_2(ctx) {
     	let html_tag;
     	let raw_value = /*model*/ ctx[0].html + "";
@@ -1199,7 +1199,7 @@
     	};
     }
 
-    // (347:4) {#if model.showButton}
+    // (345:4) {#if model.showButton}
     function create_if_block_1(ctx) {
     	let span;
     	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1235,7 +1235,7 @@
     	};
     }
 
-    // (354:2) {#if model.labelBottom}
+    // (352:2) {#if model.labelBottom}
     function create_if_block(ctx) {
     	let label;
     	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1607,29 +1607,26 @@
     						// }
     						if (model.enableDragging) {
     							$$invalidate(7, _position.x = event.x, _position);
+    							const newFrom = utils.roundTo(columnService.getDateByPosition(event.x));
+    							const newTo = utils.roundTo(columnService.getDateByPosition(event.x + _position.width));
+    							const newLeft = columnService.getPositionByDate(newFrom) | 0;
+    							const newRight = columnService.getPositionByDate(newTo) | 0;
+    							$$invalidate(5, _dragging = true);
+    							let onQuarterMark = false;
+    							$$invalidate(1, taskObject.model.newFrom = newFrom, taskObject);
+    							$$invalidate(1, taskObject.model.newTo = newTo, taskObject);
+
+    							if (!(_position.x % 10)) {
+    								api["tasks"].raise.move({ task: taskObject });
+    							}
+
+    							if (_position.x <= newLeft - 2 || _position.x >= newLeft + 2 || !(_position.x % 10)) {
+    								onQuarterMark = true;
+    							}
+
+    							clearTimeout(timer);
+    							timer = setTimeout(() => timeout({ task: taskObject }, onQuarterMark), MOVE_END_DELAY);
     						}
-
-    						const newFrom = utils.roundTo(columnService.getDateByPosition(event.x));
-    						const newTo = utils.roundTo(columnService.getDateByPosition(event.x + _position.width));
-    						const newLeft = columnService.getPositionByDate(newFrom) | 0;
-    						const newRight = columnService.getPositionByDate(newTo) | 0;
-    						$$invalidate(5, _dragging = true);
-    						let onQuarterMark = false;
-    						$$invalidate(1, taskObject.model.newFrom = newFrom, taskObject);
-    						$$invalidate(1, taskObject.model.newTo = newTo, taskObject);
-
-    						// taskObject.model.prevFrom = model.from;
-    						// taskObject.model.prevTo = model.to;
-    						if (!(_position.x % 10)) {
-    							api["tasks"].raise.move({ task: taskObject });
-    						}
-
-    						if (_position.x <= newLeft - 2 || _position.x >= newLeft + 2 || !(_position.x % 10)) {
-    							onQuarterMark = true;
-    						}
-
-    						clearTimeout(timer);
-    						timer = setTimeout(() => timeout({ task: taskObject }, onQuarterMark), MOVE_END_DELAY);
     					},
     					dragAllowed: () => {
     						return row.model.enableDragging && model.enableDragging;
