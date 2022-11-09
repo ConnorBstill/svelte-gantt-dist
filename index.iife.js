@@ -1620,7 +1620,7 @@
     								api["tasks"].raise.move({ task: taskObject });
     							}
 
-    							if (_position.x <= newLeft - 5 || _position.x >= newLeft + 5 || !(_position.x % 10)) {
+    							if (_position.x <= newLeft - 5 || _position.x >= newLeft + 5 || !(_position.x % 1)) {
     								onQuarterMark = true;
     							}
 
