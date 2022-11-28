@@ -1104,7 +1104,7 @@ function create_if_block_5(ctx) {
 	};
 }
 
-// (334:4) {#if !model.enableDragging}
+// (335:4) {#if !model.enableDragging}
 function create_if_block_4(ctx) {
 	let svg;
 	let path;
@@ -1133,7 +1133,7 @@ function create_if_block_4(ctx) {
 	};
 }
 
-// (343:4) {:else}
+// (344:4) {:else}
 function create_else_block(ctx) {
 	let t_value = /*model*/ ctx[0].label + "";
 	let t;
@@ -1154,7 +1154,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (341:26) 
+// (342:26) 
 function create_if_block_3(ctx) {
 	let html_tag;
 	let raw_value = /*taskContent*/ ctx[9](/*model*/ ctx[0]) + "";
@@ -1175,7 +1175,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (339:4) {#if model.html}
+// (340:4) {#if model.html}
 function create_if_block_2(ctx) {
 	let html_tag;
 	let raw_value = /*model*/ ctx[0].html + "";
@@ -1196,7 +1196,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (345:4) {#if model.showButton}
+// (346:4) {#if model.showButton}
 function create_if_block_1(ctx) {
 	let span;
 	let raw_value = /*model*/ ctx[0].buttonHtml + "";
@@ -1232,7 +1232,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (352:2) {#if model.labelBottom}
+// (353:2) {#if model.labelBottom}
 function create_if_block(ctx) {
 	let label;
 	let t_value = /*model*/ ctx[0].labelBottom + "";
@@ -1535,6 +1535,8 @@ function instance($$self, $$props, $$invalidate) {
 					if (changed) {
 						api.tasks.raise.change({ task: newTask, sourceRow, targetRow });
 					}
+
+					api.tasks.raise.dropped({ task: newTask, sourceRow, targetRow });
 
 					// taskStore.update(newTask);
 					if (changed) {
@@ -3568,7 +3570,7 @@ function get_each_context_5(ctx, list, i) {
 	return child_ctx;
 }
 
-// (596:4) {#each ganttTableModules as module}
+// (597:4) {#each ganttTableModules as module}
 function create_each_block_5(ctx) {
 	let switch_instance_anchor;
 	let current;
@@ -3669,7 +3671,7 @@ function create_each_block_5(ctx) {
 	};
 }
 
-// (607:20) {#each $allTimeRanges as timeRange (timeRange.model.id)}
+// (608:20) {#each $allTimeRanges as timeRange (timeRange.model.id)}
 function create_each_block_4(key_1, ctx) {
 	let first;
 	let current;
@@ -3718,7 +3720,7 @@ function create_each_block_4(key_1, ctx) {
 	};
 }
 
-// (620:24) {#each tableRows as row (row.model.id)}
+// (621:24) {#each tableRows as row (row.model.id)}
 function create_each_block_3(key_1, ctx) {
 	let first;
 	let current;
@@ -3758,7 +3760,7 @@ function create_each_block_3(key_1, ctx) {
 	};
 }
 
-// (628:20) {#each $allTimeRanges as timeRange (timeRange.model.id)}
+// (629:20) {#each $allTimeRanges as timeRange (timeRange.model.id)}
 function create_each_block_2(key_1, ctx) {
 	let first;
 	let current;
@@ -3807,7 +3809,7 @@ function create_each_block_2(key_1, ctx) {
 	};
 }
 
-// (632:20) {#each visibleTasks as task (task.model.id)}
+// (633:20) {#each visibleTasks as task (task.model.id)}
 function create_each_block_1(key_1, ctx) {
 	let first;
 	let current;
@@ -3874,7 +3876,7 @@ function create_each_block_1(key_1, ctx) {
 	};
 }
 
-// (637:16) {#each ganttBodyModules as module}
+// (638:16) {#each ganttBodyModules as module}
 function create_each_block$2(ctx) {
 	let switch_instance_anchor;
 	let current;
@@ -4745,6 +4747,7 @@ function instance$8($$self, $$props, $$invalidate) {
 		api.registerEvent("tasks", "moveEnd");
 		api.registerEvent("tasks", "change");
 		api.registerEvent("tasks", "changed");
+		api.registerEvent("tasks", "dropped");
 		api.registerEvent("gantt", "viewChanged");
 		api.registerEvent("gantt", "dateSelected");
 		api.registerEvent("tasks", "dblclicked");
