@@ -1500,7 +1500,6 @@
     	function drag(node) {
     		if (row.model.enableDragging) {
     			const ondrop = event => {
-    				let rowChangeValid = true;
 
     				//row switching
     				const sourceRow = $rowStore.entities[model.resourceId];
@@ -1510,15 +1509,14 @@
 
     					if (targetRow) {
     						$$invalidate(0, model.resourceId = sourceRow.model.id, model);
-    					} else {
-    						rowChangeValid = false; // api.tasks.raise.switchRow(this, targetRow, sourceRow);
-    					}
+    					} // api.tasks.raise.switchRow(this, targetRow, sourceRow);
+    					// rowChangeValid = false;
     				}
 
     				$$invalidate(5, _dragging = $$invalidate(6, _resizing = false));
     				const task = $taskStore.entities[model.id];
 
-    				if (rowChangeValid) {
+    				{
     					const prevFrom = model.from;
     					const prevTo = model.to;
     					const newFrom = $$invalidate(0, model.from = utils.roundTo(columnService.getDateByPosition(event.x)), model);
@@ -1545,39 +1543,6 @@
     					if (changed) {
     						api.tasks.raise.changed({ task: newTask, sourceRow, targetRow });
     					}
-    				} else // if(newTask.reflections) {
-    				//     taskStore.deleteAll(newTask.reflections);
-    				// }
-    				// const reflectedTasks = [];
-    				// if(reflectOnChildRows && targetRow.allChildren) {
-    				//     if(!newTask.reflections)
-    				//         newTask.reflections = [];
-    				//     const opts = { rowPadding: $rowPadding };
-    				//     targetRow.allChildren.forEach(r => {
-    				//         const reflectedTask = reflectTask(newTask, r, opts);
-    				//         newTask.reflections.push(reflectedTask.model.id);
-    				//         reflectedTasks.push(reflectedTask);
-    				//     });
-    				// }
-    				// if(reflectOnParentRows && targetRow.allParents.length > 0) {
-    				//     if(!newTask.reflections)
-    				//         newTask.reflections = [];
-    				//     const opts = { rowPadding: $rowPadding };
-    				//     targetRow.allParents.forEach(r => {
-    				//         const reflectedTask = reflectTask(newTask, r, opts);
-    				//         newTask.reflections.push(reflectedTask.model.id);
-    				//         reflectedTasks.push(reflectedTask);
-    				//     });
-    				// }
-    				// if(reflectedTasks.length > 0) {
-    				//     taskStore.upsertAll(reflectedTasks);
-    				// }
-    				// if(!(targetRow.allParents.length > 0) && !targetRow.allChildren) {
-    				//     newTask.reflections = null;
-    				// }
-    				{
-    					// reset position
-    					($$invalidate(7, _position.x = task.left, _position), $$invalidate(7, _position.width = task.width, _position), $$invalidate(7, _position.y = task.top, _position)); // // update shadow tasks
     				}
     			};
 
