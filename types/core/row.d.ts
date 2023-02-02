@@ -1,4 +1,5 @@
 export interface RowModel {
+    tooltip: string;
     id: number | string;
     label: string;
     classes?: string | string[];
